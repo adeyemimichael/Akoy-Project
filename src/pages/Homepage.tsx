@@ -1,18 +1,43 @@
-import { toast } from "react-hot-toast";
+import React from "react";
+import { Navbar } from "../components/Navbar";
+import { Hero } from "../components/Hero";
+import { WorkGallery } from "../components/WorkGallery";
+import { DivisionsGrid } from "../components/DivisionsGrid";
+import { DiasporaBanner } from "../components/DiasporaBanner";
+import { AboutSection } from "../components/AboutSection";
+import { ContactSection } from "../components/ContactSection";
+import { Footer } from "../components/Footer";
 
-const Homepage = () => {
-  const handleClick = () => {
-    toast.success("Button Clicked Successfully");
-  };
+const Homepage: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-6">
-      <h1 className="text-2xl text-red-500 font-bold ">Homepage</h1>
-      <button
-        onClick={handleClick}
-        className="bg-red-600 hover:bg-red-700 p-6 text-white font-bold rounded-2xl"
-      >
-        Click me
-      </button>
+    <div className="min-h-screen bg-[#EAEFF5] py-2 sm:py-4 px-2 sm:px-4 lg:px-6">
+      {/* Outer Framed Stage (Replicating the reference image's framed canvas effect) */}
+      <div className="max-w-[1600px] mx-auto bg-white rounded-[32px] sm:rounded-[44px] shadow-2xl overflow-hidden border border-slate-200/90 transition-all">
+        {/* Navigation Bar with suspended notched center tab */}
+        <Navbar />
+
+        {/* Hero Section */}
+        <main>
+          <Hero />
+
+          <WorkGallery />
+
+          {/* All 6 Specialized Business Divisions */}
+          <DivisionsGrid />
+
+          {/* Nigerian Diaspora Bridge & Escrow Governance */}
+          <DiasporaBanner />
+
+          {/* About AKOY 360 & Corporate Heritage */}
+          <AboutSection />
+
+          {/* Executive Consultation & Contact Desk */}
+          <ContactSection />
+        </main>
+
+        {/* Corporate Footer */}
+        <Footer />
+      </div>
     </div>
   );
 };
