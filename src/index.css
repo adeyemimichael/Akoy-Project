@@ -1,14 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-950: #09184f;
-  --color-navy-900: #142b8c;
+  /* Brand color tokens derived from logo */
+  --brand-blue: #142B8C; /* primary brand blue (logo) */
+  --brand-deep: #09184F; /* deeper navy used in accents */
+  --brand-gold: #E9C541; /* brand gold */
+
+  --color-navy-950: var(--brand-deep);
+  --color-navy-900: var(--brand-blue);
   --color-navy-800: #122540;
   --color-navy-700: #1b355a;
   
   --color-gold-300: #f5dc80;
   --color-gold-400: #f1d05e;
-  --color-gold-500: #e9c541;
+  --color-gold-500: var(--brand-gold);
   --color-gold-600: #c89d12;
   --color-gold-700: #a98210;
 
@@ -25,8 +30,10 @@
 @layer base {
   body {
     font-family: var(--font-sans);
-    color: #142b8c;
-    background-color: #f1f4f8;
+    color: var(--brand-blue);
+    background-color: #ffffff; /* minimal, clean background */
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {

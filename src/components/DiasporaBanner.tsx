@@ -28,7 +28,7 @@ export const DiasporaBanner: React.FC = () => {
   return (
     <section id="diaspora" className="py-20 bg-white relative overflow-hidden">
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-[40px] bg-gradient-to-br from-[#142B8C] via-[#203A9B] to-[#09184F] text-white p-8 sm:p-14 lg:p-16 overflow-hidden shadow-2xl border border-[#E9C541]/30">
+        <div className="relative rounded-[40px] text-white p-8 sm:p-14 lg:p-16 overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--brand-blue) 0%, #203A9B 50%, var(--brand-deep) 100%)', border: '1px solid rgba(233,197,65,0.18)', boxShadow: '0 20px 40px rgba(9,24,79,0.12)' }}>
           {/* Subtle watermark logo pattern */}
           <div className="absolute -right-16 -bottom-16 w-96 h-96 opacity-5 pointer-events-none">
             <svg viewBox="0 0 100 100" className="w-full h-full fill-current text-[#E9C541]">
@@ -105,7 +105,7 @@ export const DiasporaBanner: React.FC = () => {
                 </div>
 
                 <div className="space-y-4 text-xs">
-                  <div className="bg-[#09184F]/70 p-4 rounded-2xl border border-white/10">
+                  <div className="p-4 rounded-2xl border border-white/10" style={{ background: 'rgba(9,24,79,0.7)' }}>
                     <div className="flex justify-between text-slate-300 font-semibold mb-1">
                       <span>Roofing & Structural Concrete</span>
                       <span className="text-[#E9C541] font-bold">85% Completed</span>
@@ -120,12 +120,12 @@ export const DiasporaBanner: React.FC = () => {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-[#09184F]/70 p-3.5 rounded-2xl border border-white/10">
+                  <div className="p-3.5 rounded-2xl border border-white/10" style={{ background: 'rgba(9,24,79,0.7)' }}>
                       <div className="text-slate-400 text-[10px] uppercase font-bold">Escrow Account</div>
                       <div className="text-base font-extrabold text-white mt-0.5">Secure Escrow</div>
                       <div className="text-[10px] text-emerald-400 mt-1">Bank Guaranteed</div>
                     </div>
-                    <div className="bg-[#09184F]/70 p-3.5 rounded-2xl border border-white/10">
+                  <div className="p-3.5 rounded-2xl border border-white/10" style={{ background: 'rgba(9,24,79,0.7)' }}>
                       <div className="text-slate-400 text-[10px] uppercase font-bold">Drone Telemetry</div>
                       <div className="text-base font-extrabold text-white mt-0.5">4K Video Ready</div>
                       <div className="text-[10px] text-[#E9C541] mt-1">View Telemetry Feed</div>

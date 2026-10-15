@@ -22,27 +22,27 @@ export const Hero: React.FC<HeroProps> = ({ onDivisionSelect }) => {
       <div className="mx-auto max-w-[1480px]">
         <div className="flex items-end justify-between gap-4 pb-4 sm:pb-6">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#142B8C] sm:text-xs">
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] sm:text-xs" style={{ color: 'var(--brand-blue)' }}>
               AKOY 360 LIMITED
             </p>
-            <h1 className="mt-1 font-display text-2xl font-extrabold leading-tight text-[#142B8C] sm:text-4xl">
+            <h1 className="mt-1 font-display text-2xl font-extrabold leading-tight sm:text-4xl" style={{ color: 'var(--brand-blue)' }}>
               One vision. <span className="text-[#C89D12]">360° possibilities.</span>
             </h1>
           </div>
-          <a href="#divisions" aria-label="Explore business divisions" className="mb-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#142B8C] text-white transition-colors hover:bg-[#E9C541] hover:text-[#09184F] sm:h-12 sm:w-12">
+          <a href="#divisions" aria-label="Explore business divisions" className="mb-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition-colors sm:h-12 sm:w-12" style={{ background: 'var(--brand-blue)' }}>
             <ArrowUpRight className="h-5 w-5" />
           </a>
         </div>
 
         <div className="relative">
-          <div className="group relative h-[360px] w-full overflow-hidden rounded-2xl bg-[#09184F] shadow-xl sm:h-[480px] sm:rounded-3xl lg:h-[600px]">
+          <div className="group relative h-[360px] w-full overflow-hidden rounded-2xl shadow-xl sm:h-[480px] sm:rounded-3xl lg:h-[600px]" style={{ background: 'var(--brand-deep)' }}>
             <img
               key={activeDivision.id}
               src={activeDivision.image}
               alt={activeDivision.name}
               className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#09184F]/80 via-transparent to-transparent" />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(9,24,79,0.85), rgba(9,24,79,0.0))' }} />
             <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-4 sm:flex-row sm:items-end sm:justify-between sm:p-8">
               <div className="min-w-0 text-white">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#FFE276] sm:text-sm">

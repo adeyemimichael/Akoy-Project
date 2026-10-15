@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#09184F] text-white pt-16 pb-12 border-t border-white/10 relative overflow-hidden">
+    <footer className="text-white pt-16 pb-12 border-t border-white/10 relative overflow-hidden" style={{ background: 'var(--brand-deep)' }}>
       {/* Decorative top border line in gold */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#E9C541] to-transparent" />
 
@@ -153,7 +153,8 @@ export const Footer: React.FC = () => {
                 />
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-lg bg-[#E9C541] text-[#09184F] text-xs font-bold hover:bg-[#F1D05E] transition-colors"
+                  className="px-3 py-1.5 rounded-lg text-xs font-bold transition-colors"
+                  style={{ background: 'var(--brand-gold)', color: 'var(--brand-deep)' }}
                 >
                   Join
                 </button>

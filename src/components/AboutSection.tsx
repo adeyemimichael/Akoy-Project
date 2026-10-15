@@ -32,20 +32,20 @@ export const AboutSection: React.FC = () => {
                 alt="AKOY 360 Corporate HQ"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#142B8C]/90 via-transparent to-transparent" />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(20,43,140,0.9), transparent)' }} />
 
               {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl border border-white text-[#142B8C]">
+            <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl border border-white" style={{ color: 'var(--brand-blue)' }}>
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-[#E9C541]">
                       The 360° Advantage
                     </span>
-                    <h3 className="text-lg font-bold font-display text-[#142B8C] mt-0.5">
+                  <h3 className="text-lg font-bold font-display mt-0.5" style={{ color: 'var(--brand-blue)' }}>
                       Unified Conglomerate Model
                     </h3>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-[#142B8C] text-[#E9C541] flex items-center justify-center font-black text-xs">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center font-black text-xs" style={{ background: 'var(--brand-blue)', color: 'var(--brand-gold)' }}>
                     360°
                   </div>
                 </div>
@@ -58,11 +58,11 @@ export const AboutSection: React.FC = () => {
 
           {/* Right Column: Narrative & Values */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#142B8C]/5 border border-[#142B8C]/15 text-[#142B8C] text-xs font-bold tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase" style={{ background: 'rgba(20,43,140,0.05)', border: '1px solid rgba(20,43,140,0.15)', color: 'var(--brand-blue)' }}>
               <span>Corporate Heritage</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-[#142B8C] leading-[1.15]">
+            <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight leading-[1.15]" style={{ color: 'var(--brand-blue)' }}>
               Connecting Opportunities.{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E9C541] to-[#C89D12]">
                 Delivering Solutions.
@@ -84,7 +84,7 @@ export const AboutSection: React.FC = () => {
                   <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center mb-3">
                     {p.icon}
                   </div>
-                  <h4 className="text-sm font-bold text-[#142B8C]">{p.title}</h4>
+                  <h4 className="text-sm font-bold" style={{ color: 'var(--brand-blue)' }}>{p.title}</h4>
                   <p className="text-xs text-slate-500 mt-1 leading-snug">{p.desc}</p>
                 </div>
               ))}

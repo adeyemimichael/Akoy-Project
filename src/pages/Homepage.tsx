@@ -10,9 +10,8 @@ import { Footer } from "../components/Footer";
 
 const Homepage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#EAEFF5] py-2 sm:py-4 px-2 sm:px-4 lg:px-6">
-      {/* Outer Framed Stage (Replicating the reference image's framed canvas effect) */}
-      <div className="max-w-[1600px] mx-auto bg-white rounded-[32px] sm:rounded-[44px] shadow-2xl overflow-hidden border border-slate-200/90 transition-all">
+    <div className="min-h-screen py-6 px-4 lg:px-8" style={{ background: '#FAFBFD' }}>
+      <div className="max-w-[1400px] mx-auto bg-white rounded-2xl overflow-hidden border border-gray-100 transition-all">
         {/* Navigation Bar with suspended notched center tab */}
         <Navbar />
 

@@ -25,9 +25,9 @@ export const ContactSection: React.FC = () => {
         {
           duration: 6000,
           style: {
-            background: "#142B8C",
+            background: "var(--brand-blue)",
             color: "#FFFFFF",
-            border: "1px solid #E9C541",
+            border: "1px solid var(--brand-gold)",
           },
         }
       );
@@ -49,10 +49,10 @@ export const ContactSection: React.FC = () => {
           {/* Left Column: Direct Inquiries and Contact Details */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#142B8C]/5 border border-[#142B8C]/15 text-[#142B8C] text-xs font-bold tracking-widest uppercase mb-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-3" style={{ background: 'rgba(20,43,140,0.05)', border: '1px solid rgba(20,43,140,0.15)', color: 'var(--brand-blue)' }}>
                 <span>Direct Executive Desk</span>
               </div>
-              <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-[#142B8C]">
+              <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight" style={{ color: 'var(--brand-blue)' }}>
                 Let's Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E9C541] to-[#C89D12]">Next Solution.</span>
               </h2>
               <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
@@ -63,12 +63,12 @@ export const ContactSection: React.FC = () => {
             {/* Contact Details List */}
             <div className="space-y-4">
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                <div className="w-10 h-10 rounded-xl bg-[#142B8C] text-[#E9C541] flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-blue)', color: 'var(--brand-gold)' }}>
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Corporate Headquarters</h4>
-                  <p className="text-sm font-semibold text-[#142B8C] mt-0.5">
+                <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-blue)' }}>
                     Victoria Island / Ikoyi Commercial Corridor, Lagos, Nigeria
                   </p>
                   <p className="text-xs text-slate-500 mt-0.5">Liaison Desks in London (UK) & Houston, Texas (USA)</p>
@@ -76,23 +76,23 @@ export const ContactSection: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                <div className="w-10 h-10 rounded-xl bg-[#142B8C] text-[#E9C541] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-blue)', color: 'var(--brand-gold)' }}>
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Telephone & WhatsApp Hotline</h4>
-                  <p className="text-sm font-semibold text-[#142B8C] mt-0.5">+234 (0) 800 360 AKOY / +234 812 345 6789</p>
+                  <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-blue)' }}>+234 (0) 800 360 AKOY / +234 812 345 6789</p>
                   <p className="text-xs text-slate-500 mt-0.5">Mon - Sat, 8:00 AM - 6:00 PM (WAT)</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                <div className="w-10 h-10 rounded-xl bg-[#142B8C] text-[#E9C541] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-blue)', color: 'var(--brand-gold)' }}>
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Official Electronic Inquiries</h4>
-                  <p className="text-sm font-semibold text-[#142B8C] mt-0.5">contact@akoy360.com / diaspora@akoy360.com</p>
+                  <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-blue)' }}>contact@akoy360.com / diaspora@akoy360.com</p>
                   <p className="text-xs text-slate-500 mt-0.5">Guaranteed response within 24 business hours</p>
                 </div>
               </div>
@@ -113,7 +113,7 @@ export const ContactSection: React.FC = () => {
 
           {/* Right Column: Dynamic Consultation Form */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#142B8C] text-white border border-[#E9C541]/30 shadow-2xl relative">
+            <div className="p-8 sm:p-10 rounded-3xl text-white relative" style={{ background: 'var(--brand-blue)', border: '1px solid rgba(233,197,65,0.18)', boxShadow: '0 20px 40px rgba(20,43,140,0.08)' }}>
               <div className="mb-6">
                 <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
                   Schedule a Consultation

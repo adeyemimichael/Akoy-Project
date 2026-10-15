@@ -18,25 +18,26 @@ const DivisionPage: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#EAEFF5] px-2 py-2 sm:px-4 sm:py-4 lg:px-6">
-      <div className="mx-auto max-w-[1600px] overflow-hidden rounded-[28px] border border-slate-200/90 bg-white shadow-2xl sm:rounded-[40px]">
+    <div className="min-h-screen px-4 py-6 lg:px-8" style={{ background: '#FAFBFD' }}>
+      <div className="mx-auto max-w-[1400px] overflow-hidden rounded-2xl border border-gray-100 bg-white">
         <Navbar />
         <main>
           <section className="mx-auto max-w-[1480px] px-4 pb-12 pt-4 sm:px-6 sm:pb-16 lg:px-8">
             <Link
               to="/#divisions"
-              className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-[#142B8C] hover:text-[#A98210]"
+              className="mb-5 inline-flex items-center gap-2 text-sm font-semibold"
+              style={{ color: 'var(--brand-blue)' }}
             >
               <ArrowLeft className="h-4 w-4" /> All divisions
             </Link>
 
-            <div className="relative h-[360px] overflow-hidden rounded-2xl bg-[#09184F] sm:h-[480px] sm:rounded-3xl lg:h-[580px]">
+            <div className="relative h-[360px] overflow-hidden rounded-2xl sm:h-[480px] sm:rounded-3xl lg:h-[580px]" style={{ background: 'var(--brand-deep)' }}>
               <img
                 src={division.image}
                 alt={division.shortName}
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#09184F]/90 via-[#09184F]/10 to-transparent" />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(9,24,79,0.9), rgba(9,24,79,0.1), transparent)' }} />
               <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-10">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#FFE276] sm:text-sm">
                   {division.tagline}
@@ -54,7 +55,7 @@ const DivisionPage: React.FC = () => {
                 </p>
                 <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">
                   <div className="border-l-2 border-[#E9C541] pl-4">
-                    <p className="font-display text-2xl font-extrabold text-[#142B8C] sm:text-3xl">
+                    <p className="font-display text-2xl font-extrabold sm:text-3xl" style={{ color: 'var(--brand-blue)' }}>
                       {division.stats.value}
                     </p>
                     <p className="mt-1 text-xs text-slate-500 sm:text-sm">
@@ -62,7 +63,7 @@ const DivisionPage: React.FC = () => {
                     </p>
                   </div>
                   <div className="border-l-2 border-[#E9C541] pl-4">
-                    <p className="font-display text-lg font-bold text-[#142B8C] sm:text-xl">
+                    <p className="font-display text-lg font-bold sm:text-xl" style={{ color: 'var(--brand-blue)' }}>
                       {division.metrics.primary}
                     </p>
                     <p className="mt-1 text-xs text-slate-500 sm:text-sm">
@@ -73,7 +74,7 @@ const DivisionPage: React.FC = () => {
               </div>
 
               <div>
-                <h2 className="font-display text-xl font-bold text-[#142B8C] sm:text-2xl">
+                <h2 className="font-display text-xl font-bold sm:text-2xl" style={{ color: 'var(--brand-blue)' }}>
                   Services
                 </h2>
                 <ul className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -95,7 +96,7 @@ const DivisionPage: React.FC = () => {
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#A98210]">
                     {division.shortName}
                   </p>
-                  <h2 id="division-gallery-title" className="mt-1 font-display text-2xl font-extrabold text-[#142B8C] sm:text-3xl">
+                  <h2 id="division-gallery-title" className="mt-1 font-display text-2xl font-extrabold sm:text-3xl" style={{ color: 'var(--brand-blue)' }}>
                     Work gallery
                   </h2>
                 </div>
@@ -113,7 +114,7 @@ const DivisionPage: React.FC = () => {
               </div>
             </section>
 
-            <section className="mt-10 flex flex-col gap-5 rounded-2xl bg-[#142B8C] p-5 text-white sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <section className="mt-10 flex flex-col gap-5 rounded-2xl p-5 text-white sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:p-8" style={{ background: 'var(--brand-blue)' }}>
               <div>
                 <h2 className="font-display text-xl font-bold sm:text-2xl">
                   Start a conversation

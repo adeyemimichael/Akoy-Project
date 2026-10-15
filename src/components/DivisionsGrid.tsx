@@ -12,9 +12,9 @@ export const DivisionsGrid: React.FC = () => {
       : DIVISIONS_DATA.filter((d) => d.id === activeTab);
 
   return (
-    <section id="divisions" className="py-16 sm:py-24 bg-[#09184F] text-white relative overflow-hidden">
+    <section id="divisions" className="py-16 sm:py-24 text-white relative overflow-hidden" style={{ background: 'var(--brand-deep)' }}>
       {/* Decorative ambient background glows */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#E9C541]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-96 h-96" style={{ background: 'rgba(233,197,65,0.05)' }} />
       <div className="absolute bottom-0 left-10 w-96 h-96 bg-blue-900/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -64,7 +64,7 @@ export const DivisionsGrid: React.FC = () => {
               key={division.id}
               to={`/divisions/${division.id}`}
               aria-label={`Explore ${division.name}`}
-              className="group relative rounded-3xl bg-[#142B8C]/90 border border-white/10 hover:border-[#E9C541]/50 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-[#E9C541]/10"
+              className="group relative rounded-3xl border border-white/10 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5" style={{ background: 'rgba(20,43,140,0.9)' }}
             >
               {/* Image & Overlay Header */}
               <div className="relative h-56 sm:h-64 w-full overflow-hidden">
@@ -73,7 +73,7 @@ export const DivisionsGrid: React.FC = () => {
                   alt={division.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#142B8C] via-[#142B8C]/40 to-transparent" />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(20,43,140,0.95), rgba(20,43,140,0.4), transparent)' }} />
 
                 {/* Top Floating Badge */}
                 <div className="absolute top-4 left-4 flex items-center gap-2">
