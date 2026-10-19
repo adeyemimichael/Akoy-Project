@@ -31,21 +31,21 @@ const DivisionPage: React.FC = () => {
               <ArrowLeft className="h-4 w-4" /> All divisions
             </Link>
 
-            <div className="relative h-[360px] overflow-hidden rounded-2xl sm:h-[480px] sm:rounded-3xl lg:h-[580px]" style={{ background: 'var(--brand-deep)' }}>
+            <div className="h-[300px] overflow-hidden rounded-2xl bg-slate-100 sm:h-[420px] sm:rounded-3xl lg:h-[500px]">
               <img
                 src={division.image}
                 alt={division.shortName}
                 className="h-full w-full object-cover"
               />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(9,24,79,0.9), rgba(9,24,79,0.1), transparent)' }} />
-              <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-10">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#FFE276] sm:text-sm">
-                  {division.tagline}
-                </p>
-                <h1 className="mt-2 max-w-4xl font-display text-3xl font-extrabold leading-tight sm:text-5xl">
-                  {division.headline}
-                </h1>
-              </div>
+            </div>
+
+            <div className="border-b border-slate-200 py-7 sm:py-9">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#a67d00] sm:text-sm">
+                {division.tagline}
+              </p>
+              <h1 className="mt-2 max-w-4xl font-display text-3xl font-extrabold leading-tight text-[#001050] sm:text-5xl">
+                {division.headline}
+              </h1>
             </div>
 
             <div className="grid gap-10 py-10 sm:py-14 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
@@ -54,16 +54,16 @@ const DivisionPage: React.FC = () => {
                   {division.description}
                 </p>
                 <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">
-                  <div className="border-l-2 border-[#E9C541] pl-4">
-                    <p className="font-display text-2xl font-extrabold sm:text-3xl" style={{ color: 'var(--brand-blue)' }}>
+                  <div className="border-l-2 border-[#fdbf02] pl-4">
+                    <p className="font-display text-2xl font-extrabold text-[#001050] sm:text-3xl">
                       {division.stats.value}
                     </p>
                     <p className="mt-1 text-xs text-slate-500 sm:text-sm">
                       {division.stats.label}
                     </p>
                   </div>
-                  <div className="border-l-2 border-[#E9C541] pl-4">
-                    <p className="font-display text-lg font-bold sm:text-xl" style={{ color: 'var(--brand-blue)' }}>
+                  <div className="border-l-2 border-[#fdbf02] pl-4">
+                    <p className="font-display text-lg font-bold text-[#001050] sm:text-xl">
                       {division.metrics.primary}
                     </p>
                     <p className="mt-1 text-xs text-slate-500 sm:text-sm">
@@ -74,7 +74,7 @@ const DivisionPage: React.FC = () => {
               </div>
 
               <div>
-                <h2 className="font-display text-xl font-bold sm:text-2xl" style={{ color: 'var(--brand-blue)' }}>
+                <h2 className="font-display text-xl font-bold text-[#001050] sm:text-2xl">
                   Services
                 </h2>
                 <ul className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -93,10 +93,10 @@ const DivisionPage: React.FC = () => {
             <section aria-labelledby="division-gallery-title" className="border-t border-slate-200 pt-8 sm:pt-10">
               <div className="mb-5 flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#A98210]">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#a67d00]">
                     {division.shortName}
                   </p>
-                  <h2 id="division-gallery-title" className="mt-1 font-display text-2xl font-extrabold sm:text-3xl" style={{ color: 'var(--brand-blue)' }}>
+                  <h2 id="division-gallery-title" className="mt-1 font-display text-2xl font-extrabold text-[#001050] sm:text-3xl">
                     Work gallery
                   </h2>
                 </div>
@@ -114,7 +114,7 @@ const DivisionPage: React.FC = () => {
               </div>
             </section>
 
-            <section className="mt-10 flex flex-col gap-5 rounded-2xl p-5 text-white sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:p-8" style={{ background: 'var(--brand-blue)' }}>
+            <section className="mt-10 flex flex-col gap-5 rounded-2xl bg-[#001050] p-5 text-white sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:p-8">
               <div>
                 <h2 className="font-display text-xl font-bold sm:text-2xl">
                   Start a conversation

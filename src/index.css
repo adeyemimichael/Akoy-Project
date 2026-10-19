@@ -1,21 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand color tokens derived from logo */
-  --brand-blue: #142B8C; /* primary brand blue (logo) */
-  --brand-deep: #09184F; /* deeper navy used in accents */
-  --brand-gold: #E9C541; /* brand gold */
+  --brand-blue: #03219b;
+  --brand-deep: #001050;
+  --brand-gold: #fdbf02;
 
   --color-navy-950: var(--brand-deep);
   --color-navy-900: var(--brand-blue);
   --color-navy-800: #122540;
   --color-navy-700: #1b355a;
   
-  --color-gold-300: #f5dc80;
-  --color-gold-400: #f1d05e;
+  --color-gold-300: #ffdc72;
+  --color-gold-400: #ffcf3d;
   --color-gold-500: var(--brand-gold);
-  --color-gold-600: #c89d12;
-  --color-gold-700: #a98210;
+  --color-gold-600: #c99700;
+  --color-gold-700: #a67d00;
 
   --color-charcoal-950: #101216;
   --color-charcoal-900: #16191e;
@@ -41,7 +40,6 @@
   }
 }
 
-/* Glassmorphism utilities */
 .glass-panel {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
@@ -53,17 +51,17 @@
   background: rgba(11, 25, 44, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(253, 191, 2, 0.2);
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #f5df88 0%, #e9c541 50%, #aa841e 100%);
+  background: linear-gradient(135deg, #ffdc72 0%, #fdbf02 50%, #a67d00 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gold-border-glow {
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 0 25px rgba(253, 191, 2, 0.25);
 }
 
 /* Smooth custom scrollbars */

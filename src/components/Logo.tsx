@@ -38,12 +38,10 @@ export const Logo: React.FC<LogoProps> = ({
           </div>
 
           <div className="text-xs font-semibold mt-0.5" style={{ color: "rgba(0,0,0,0.7)" }}>
-            LIMITED
+           INTEGRATED  LIMITED
           </div>
 
-          <div className="text-[11px] mt-1 text-slate-500 max-w-xs leading-tight">
-            INTEGRATED BUSINESS & SERVICES. ONE VISION. 360° POSSIBILITIES.
-          </div>
+         
         </div>
       )}
     </div>
