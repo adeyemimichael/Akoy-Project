@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Save, Plus, Trash2, Image, ExternalLink } from "lucide-react";
 import { supabase } from "../../lib/supabaseClient";
 import type { Division } from "../../types/supabase";
-import { DIVISIONS_DATA } from "../../data/divisions";
 import toast from "react-hot-toast";
 
 const Gallery: React.FC = () => {

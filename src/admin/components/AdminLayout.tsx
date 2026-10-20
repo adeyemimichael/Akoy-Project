@@ -30,7 +30,7 @@ export const AdminLayout: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Auth bypassed — sign out is a no-op for now
-  const user = null;
+  const user: { email: string } | null = null;
   const handleSignOut = () => navigate("/admin/dashboard");
 
   const SidebarContent = () => (

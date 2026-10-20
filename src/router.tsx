@@ -4,13 +4,10 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import RootLayout from "./RootLayout";
 import Homepage from "./pages/Homepage";
 import DivisionPage from "./pages/DivisionPage";
-
 // Admin
 import { AdminAuthProvider } from "./admin/context/AdminAuthContext";
 import ProtectedRoute from "./admin/components/ProtectedRoute";
 import { AdminLayout } from "./admin/components/AdminLayout";
-import AdminLogin from "./admin/pages/AdminLogin";
-import Dashboard from "./admin/pages/Dashboard";
 import Inquiries from "./admin/pages/Inquiries";
 import Divisions from "./admin/pages/Divisions";
 import Testimonials from "./admin/pages/Testimonials";
