@@ -42,6 +42,10 @@ export const ContactSection: React.FC = () => {
     }, 800);
   };
 
+  const inputClass = "w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-colors placeholder:text-slate-500"
+  const inputStyle = { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)' };
+  const inputFocusStyle = { borderColor: 'var(--brand-gold)' };
+
   return (
     <section id="contact" className="py-20 sm:py-28 bg-white relative overflow-hidden">
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,11 +53,20 @@ export const ContactSection: React.FC = () => {
           {/* Left Column: Direct Inquiries and Contact Details */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-3" style={{ background: 'rgba(20,43,140,0.05)', border: '1px solid rgba(20,43,140,0.15)', color: 'var(--brand-blue)' }}>
+              <div
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-3"
+                style={{ background: 'rgba(0,16,80,0.06)', border: '1px solid rgba(0,16,80,0.14)', color: 'var(--brand-deep)' }}
+              >
                 <span>Direct Executive Desk</span>
               </div>
-              <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight" style={{ color: 'var(--brand-blue)' }}>
-                Let's Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E9C541] to-[#C89D12]">Next Solution.</span>
+              <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight" style={{ color: 'var(--brand-deep)' }}>
+                Let's Build Your{" "}
+                <span
+                  className="text-transparent bg-clip-text"
+                  style={{ backgroundImage: 'linear-gradient(to right, var(--brand-gold), var(--gold-gradient-end))' }}
+                >
+                  Next Solution.
+                </span>
               </h2>
               <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
                 Whether you need property acquisitions, turnkey construction, cross-border air/sea freight, luxury travel arrangements, or diaspora project oversight, our specialized division directors are ready to assist.
@@ -63,36 +76,36 @@ export const ContactSection: React.FC = () => {
             {/* Contact Details List */}
             <div className="space-y-4">
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-blue)', color: 'var(--brand-gold)' }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-deep)', color: 'var(--brand-gold)' }}>
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Corporate Headquarters</h4>
-                <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-blue)' }}>
+                <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-deep)' }}>
                     Victoria Island / Ikoyi Commercial Corridor, Lagos, Nigeria
                   </p>
-                  <p className="text-xs text-slate-500 mt-0.5">Liaison Desks in London (UK) & Houston, Texas (USA)</p>
+                  <p className="text-xs text-slate-500 mt-0.5">Liaison Desks in London (UK) &amp; Houston, Texas (USA)</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-blue)', color: 'var(--brand-gold)' }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-deep)', color: 'var(--brand-gold)' }}>
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Telephone & WhatsApp Hotline</h4>
-                  <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-blue)' }}>+234 (0) 800 360 AKOY / +234 812 345 6789</p>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Telephone &amp; WhatsApp Hotline</h4>
+                  <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-deep)' }}>+234 (0) 800 360 AKOY / +234 812 345 6789</p>
                   <p className="text-xs text-slate-500 mt-0.5">Mon - Sat, 8:00 AM - 6:00 PM (WAT)</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-blue)', color: 'var(--brand-gold)' }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-deep)', color: 'var(--brand-gold)' }}>
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Official Electronic Inquiries</h4>
-                  <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-blue)' }}>contact@akoy360.com / diaspora@akoy360.com</p>
+                  <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-deep)' }}>contact@akoy360.com / diaspora@akoy360.com</p>
                   <p className="text-xs text-slate-500 mt-0.5">Guaranteed response within 24 business hours</p>
                 </div>
               </div>
@@ -102,10 +115,10 @@ export const ContactSection: React.FC = () => {
             <div className="flex items-center gap-6 pt-2 text-xs text-slate-600">
               <div className="flex items-center gap-1.5 font-medium">
                 <CheckCircle className="w-4 h-4 text-emerald-600" />
-                <span>NDA & Confidentiality</span>
+                <span>NDA &amp; Confidentiality</span>
               </div>
               <div className="flex items-center gap-1.5 font-medium">
-                <Clock className="w-4 h-4 text-[#E9C541]" />
+                <Clock className="w-4 h-4" style={{ color: 'var(--brand-gold)' }} />
                 <span>24h Turnaround</span>
               </div>
             </div>
@@ -113,7 +126,10 @@ export const ContactSection: React.FC = () => {
 
           {/* Right Column: Dynamic Consultation Form */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-3xl text-white relative" style={{ background: 'var(--brand-blue)', border: '1px solid rgba(233,197,65,0.18)', boxShadow: '0 20px 40px rgba(20,43,140,0.08)' }}>
+            <div
+              className="p-8 sm:p-10 rounded-3xl text-white relative"
+              style={{ background: 'var(--brand-deep)', border: '1px solid rgba(253,191,2,0.18)', boxShadow: '0 20px 40px rgba(0,16,80,0.12)' }}
+            >
               <div className="mb-6">
                 <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
                   Schedule a Consultation
@@ -142,11 +158,12 @@ export const ContactSection: React.FC = () => {
                         key={div.id}
                         type="button"
                         onClick={() => setFormData({ ...formData, division: div.id })}
-                        className={`py-2 px-3 rounded-xl text-xs font-semibold text-center border transition-all ${
+                        className="py-2 px-3 rounded-xl text-xs font-semibold text-center border transition-all"
+                        style={
                           formData.division === div.id
-                            ? "bg-[#E9C541] text-[#09184F] border-[#E9C541] font-bold shadow-md"
-                            : "bg-white/5 hover:bg-white/10 text-slate-300 border-white/10"
-                        }`}
+                            ? { background: 'var(--brand-gold)', color: 'var(--brand-deep)', borderColor: 'var(--brand-gold)', fontWeight: 700, boxShadow: '0 4px 12px rgba(253,191,2,0.3)' }
+                            : { background: 'rgba(255,255,255,0.05)', color: '#cbd5e1', borderColor: 'rgba(255,255,255,0.10)' }
+                        }
                       >
                         {div.label}
                       </button>
@@ -165,7 +182,10 @@ export const ContactSection: React.FC = () => {
                       placeholder="e.g. Dr. Michael Adeyemi"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 focus:border-[#E9C541] text-white text-sm outline-none transition-colors placeholder:text-slate-500"
+                      className={inputClass}
+                      style={inputStyle}
+                      onFocus={e => Object.assign((e.target as HTMLInputElement).style, inputFocusStyle)}
+                      onBlur={e => { (e.target as HTMLInputElement).style.borderColor = 'rgba(255,255,255,0.15)'; }}
                     />
                   </div>
 
@@ -179,7 +199,10 @@ export const ContactSection: React.FC = () => {
                       placeholder="name@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 focus:border-[#E9C541] text-white text-sm outline-none transition-colors placeholder:text-slate-500"
+                      className={inputClass}
+                      style={inputStyle}
+                      onFocus={e => Object.assign((e.target as HTMLInputElement).style, inputFocusStyle)}
+                      onBlur={e => { (e.target as HTMLInputElement).style.borderColor = 'rgba(255,255,255,0.15)'; }}
                     />
                   </div>
                 </div>
@@ -195,7 +218,10 @@ export const ContactSection: React.FC = () => {
                       placeholder="+234 / +44 / +1 ..."
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 focus:border-[#E9C541] text-white text-sm outline-none transition-colors placeholder:text-slate-500"
+                      className={inputClass}
+                      style={inputStyle}
+                      onFocus={e => Object.assign((e.target as HTMLInputElement).style, inputFocusStyle)}
+                      onBlur={e => { (e.target as HTMLInputElement).style.borderColor = 'rgba(255,255,255,0.15)'; }}
                     />
                   </div>
 
@@ -208,7 +234,10 @@ export const ContactSection: React.FC = () => {
                       placeholder="Nigeria, UK, USA, Canada..."
                       value={formData.country}
                       onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 focus:border-[#E9C541] text-white text-sm outline-none transition-colors placeholder:text-slate-500"
+                      className={inputClass}
+                      style={inputStyle}
+                      onFocus={e => Object.assign((e.target as HTMLInputElement).style, inputFocusStyle)}
+                      onBlur={e => { (e.target as HTMLInputElement).style.borderColor = 'rgba(255,255,255,0.15)'; }}
                     />
                   </div>
                 </div>
@@ -223,7 +252,10 @@ export const ContactSection: React.FC = () => {
                     placeholder="Briefly describe your property goal, building project, cargo requirements, or corporate needs..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 focus:border-[#E9C541] text-white text-sm outline-none transition-colors placeholder:text-slate-500 resize-none"
+                    className={`${inputClass} resize-none`}
+                    style={inputStyle}
+                    onFocus={e => Object.assign((e.target as HTMLTextAreaElement).style, inputFocusStyle)}
+                    onBlur={e => { (e.target as HTMLTextAreaElement).style.borderColor = 'rgba(255,255,255,0.15)'; }}
                   />
                 </div>
 
@@ -231,7 +263,11 @@ export const ContactSection: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 rounded-xl bg-gradient-to-r from-[#E9C541] via-[#F1D05E] to-[#C89D12] text-[#09184F] font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl hover:shadow-[#E9C541]/30 transition-all disabled:opacity-50"
+                    className="w-full py-4 rounded-xl font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl transition-all disabled:opacity-50"
+                    style={{
+                      background: 'linear-gradient(to right, var(--gold-gradient-start), var(--gold-gradient-mid), var(--gold-gradient-end))',
+                      color: 'var(--brand-deep)'
+                    }}
                   >
                     {isSubmitting ? (
                       <span>Transmitting Inquiry...</span>

@@ -16,6 +16,11 @@
   --color-gold-600: #c99700;
   --color-gold-700: #a67d00;
 
+  /* Gradient stop aliases — use these in components for gold gradients */
+  --gold-gradient-start: #ffdc72;   /* light gold */
+  --gold-gradient-mid: #fdbf02;     /* brand gold */
+  --gold-gradient-end: #a67d00;     /* dark gold */
+
   --color-charcoal-950: #101216;
   --color-charcoal-900: #16191e;
   --color-charcoal-800: #1e242b;

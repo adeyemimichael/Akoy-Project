@@ -11,8 +11,8 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="text-white pt-16 pb-12 border-t border-white/10 relative overflow-hidden" style={{ background: 'var(--brand-deep)' }}>
-      {/* Decorative top border line in gold */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#E9C541] to-transparent" />
+      {/* Decorative top border line in brand gold */}
+      <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(to right, transparent, var(--brand-gold), transparent)' }} />
 
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/10">
@@ -20,11 +20,11 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-4 space-y-5">
             <Logo size="lg" />
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
-              AKOY 360 LIMITED is a premier integrated multi-division company operating across real estate, construction, executive travel, maritime & air logistics, corporate procurement, and diaspora project governance.
+              AKOY 360 LIMITED is a premier integrated multi-division company operating across real estate, construction, executive travel, maritime &amp; air logistics, corporate procurement, and diaspora project governance.
             </p>
 
             <div className="pt-2">
-              <div className="text-xs font-bold text-[#E9C541] uppercase tracking-wider mb-2">
+              <div className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--brand-gold)' }}>
                 Connecting Opportunities. Delivering Solutions.
               </div>
               <div className="flex items-center gap-2">
@@ -33,7 +33,9 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Twitter"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E9C541] hover:text-[#09184F] text-slate-300 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-colors"
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'var(--brand-gold)'; (e.currentTarget as HTMLAnchorElement).style.color = 'var(--brand-deep)'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = ''; (e.currentTarget as HTMLAnchorElement).style.color = ''; }}
                 >
                   <TwitterIcon className="w-4 h-4" />
                 </a>
@@ -42,7 +44,9 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Instagram"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E9C541] hover:text-[#09184F] text-slate-300 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-colors"
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'var(--brand-gold)'; (e.currentTarget as HTMLAnchorElement).style.color = 'var(--brand-deep)'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = ''; (e.currentTarget as HTMLAnchorElement).style.color = ''; }}
                 >
                   <InstagramIcon className="w-4 h-4" />
                 </a>
@@ -51,7 +55,9 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E9C541] hover:text-[#09184F] text-slate-300 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-colors"
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'var(--brand-gold)'; (e.currentTarget as HTMLAnchorElement).style.color = 'var(--brand-deep)'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = ''; (e.currentTarget as HTMLAnchorElement).style.color = ''; }}
                 >
                   <LinkedinIcon className="w-4 h-4" />
                 </a>
@@ -70,7 +76,7 @@ export const Footer: React.FC = () => {
 
           {/* Operating Divisions Column */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-[#E9C541]">
+            <h4 className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--brand-gold)' }}>
               Specialized Divisions
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
@@ -78,9 +84,11 @@ export const Footer: React.FC = () => {
                 <li key={div.id}>
                   <a
                     href={`/divisions/${div.id}`}
-                    className="hover:text-white hover:text-[#E9C541] transition-colors flex items-center gap-1.5"
+                    className="hover:text-white transition-colors flex items-center gap-1.5"
+                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--brand-gold)'; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = ''; }}
                   >
-                    <span className="w-1 h-1 rounded-full bg-[#E9C541]" />
+                    <span className="w-1 h-1 rounded-full" style={{ background: 'var(--brand-gold)' }} />
                     <span>{div.name}</span>
                   </a>
                 </li>
@@ -90,13 +98,13 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links & Corporate */}
           <div className="lg:col-span-2 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-[#E9C541]">
+            <h4 className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--brand-gold)' }}>
               Corporate
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
                 <a href="/#hero" className="hover:text-white transition-colors">
-                  Overview & Vision
+                  Overview &amp; Vision
                 </a>
               </li>
               <li>
@@ -116,7 +124,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="/#terms" className="hover:text-white transition-colors">
-                  Terms & Regulatory Disclosures
+                  Terms &amp; Regulatory Disclosures
                 </a>
               </li>
             </ul>
@@ -124,27 +132,27 @@ export const Footer: React.FC = () => {
 
           {/* Contact & Desk Info */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-[#E9C541]">
-              Head Office & Desks
+            <h4 className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--brand-gold)' }}>
+              Head Office &amp; Desks
             </h4>
             <div className="space-y-3 text-xs text-slate-400">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#E9C541] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--brand-gold)' }} />
                 <span>Lagos Head Office: Victoria Island / Ikoyi Commercial Corridor, Lagos, Nigeria.</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#E9C541] shrink-0" />
+                <Phone className="w-4 h-4 shrink-0" style={{ color: 'var(--brand-gold)' }} />
                 <span>+234 (0) 800 360 AKOY / +234 812 345 6789</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#E9C541] shrink-0" />
+                <Mail className="w-4 h-4 shrink-0" style={{ color: 'var(--brand-gold)' }} />
                 <span>contact@akoy360.com / diaspora@akoy360.com</span>
               </div>
             </div>
 
             {/* Newsletter Pill */}
             <div className="pt-2">
-              <div className="text-[11px] text-slate-400 mb-1.5 font-medium">Subscribe for Market & Project Briefs:</div>
+              <div className="text-[11px] text-slate-400 mb-1.5 font-medium">Subscribe for Market &amp; Project Briefs:</div>
               <div className="flex items-center rounded-xl bg-white/5 border border-white/10 p-1">
                 <input
                   type="email"
@@ -173,8 +181,10 @@ export const Footer: React.FC = () => {
             <span>One Vision. 360° Possibilities.</span>
             <button
               onClick={scrollToTop}
-              className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E9C541] hover:text-[#09184F] text-white flex items-center justify-center transition-colors"
+              className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center transition-colors"
               aria-label="Back to top"
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'var(--brand-gold)'; (e.currentTarget as HTMLButtonElement).style.color = 'var(--brand-deep)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = ''; (e.currentTarget as HTMLButtonElement).style.color = ''; }}
             >
               <ArrowUp className="w-4 h-4" />
             </button>

@@ -4,6 +4,7 @@ import { Hero } from "../components/Hero";
 import { WorkGallery } from "../components/WorkGallery";
 import { DivisionsGrid } from "../components/DivisionsGrid";
 import { DiasporaBanner } from "../components/DiasporaBanner";
+import { TestimonialsSection } from "../components/TestimonialsSection";
 import { AboutSection } from "../components/AboutSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
@@ -26,6 +27,9 @@ const Homepage: React.FC = () => {
 
           {/* Nigerian Diaspora Bridge & Escrow Governance */}
           <DiasporaBanner />
+
+          {/* Client Testimonials */}
+          <TestimonialsSection />
 
           {/* About AKOY 360 & Corporate Heritage */}
           <AboutSection />

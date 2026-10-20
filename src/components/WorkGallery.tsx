@@ -8,7 +8,7 @@ export const WorkGallery: React.FC = () => (
     <div className="mx-auto max-w-[1480px] px-4 sm:px-6 lg:px-8">
       <div className="mb-7 flex items-end justify-between gap-4 sm:mb-9">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#A98210]">
+          <p className="text-xs font-bold uppercase tracking-[0.18em]" style={{ color: 'var(--brand-gold)' }}>
             Across our divisions
           </p>
           <h2 className="mt-1 font-display text-3xl font-extrabold sm:text-4xl" style={{ color: 'var(--brand-blue)' }}>
@@ -17,7 +17,10 @@ export const WorkGallery: React.FC = () => (
         </div>
         <a
           href="#divisions"
-          className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-[#142B8C] hover:text-[#A98210]"
+          className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold transition-colors"
+          style={{ color: 'var(--brand-blue)' }}
+          onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--brand-gold)'; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--brand-blue)'; }}
         >
           All divisions <ArrowUpRight className="h-4 w-4" />
         </a>
@@ -37,10 +40,9 @@ export const WorkGallery: React.FC = () => (
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(9,24,79,0.85), transparent)' }} />
             <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 p-3 text-white sm:p-5">
-              <span className="text-sm font-bold sm:text-lg">{division.shortName}</span>
-              <ArrowUpRight className="h-5 w-5 shrink-0 text-[#FFE276] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span className="text-sm font-bold sm:text-lg drop-shadow-md">{division.shortName}</span>
+              <ArrowUpRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 drop-shadow-md" style={{ color: 'var(--brand-gold)' }} />
             </div>
           </Link>
         ))}

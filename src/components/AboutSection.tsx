@@ -6,17 +6,17 @@ export const AboutSection: React.FC = () => {
     {
       title: "Corporate Governance",
       desc: "Institutional controls and transparent legal documentation underpinning every transaction.",
-      icon: <Shield className="w-5 h-5 text-[#E9C541]" />,
+      icon: <Shield className="w-5 h-5" style={{ color: 'var(--brand-gold)' }} />,
     },
     {
       title: "Multi-Disciplinary Scale",
       desc: "Cross-functional synergy allowing real estate, logistics, procurement, and travel to operate as a frictionless ecosystem.",
-      icon: <TrendingUp className="w-5 h-5 text-[#E9C541]" />,
+      icon: <TrendingUp className="w-5 h-5" style={{ color: 'var(--brand-gold)' }} />,
     },
     {
-      title: "Prestige & Execution",
+      title: "Prestige &amp; Execution",
       desc: "Uncompromising standards in materials, logistics velocity, and bespoke VIP customer service.",
-      icon: <Award className="w-5 h-5 text-[#E9C541]" />,
+      icon: <Award className="w-5 h-5" style={{ color: 'var(--brand-gold)' }} />,
     },
   ];
 
@@ -26,19 +26,20 @@ export const AboutSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Visual Composition */}
           <div className="lg:col-span-5 relative">
-            <div className="relative rounded-[36px] overflow-hidden shadow-2xl border-4 border-white bg-slate-900 h-[480px] sm:h-[540px]">
+            {/* Reduced height on mobile for better proportions */}
+            <div className="relative rounded-[36px] overflow-hidden shadow-2xl border-4 border-white bg-slate-900 h-[320px] sm:h-[440px] lg:h-[480px]">
               <img
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
                 alt="AKOY 360 Corporate HQ"
                 className="w-full h-full object-cover"
               />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(20,43,140,0.9), transparent)' }} />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(3,33,155,0.9), transparent)' }} />
 
               {/* Floating Badge */}
             <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl border border-white" style={{ color: 'var(--brand-blue)' }}>
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#E9C541]">
+                    <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: 'var(--brand-gold)' }}>
                       The 360° Advantage
                     </span>
                   <h3 className="text-lg font-bold font-display mt-0.5" style={{ color: 'var(--brand-blue)' }}>
@@ -58,13 +59,13 @@ export const AboutSection: React.FC = () => {
 
           {/* Right Column: Narrative & Values */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase" style={{ background: 'rgba(20,43,140,0.05)', border: '1px solid rgba(20,43,140,0.15)', color: 'var(--brand-blue)' }}>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase" style={{ background: 'rgba(3,33,155,0.05)', border: '1px solid rgba(3,33,155,0.15)', color: 'var(--brand-blue)' }}>
               <span>Corporate Heritage</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight leading-[1.15]" style={{ color: 'var(--brand-blue)' }}>
               Connecting Opportunities.{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E9C541] to-[#C89D12]">
+              <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(to right, var(--gold-gradient-mid), var(--gold-gradient-end))' }}>
                 Delivering Solutions.
               </span>
             </h2>
@@ -93,15 +94,15 @@ export const AboutSection: React.FC = () => {
             {/* Checklist */}
             <div className="pt-2 flex flex-col sm:flex-row gap-4 text-xs font-semibold text-slate-700">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#E9C541]" />
-                <span>Incorporated & Regulated in Nigeria</span>
+                <CheckCircle2 className="w-4 h-4" style={{ color: 'var(--brand-gold)' }} />
+                <span>Incorporated &amp; Regulated in Nigeria</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#E9C541]" />
-                <span>Global Banking & Escrow Partnerships</span>
+                <CheckCircle2 className="w-4 h-4" style={{ color: 'var(--brand-gold)' }} />
+                <span>Global Banking &amp; Escrow Partnerships</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#E9C541]" />
+                <CheckCircle2 className="w-4 h-4" style={{ color: 'var(--brand-gold)' }} />
                 <span>Multi-Sector Industry Specialists</span>
               </div>
             </div>

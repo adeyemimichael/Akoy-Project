@@ -40,10 +40,10 @@ const DivisionPage: React.FC = () => {
             </div>
 
             <div className="border-b border-slate-200 py-7 sm:py-9">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#a67d00] sm:text-sm">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] sm:text-sm" style={{ color: 'var(--brand-gold)' }}>
                 {division.tagline}
               </p>
-              <h1 className="mt-2 max-w-4xl font-display text-3xl font-extrabold leading-tight text-[#001050] sm:text-5xl">
+              <h1 className="mt-2 max-w-4xl font-display text-3xl font-extrabold leading-tight sm:text-5xl" style={{ color: 'var(--brand-deep)' }}>
                 {division.headline}
               </h1>
             </div>
@@ -54,16 +54,16 @@ const DivisionPage: React.FC = () => {
                   {division.description}
                 </p>
                 <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">
-                  <div className="border-l-2 border-[#fdbf02] pl-4">
-                    <p className="font-display text-2xl font-extrabold text-[#001050] sm:text-3xl">
+                  <div className="border-l-2 pl-4" style={{ borderColor: 'var(--brand-gold)' }}>
+                    <p className="font-display text-2xl font-extrabold sm:text-3xl" style={{ color: 'var(--brand-deep)' }}>
                       {division.stats.value}
                     </p>
                     <p className="mt-1 text-xs text-slate-500 sm:text-sm">
                       {division.stats.label}
                     </p>
                   </div>
-                  <div className="border-l-2 border-[#fdbf02] pl-4">
-                    <p className="font-display text-lg font-bold text-[#001050] sm:text-xl">
+                  <div className="border-l-2 pl-4" style={{ borderColor: 'var(--brand-gold)' }}>
+                    <p className="font-display text-lg font-bold sm:text-xl" style={{ color: 'var(--brand-deep)' }}>
                       {division.metrics.primary}
                     </p>
                     <p className="mt-1 text-xs text-slate-500 sm:text-sm">
@@ -74,7 +74,7 @@ const DivisionPage: React.FC = () => {
               </div>
 
               <div>
-                <h2 className="font-display text-xl font-bold text-[#001050] sm:text-2xl">
+                <h2 className="font-display text-xl font-bold sm:text-2xl" style={{ color: 'var(--brand-deep)' }}>
                   Services
                 </h2>
                 <ul className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -93,10 +93,10 @@ const DivisionPage: React.FC = () => {
             <section aria-labelledby="division-gallery-title" className="border-t border-slate-200 pt-8 sm:pt-10">
               <div className="mb-5 flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#a67d00]">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em]" style={{ color: 'var(--brand-gold)' }}>
                     {division.shortName}
                   </p>
-                  <h2 id="division-gallery-title" className="mt-1 font-display text-2xl font-extrabold text-[#001050] sm:text-3xl">
+                  <h2 id="division-gallery-title" className="mt-1 font-display text-2xl font-extrabold sm:text-3xl" style={{ color: 'var(--brand-deep)' }}>
                     Work gallery
                   </h2>
                 </div>
@@ -114,12 +114,12 @@ const DivisionPage: React.FC = () => {
               </div>
             </section>
 
-            <section className="mt-10 flex flex-col gap-5 rounded-2xl bg-[#001050] p-5 text-white sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <section className="mt-10 flex flex-col gap-5 rounded-2xl p-5 text-white sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:p-8" style={{ background: 'var(--brand-deep)' }}>
               <div>
                 <h2 className="font-display text-xl font-bold sm:text-2xl">
                   Start a conversation
                 </h2>
-                <p className="mt-1 text-sm text-blue-100">
+                <p className="mt-1 text-sm text-slate-300">
                   Contact our {division.shortName} team.
                 </p>
               </div>

@@ -31,13 +31,13 @@ export const Navbar: React.FC<NavbarProps> = () => {
           </a>
         </div>
 
-        {/* Center: Iconic Suspended Notched Island Tab (matching reference image) */}
+        {/* Center: Iconic Suspended Notched Island Tab (desktop only) */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 top-0">
           <div className="relative">
             {/* The Notched Hanging Island (minimal, brand-colored) */}
             <div
               className="relative text-white px-7 py-2.5 rounded-b-[24px] shadow-lg flex items-center gap-7 border-b border-x"
-              style={{ background: 'var(--brand-blue)', borderColor: 'rgba(233,197,65,0.18)' }}
+              style={{ background: 'var(--brand-blue)', borderColor: 'rgba(253,191,2,0.18)' }}
             >
               {/* Left ear smooth curve connector */}
               <div
@@ -83,7 +83,10 @@ export const Navbar: React.FC<NavbarProps> = () => {
           <button
             onClick={() => setSearchOpen(!searchOpen)}
             aria-label="Search"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-[#E9C541] hover:text-[#142B8C] transition-colors duration-200 shadow-sm"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 text-white flex items-center justify-center transition-colors duration-200 shadow-sm"
+            style={{}}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'var(--brand-gold)'; (e.currentTarget as HTMLButtonElement).style.color = 'var(--brand-blue)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = ''; (e.currentTarget as HTMLButtonElement).style.color = ''; }}
           >
             <Search className="w-4 h-4" />
           </button>
@@ -92,23 +95,29 @@ export const Navbar: React.FC<NavbarProps> = () => {
           <a
             href="#portal"
             aria-label="Client Portal"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-[#E9C541] hover:text-[#142B8C] transition-colors duration-200 shadow-sm"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 text-white flex items-center justify-center transition-colors duration-200 shadow-sm"
+            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'var(--brand-gold)'; (e.currentTarget as HTMLAnchorElement).style.color = 'var(--brand-blue)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = ''; (e.currentTarget as HTMLAnchorElement).style.color = ''; }}
           >
             <User className="w-4 h-4" />
           </a>
 
-          {/* Contact Pill CTA Button (As seen in reference image) */}
+          {/* Contact Pill CTA Button */}
           <a
             href="/#contact"
-            className="hidden sm:inline-flex items-center gap-2 pl-4 pr-1.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300/80 text-[12px] font-semibold text-[#142B8C] transition-all duration-200 group"
+            className="hidden sm:inline-flex items-center gap-2 pl-4 pr-1.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300/80 text-[12px] font-semibold transition-all duration-200 group"
+            style={{ color: 'var(--brand-blue)' }}
           >
             <span>Contact</span>
-            <div className="w-7 h-7 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:bg-[#E9C541] group-hover:text-[#142B8C] transition-colors">
+            <div
+              className="w-7 h-7 rounded-full bg-slate-900 text-white flex items-center justify-center transition-colors"
+              style={{}}
+            >
               <Phone className="w-3.5 h-3.5" />
             </div>
           </a>
 
-          {/* Hamburger Menu button */}
+          {/* Hamburger Menu button — visible on md and below (up to lg) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
@@ -142,12 +151,12 @@ export const Navbar: React.FC<NavbarProps> = () => {
         </div>
       )}
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile / Tablet Drawer Menu (visible below lg) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden mx-4 mt-2 p-5 text-white rounded-3xl shadow-2xl space-y-4 animate-in fade-in slide-in-from-top-4 duration-300" style={{ background: 'var(--brand-blue)', border: '1px solid rgba(233,197,65,0.18)' }}>
+        <div className="lg:hidden mx-4 mt-2 p-5 text-white rounded-3xl shadow-2xl space-y-4 animate-in fade-in slide-in-from-top-4 duration-300" style={{ background: 'var(--brand-blue)', border: '1px solid rgba(253,191,2,0.18)' }}>
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
-            <span className="text-xs uppercase tracking-widest text-[#E9C541] font-bold">
-              Navigation & Divisions
+            <span className="text-xs uppercase tracking-widest font-bold" style={{ color: 'var(--brand-gold)' }}>
+              Navigation &amp; Divisions
             </span>
             <button
               onClick={() => setMobileMenuOpen(false)}
@@ -169,7 +178,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
                 className="flex items-center justify-between py-2 px-3 rounded-xl hover:bg-white/5 text-sm font-semibold text-slate-200"
               >
                 <span>{link.name}</span>
-                <ArrowUpRight className="w-4 h-4 text-[#E9C541]" />
+                <ArrowUpRight className="w-4 h-4" style={{ color: 'var(--brand-gold)' }} />
               </a>
             ))}
           </div>
@@ -178,7 +187,8 @@ export const Navbar: React.FC<NavbarProps> = () => {
             <a
               href="/#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#E9C541] to-[#F1D05E] text-[#09184F] text-center font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2"
+              className="w-full py-2.5 rounded-xl text-center font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2"
+              style={{ background: 'linear-gradient(to right, var(--gold-gradient-start), var(--gold-gradient-mid))', color: 'var(--brand-deep)' }}
             >
               <Phone className="w-4 h-4" />
               <span>Contact Headquarters</span>
