@@ -11,8 +11,8 @@ import { Footer } from "../components/Footer";
 
 const Homepage: React.FC = () => {
   return (
-    <div className="min-h-screen py-6 px-4 lg:px-8" style={{ background: '#FAFBFD' }}>
-      <div className="max-w-[1400px] mx-auto bg-white rounded-2xl overflow-hidden border border-gray-100 transition-all">
+    <div className="min-h-screen" style={{ background: '#FAFBFD' }}>
+      <div className="max-w-[1400px] mx-auto bg-white overflow-hidden transition-all">
         {/* Navigation Bar with suspended notched center tab */}
         <Navbar />
 

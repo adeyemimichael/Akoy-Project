@@ -26,16 +26,11 @@ export const DiasporaBanner: React.FC = () => {
   ];
 
   return (
-    <section id="diaspora" className="py-20 bg-white relative overflow-hidden">
+    <section id="diaspora" className="py-20 relative overflow-hidden" style={{
+        background: 'linear-gradient(135deg, var(--brand-blue) 0%, #0a2080 50%, var(--brand-deep) 100%)',
+      }}>
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className="relative rounded-[40px] text-white p-8 sm:p-14 lg:p-16 overflow-hidden"
-          style={{
-            background: 'linear-gradient(135deg, var(--brand-blue) 0%, #0a2080 50%, var(--brand-deep) 100%)',
-            border: '1px solid rgba(253,191,2,0.18)',
-            boxShadow: '0 20px 40px rgba(0,16,80,0.12)'
-          }}
-        >
+        <div className="relative text-white overflow-hidden">
           {/* Subtle watermark logo pattern */}
           <div className="absolute -right-16 -bottom-16 w-96 h-96 opacity-5 pointer-events-none" style={{ color: 'var(--brand-gold)' }}>
             <svg viewBox="0 0 100 100" className="w-full h-full fill-current">

@@ -18,8 +18,8 @@ const DivisionPage: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen px-4 py-6 lg:px-8" style={{ background: '#FAFBFD' }}>
-      <div className="mx-auto max-w-[1400px] overflow-hidden rounded-2xl border border-gray-100 bg-white">
+    <div className="min-h-screen" style={{ background: '#FAFBFD' }}>
+      <div className="mx-auto max-w-[1400px] overflow-hidden bg-white">
         <Navbar />
         <main>
           <section className="mx-auto max-w-[1480px] px-4 pb-12 pt-4 sm:px-6 sm:pb-16 lg:px-8">
