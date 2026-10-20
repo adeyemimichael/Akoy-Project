@@ -30,7 +30,6 @@ export const AdminLayout: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Auth bypassed — sign out is a no-op for now
-  const user: { email: string } | null = null;
   const handleSignOut = () => navigate("/admin/dashboard");
 
   const SidebarContent = () => (
@@ -75,7 +74,7 @@ export const AdminLayout: React.FC = () => {
       {/* User & Sign Out */}
       <div className="px-4 py-4 border-t border-white/10 space-y-3">
         <div className="px-2">
-          <p className="text-[11px] text-slate-400 truncate">{user?.email}</p>
+          <p className="text-[11px] text-slate-400 truncate">AKOY 360 Admin</p>
         </div>
         <button
           onClick={handleSignOut}
