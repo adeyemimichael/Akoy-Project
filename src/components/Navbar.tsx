@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Search, User, Phone, Menu, X, ArrowUpRight } from "lucide-react";
+import { Search,  Phone, Menu, X, ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
 
 interface NavbarProps {
@@ -91,17 +91,8 @@ export const Navbar: React.FC<NavbarProps> = () => {
             <Search className="w-4 h-4" />
           </button>
 
-          {/* Client Portal / User Icon */}
-          <a
-            href="#portal"
-            aria-label="Client Portal"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 text-white flex items-center justify-center transition-colors duration-200 shadow-sm"
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'var(--brand-gold)'; (e.currentTarget as HTMLAnchorElement).style.color = 'var(--brand-blue)'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = ''; (e.currentTarget as HTMLAnchorElement).style.color = ''; }}
-          >
-            <User className="w-4 h-4" />
-          </a>
-
+          
+         
           {/* Contact Pill CTA Button */}
           <a
             href="/#contact"

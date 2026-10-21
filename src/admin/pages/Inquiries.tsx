@@ -1,8 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Search, Trash2, Mail, Phone, Clock, ChevronDown, X } from "lucide-react";
-import { supabase } from "../../lib/supabaseClient";
+import React, { useState } from "react";
+import { Search, Trash2, Mail, Phone, Clock, ChevronDown, X, MessageCircle } from "lucide-react";
 import type { Inquiry } from "../../types/supabase";
+import { MOCK_INQUIRIES } from "../data/mockData";
 import toast from "react-hot-toast";
+
+// Strip everything except digits, then build a wa.me link
+const whatsappLink = (phone: string, inquiry: Inquiry) => {
+  const digits = phone.replace(/\D/g, "");
+  const message = encodeURIComponent(
+    `Hello ${inquiry.full_name}, this is AKOY 360. Thank you for your inquiry regarding our ${inquiry.division} services. We'd be happy to assist you. How can we help?`
+  );
+  return `https://wa.me/${digits}?text=${message}`;
+};
 
 const STATUS_OPTIONS = ["all", "unread", "read", "responded"] as const;
 const DIVISION_OPTIONS = ["all", "properties", "construction", "travel", "logistics", "business-services", "diaspora"];
@@ -14,52 +23,37 @@ const statusColors: Record<string, { bg: string; text: string }> = {
 };
 
 const Inquiries: React.FC = () => {
-  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [inquiries, setInquiries] = useState<Inquiry[]>(MOCK_INQUIRIES);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [divisionFilter, setDivisionFilter] = useState<string>("all");
   const [selected, setSelected] = useState<Inquiry | null>(null);
 
-  const fetch = async () => {
-    setLoading(true);
-    let query = supabase.from("inquiries").select("*").order("created_at", { ascending: false });
-    if (statusFilter !== "all") query = query.eq("status", statusFilter);
-    if (divisionFilter !== "all") query = query.eq("division", divisionFilter);
-    const { data } = await query;
-    setInquiries(data ?? []);
-    setLoading(false);
-  };
-
-  useEffect(() => { fetch(); }, [statusFilter, divisionFilter]);
-
-  const updateStatus = async (id: string, status: Inquiry["status"]) => {
-    const { error } = await supabase.from("inquiries").update({ status }).eq("id", id);
-    if (error) { toast.error("Failed to update status"); return; }
-    toast.success("Status updated");
+  const updateStatus = (id: string, status: Inquiry["status"]) => {
     setInquiries(prev => prev.map(i => i.id === id ? { ...i, status } : i));
     if (selected?.id === id) setSelected(prev => prev ? { ...prev, status } : null);
+    toast.success("Status updated");
   };
 
-  const deleteInquiry = async (id: string) => {
+  const deleteInquiry = (id: string) => {
     if (!confirm("Delete this inquiry? This cannot be undone.")) return;
-    const { error } = await supabase.from("inquiries").delete().eq("id", id);
-    if (error) { toast.error("Failed to delete"); return; }
-    toast.success("Inquiry deleted");
     setInquiries(prev => prev.filter(i => i.id !== id));
     if (selected?.id === id) setSelected(null);
+    toast.success("Inquiry deleted");
   };
 
-  const filtered = inquiries.filter(i =>
-    i.full_name.toLowerCase().includes(search.toLowerCase()) ||
-    i.email.toLowerCase().includes(search.toLowerCase())
-  );
+  const filtered = inquiries
+    .filter(i => statusFilter === "all" || i.status === statusFilter)
+    .filter(i => divisionFilter === "all" || i.division === divisionFilter)
+    .filter(i =>
+      i.full_name.toLowerCase().includes(search.toLowerCase()) ||
+      i.email.toLowerCase().includes(search.toLowerCase())
+    );
 
   const inputBase = "w-full px-4 py-2.5 rounded-xl text-sm border border-slate-200 outline-none bg-white text-slate-700 focus:border-slate-400 transition-colors";
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div>
         <p className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--brand-gold)' }}>Management</p>
         <h1 className="text-2xl font-extrabold font-display mt-0.5" style={{ color: 'var(--brand-deep)' }}>Inquiries</h1>
@@ -95,9 +89,7 @@ const Inquiries: React.FC = () => {
       <div className="flex gap-5">
         {/* Table */}
         <div className="flex-1 bg-white rounded-2xl border border-slate-100 overflow-hidden">
-          {loading ? (
-            <div className="p-10 text-center text-slate-400 text-sm animate-pulse">Loading inquiries...</div>
-          ) : filtered.length === 0 ? (
+          {filtered.length === 0 ? (
             <div className="p-10 text-center text-slate-400 text-sm">No inquiries found.</div>
           ) : (
             <div className="overflow-x-auto">
@@ -167,6 +159,14 @@ const Inquiries: React.FC = () => {
               <a href={`tel:${selected.phone}`} className="flex items-center gap-2 text-slate-600 hover:text-slate-900">
                 <Phone className="w-3.5 h-3.5" style={{ color: 'var(--brand-gold)' }} /> {selected.phone}
               </a>
+              <a
+                href={whatsappLink(selected.phone, selected)}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-[#25D366] hover:opacity-80 font-semibold"
+              >
+                <MessageCircle className="w-3.5 h-3.5" /> Open WhatsApp chat
+              </a>
               <p className="flex items-center gap-2 text-slate-400">
                 <Clock className="w-3.5 h-3.5" /> {new Date(selected.created_at).toLocaleString()}
               </p>
@@ -198,11 +198,21 @@ const Inquiries: React.FC = () => {
             <div className="flex gap-2 pt-1">
               <a
                 href={`mailto:${selected.email}?subject=Re: Your ${selected.division} inquiry to AKOY 360`}
-                className="flex-1 py-2.5 rounded-xl text-xs font-bold text-center transition-all"
+                className="flex-1 py-2.5 rounded-xl text-xs font-bold text-center transition-all flex items-center justify-center gap-1.5"
                 style={{ background: 'var(--brand-deep)', color: 'var(--brand-gold)' }}
                 onClick={() => updateStatus(selected.id, "responded")}
               >
-                Reply by Email
+                <Mail className="w-3.5 h-3.5" /> Email
+              </a>
+              <a
+                href={whatsappLink(selected.phone, selected)}
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 py-2.5 rounded-xl text-xs font-bold text-center text-white flex items-center justify-center gap-1.5 transition-all hover:opacity-90"
+                style={{ background: '#25D366' }}
+                onClick={() => updateStatus(selected.id, "responded")}
+              >
+                <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
               </a>
               <button
                 onClick={() => deleteInquiry(selected.id)}

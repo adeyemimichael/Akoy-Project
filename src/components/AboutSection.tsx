@@ -24,9 +24,9 @@ export const AboutSection: React.FC = () => {
     <section id="about" className="py-20 sm:py-28 bg-[#F4F6F9] relative overflow-hidden">
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Visual Composition */}
+        
           <div className="lg:col-span-5 relative">
-            {/* Reduced height on mobile for better proportions */}
+          
             <div className="relative rounded-[36px] overflow-hidden shadow-2xl border-4 border-white bg-slate-900 h-[320px] sm:h-[440px] lg:h-[480px]">
               <img
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"

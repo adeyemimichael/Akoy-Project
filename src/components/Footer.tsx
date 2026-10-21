@@ -138,7 +138,7 @@ export const Footer: React.FC = () => {
             <div className="space-y-3 text-xs text-slate-400">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 shrink-0 mt-0.5" style={{ color: 'var(--brand-gold)' }} />
-                <span>Lagos Head Office: Victoria Island / Ikoyi Commercial Corridor, Lagos, Nigeria.</span>
+                <span>Lagos, Nigeria.</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 shrink-0" style={{ color: 'var(--brand-gold)' }} />
@@ -146,7 +146,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 shrink-0" style={{ color: 'var(--brand-gold)' }} />
-                <span>contact@akoy360.com / diaspora@akoy360.com</span>
+                <span>support@akoy360.co.uk</span>
               </div>
             </div>
 

@@ -12,7 +12,7 @@ import { Footer } from "../components/Footer";
 const Homepage: React.FC = () => {
   return (
     <div className="min-h-screen" style={{ background: '#FAFBFD' }}>
-      <div className="max-w-[1400px] mx-auto bg-white overflow-hidden transition-all">
+      <div className="max-w-auto mx-auto bg-white overflow-hidden transition-all">
         {/* Navigation Bar with suspended notched center tab */}
         <Navbar />
 

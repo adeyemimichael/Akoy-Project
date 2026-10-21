@@ -46,7 +46,7 @@ const AdminLogin: React.FC = () => {
         <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full opacity-5" style={{ background: 'var(--brand-blue)' }} />
       </div>
 
-      <div className="relative w-full max-w-md">
+      <div className="relative w-full max-w-lg">
         {/* Card */}
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
           {/* Header strip */}

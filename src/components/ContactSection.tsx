@@ -69,7 +69,7 @@ export const ContactSection: React.FC = () => {
                 </span>
               </h2>
               <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-                Whether you need property acquisitions, turnkey construction, cross-border air/sea freight, luxury travel arrangements, or diaspora project oversight, our specialized division directors are ready to assist.
+                Whether you need property acquisitions, construction, cross-border air/sea freight, luxury travel arrangements, or diaspora project oversight, our specialized division directors are ready to assist.
               </p>
             </div>
 
@@ -82,9 +82,9 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Corporate Headquarters</h4>
                 <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-deep)' }}>
-                    Victoria Island / Ikoyi Commercial Corridor, Lagos, Nigeria
+                     Lagos, Nigeria
                   </p>
-                  <p className="text-xs text-slate-500 mt-0.5">Liaison Desks in London (UK) &amp; Houston, Texas (USA)</p>
+                  <p className="text-xs text-slate-500 mt-0.5">Liaison Desks in (UK) &amp;</p>
                 </div>
               </div>
 
@@ -94,7 +94,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Telephone &amp; WhatsApp Hotline</h4>
-                  <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-deep)' }}>+234 (0) 800 360 AKOY / +234 812 345 6789</p>
+                  <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-deep)' }}>+234 (0) 800 360 AKOY </p>
                   <p className="text-xs text-slate-500 mt-0.5">Mon - Sat, 8:00 AM - 6:00 PM (WAT)</p>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Official Electronic Inquiries</h4>
-                  <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-deep)' }}>contact@akoy360.com / diaspora@akoy360.com</p>
+                  <p className="text-sm font-semibold mt-0.5" style={{ color: 'var(--brand-deep)' }}>contact@akoy360.co.uk</p>
                   <p className="text-xs text-slate-500 mt-0.5">Guaranteed response within 24 business hours</p>
                 </div>
               </div>

@@ -1,74 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   MessageSquare, Grid3X3, Star, Mail,
   TrendingUp, Clock, ArrowUpRight,
 } from "lucide-react";
-import { supabase } from "../../lib/supabaseClient";
+import { MOCK_INQUIRIES, MOCK_TESTIMONIALS, MOCK_SUBSCRIBERS, MOCK_DIVISIONS } from "../data/mockData";
 
-interface StatCard {
-  label: string;
-  value: number | string;
-  icon: React.ReactNode;
-  to: string;
-  accent: string;
-  sub?: string;
-}
+const statusColors: Record<string, string> = {
+  unread: "#ef4444",
+  read: "#f59e0b",
+  responded: "#10b981",
+};
 
 const Dashboard: React.FC = () => {
-  const [counts, setCounts] = useState({
-    unread: 0,
-    total_inquiries: 0,
-    testimonials: 0,
-    subscribers: 0,
-    divisions: 0,
-  });
-  const [recentInquiries, setRecentInquiries] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const unread = MOCK_INQUIRIES.filter(i => i.status === "unread").length;
+  const recentInquiries = MOCK_INQUIRIES.slice(0, 5);
 
-  useEffect(() => {
-    const load = async () => {
-      const [
-        { count: unread },
-        { count: total_inquiries },
-        { count: testimonials },
-        { count: subscribers },
-        { count: divisions },
-        { data: recent },
-      ] = await Promise.all([
-        supabase.from("inquiries").select("*", { count: "exact", head: true }).eq("status", "unread"),
-        supabase.from("inquiries").select("*", { count: "exact", head: true }),
-        supabase.from("testimonials").select("*", { count: "exact", head: true }),
-        supabase.from("subscribers").select("*", { count: "exact", head: true }),
-        supabase.from("divisions").select("*", { count: "exact", head: true }),
-        supabase.from("inquiries").select("id,full_name,division,status,created_at").order("created_at", { ascending: false }).limit(5),
-      ]);
-
-      setCounts({
-        unread: unread ?? 0,
-        total_inquiries: total_inquiries ?? 0,
-        testimonials: testimonials ?? 0,
-        subscribers: subscribers ?? 0,
-        divisions: divisions ?? 0,
-      });
-      setRecentInquiries(recent ?? []);
-      setLoading(false);
-    };
-    load();
-  }, []);
-
-  const stats: StatCard[] = [
+  const stats = [
     {
       label: "Unread Inquiries",
-      value: counts.unread,
+      value: unread,
       icon: <MessageSquare className="w-5 h-5" />,
       to: "/admin/inquiries",
       accent: "#ef4444",
-      sub: `${counts.total_inquiries} total`,
+      sub: `${MOCK_INQUIRIES.length} total`,
     },
     {
       label: "Divisions",
-      value: counts.divisions,
+      value: MOCK_DIVISIONS.length,
       icon: <Grid3X3 className="w-5 h-5" />,
       to: "/admin/divisions",
       accent: "var(--brand-gold)",
@@ -76,29 +35,21 @@ const Dashboard: React.FC = () => {
     },
     {
       label: "Testimonials",
-      value: counts.testimonials,
+      value: MOCK_TESTIMONIALS.length,
       icon: <Star className="w-5 h-5" />,
       to: "/admin/testimonials",
       accent: "#10b981",
-      sub: "published & drafts",
+      sub: `${MOCK_TESTIMONIALS.filter(t => t.published).length} published`,
     },
     {
       label: "Subscribers",
-      value: counts.subscribers,
+      value: MOCK_SUBSCRIBERS.length,
       icon: <Mail className="w-5 h-5" />,
       to: "/admin/subscribers",
       accent: "var(--brand-blue)",
       sub: "newsletter list",
     },
   ];
-
-  const statusColors: Record<string, string> = {
-    unread: "#ef4444",
-    read: "#f59e0b",
-    responded: "#10b981",
-  };
-
-  const firstName = "Admin";
 
   return (
     <div className="space-y-8">
@@ -108,49 +59,38 @@ const Dashboard: React.FC = () => {
           <p className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--brand-gold)' }}>
             Welcome back
           </p>
-          <h1 className="text-2xl sm:text-3xl font-extrabold font-display mt-0.5 capitalize" style={{ color: 'var(--brand-deep)' }}>
-            {firstName}
+          <h1 className="text-2xl sm:text-3xl font-extrabold font-display mt-0.5" style={{ color: 'var(--brand-deep)' }}>
+            Admin
           </h1>
         </div>
         <div className="text-right hidden sm:block">
-          <p className="text-xs text-slate-400">{new Date().toLocaleDateString("en-NG", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
+          <p className="text-xs text-slate-400">
+            {new Date().toLocaleDateString("en-NG", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
+          </p>
           <p className="text-xs font-semibold mt-0.5" style={{ color: 'var(--brand-deep)' }}>AKOY 360 Admin Panel</p>
         </div>
       </div>
 
       {/* Stat Cards */}
-      {loading ? (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="h-28 rounded-2xl bg-white animate-pulse border border-slate-100" />
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {stats.map((s) => (
-            <Link
-              key={s.label}
-              to={s.to}
-              className="bg-white rounded-2xl p-5 border border-slate-100 hover:shadow-md transition-all group"
-            >
-              <div className="flex items-start justify-between">
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center text-white"
-                  style={{ background: s.accent }}
-                >
-                  {s.icon}
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-slate-500 transition-colors" />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {stats.map((s) => (
+          <Link
+            key={s.label}
+            to={s.to}
+            className="bg-white rounded-2xl p-5 border border-slate-100 hover:shadow-md transition-all group"
+          >
+            <div className="flex items-start justify-between">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white" style={{ background: s.accent }}>
+                {s.icon}
               </div>
-              <p className="text-3xl font-extrabold mt-3" style={{ color: 'var(--brand-deep)' }}>
-                {s.value}
-              </p>
-              <p className="text-sm font-semibold text-slate-600 mt-0.5">{s.label}</p>
-              {s.sub && <p className="text-xs text-slate-400 mt-0.5">{s.sub}</p>}
-            </Link>
-          ))}
-        </div>
-      )}
+              <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-slate-500 transition-colors" />
+            </div>
+            <p className="text-3xl font-extrabold mt-3" style={{ color: 'var(--brand-deep)' }}>{s.value}</p>
+            <p className="text-sm font-semibold text-slate-600 mt-0.5">{s.label}</p>
+            {s.sub && <p className="text-xs text-slate-400 mt-0.5">{s.sub}</p>}
+          </Link>
+        ))}
+      </div>
 
       {/* Quick Actions */}
       <div>
@@ -159,10 +99,10 @@ const Dashboard: React.FC = () => {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { label: "View Inquiries", to: "/admin/inquiries", icon: <MessageSquare className="w-4 h-4" /> },
-            { label: "Edit Divisions", to: "/admin/divisions", icon: <Grid3X3 className="w-4 h-4" /> },
-            { label: "Manage Testimonials", to: "/admin/testimonials", icon: <Star className="w-4 h-4" /> },
-            { label: "Site Settings", to: "/admin/settings", icon: <TrendingUp className="w-4 h-4" /> },
+            { label: "View Inquiries",       to: "/admin/inquiries",    icon: <MessageSquare className="w-4 h-4" /> },
+            { label: "Edit Divisions",        to: "/admin/divisions",    icon: <Grid3X3 className="w-4 h-4" /> },
+            { label: "Manage Testimonials",   to: "/admin/testimonials", icon: <Star className="w-4 h-4" /> },
+            { label: "Site Settings",         to: "/admin/settings",     icon: <TrendingUp className="w-4 h-4" /> },
           ].map((a) => (
             <Link
               key={a.label}
@@ -188,42 +128,38 @@ const Dashboard: React.FC = () => {
           </Link>
         </div>
         <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden">
-          {recentInquiries.length === 0 ? (
-            <div className="p-8 text-center text-slate-400 text-sm">No inquiries yet.</div>
-          ) : (
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-slate-100">
-                  <th className="text-left px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400">Name</th>
-                  <th className="text-left px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400 hidden sm:table-cell">Division</th>
-                  <th className="text-left px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400 hidden md:table-cell">Date</th>
-                  <th className="text-left px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400">Status</th>
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-slate-100">
+                <th className="text-left px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400">Name</th>
+                <th className="text-left px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400 hidden sm:table-cell">Division</th>
+                <th className="text-left px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400 hidden md:table-cell">Date</th>
+                <th className="text-left px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recentInquiries.map((inq) => (
+                <tr key={inq.id} className="border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors">
+                  <td className="px-5 py-3.5 font-semibold" style={{ color: 'var(--brand-deep)' }}>{inq.full_name}</td>
+                  <td className="px-5 py-3.5 text-slate-500 capitalize hidden sm:table-cell">{inq.division}</td>
+                  <td className="px-5 py-3.5 text-slate-400 hidden md:table-cell">
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {new Date(inq.created_at).toLocaleDateString()}
+                    </span>
+                  </td>
+                  <td className="px-5 py-3.5">
+                    <span
+                      className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white"
+                      style={{ background: statusColors[inq.status] ?? "#94a3b8" }}
+                    >
+                      {inq.status}
+                    </span>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {recentInquiries.map((inq) => (
-                  <tr key={inq.id} className="border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors">
-                    <td className="px-5 py-3.5 font-semibold" style={{ color: 'var(--brand-deep)' }}>{inq.full_name}</td>
-                    <td className="px-5 py-3.5 text-slate-500 capitalize hidden sm:table-cell">{inq.division}</td>
-                    <td className="px-5 py-3.5 text-slate-400 hidden md:table-cell">
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {new Date(inq.created_at).toLocaleDateString()}
-                      </span>
-                    </td>
-                    <td className="px-5 py-3.5">
-                      <span
-                        className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white"
-                        style={{ background: statusColors[inq.status] ?? "#94a3b8" }}
-                      >
-                        {inq.status}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
