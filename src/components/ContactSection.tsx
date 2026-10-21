@@ -42,13 +42,13 @@ export const ContactSection: React.FC = () => {
     }, 800);
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-colors placeholder:text-slate-500 focus:border-brand-gold"
+  const inputClass = "w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl text-white text-sm outline-none transition-colors placeholder:text-slate-500 focus:border-brand-gold"
   const inputStyle = { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)' };
 
   return (
-    <section id="contact" className="py-20 sm:py-28 bg-white relative overflow-hidden">
+    <section id="contact" className="py-12 sm:py-20 lg:py-28 bg-white relative overflow-hidden">
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           {/* Left Column: Direct Inquiries and Contact Details */}
           <div className="lg:col-span-5 space-y-8">
             <div>
