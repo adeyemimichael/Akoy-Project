@@ -42,9 +42,8 @@ export const ContactSection: React.FC = () => {
     }, 800);
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-colors placeholder:text-slate-500"
+  const inputClass = "w-full px-4 py-3 rounded-xl text-white text-sm outline-none transition-colors placeholder:text-slate-500 focus:border-brand-gold"
   const inputStyle = { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)' };
-  const inputFocusStyle = { borderColor: 'var(--brand-gold)' };
 
   return (
     <section id="contact" className="py-20 sm:py-28 bg-white relative overflow-hidden">
@@ -184,8 +183,6 @@ export const ContactSection: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       className={inputClass}
                       style={inputStyle}
-                      onFocus={e => Object.assign((e.target as HTMLInputElement).style, inputFocusStyle)}
-                      onBlur={e => { (e.target as HTMLInputElement).style.borderColor = 'rgba(255,255,255,0.15)'; }}
                     />
                   </div>
 
@@ -201,8 +198,6 @@ export const ContactSection: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className={inputClass}
                       style={inputStyle}
-                      onFocus={e => Object.assign((e.target as HTMLInputElement).style, inputFocusStyle)}
-                      onBlur={e => { (e.target as HTMLInputElement).style.borderColor = 'rgba(255,255,255,0.15)'; }}
                     />
                   </div>
                 </div>
@@ -220,8 +215,6 @@ export const ContactSection: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className={inputClass}
                       style={inputStyle}
-                      onFocus={e => Object.assign((e.target as HTMLInputElement).style, inputFocusStyle)}
-                      onBlur={e => { (e.target as HTMLInputElement).style.borderColor = 'rgba(255,255,255,0.15)'; }}
                     />
                   </div>
 
@@ -236,8 +229,6 @@ export const ContactSection: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                       className={inputClass}
                       style={inputStyle}
-                      onFocus={e => Object.assign((e.target as HTMLInputElement).style, inputFocusStyle)}
-                      onBlur={e => { (e.target as HTMLInputElement).style.borderColor = 'rgba(255,255,255,0.15)'; }}
                     />
                   </div>
                 </div>
@@ -254,8 +245,6 @@ export const ContactSection: React.FC = () => {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className={`${inputClass} resize-none`}
                     style={inputStyle}
-                    onFocus={e => Object.assign((e.target as HTMLTextAreaElement).style, inputFocusStyle)}
-                    onBlur={e => { (e.target as HTMLTextAreaElement).style.borderColor = 'rgba(255,255,255,0.15)'; }}
                   />
                 </div>
 

@@ -5,6 +5,11 @@
   --brand-deep: #001050;
   --brand-gold: #fdbf02;
 
+  /* Tailwind utility aliases for brand colors */
+  --color-brand-gold: #fdbf02;
+  --color-brand-deep: #001050;
+  --color-brand-blue: #03219b;
+
   --color-navy-950: var(--brand-deep);
   --color-navy-900: var(--brand-blue);
   --color-navy-800: #122540;

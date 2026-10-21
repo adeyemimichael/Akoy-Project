@@ -17,10 +17,8 @@ export const WorkGallery: React.FC = () => (
         </div>
         <a
           href="#divisions"
-          className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold transition-colors"
+          className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold transition-colors hover:text-brand-gold"
           style={{ color: 'var(--brand-blue)' }}
-          onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--brand-gold)'; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--brand-blue)'; }}
         >
           All divisions <ArrowUpRight className="h-4 w-4" />
         </a>

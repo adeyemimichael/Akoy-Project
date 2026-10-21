@@ -83,10 +83,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
           <button
             onClick={() => setSearchOpen(!searchOpen)}
             aria-label="Search"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 text-white flex items-center justify-center transition-colors duration-200 shadow-sm"
-            style={{}}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'var(--brand-gold)'; (e.currentTarget as HTMLButtonElement).style.color = 'var(--brand-blue)'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = ''; (e.currentTarget as HTMLButtonElement).style.color = ''; }}
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 text-white flex items-center justify-center transition-colors duration-200 shadow-sm hover:bg-brand-gold hover:text-brand-blue"
           >
             <Search className="w-4 h-4" />
           </button>

@@ -5,7 +5,6 @@ import RootLayout from "./RootLayout";
 import Homepage from "./pages/Homepage";
 import DivisionPage from "./pages/DivisionPage";
 // Admin
-import { AdminAuthProvider } from "./admin/context/AdminAuthContext";
 import ProtectedRoute from "./admin/components/ProtectedRoute";
 import { AdminLayout } from "./admin/components/AdminLayout";
 import Dashboard from "./admin/pages/Dashboard";
@@ -36,11 +35,7 @@ const router = createBrowserRouter([
   // ── Admin: protected routes ───────────────────────────────────
   {
     path: "/admin",
-    element: (
-      <AdminAuthProvider>
-        <ProtectedRoute />
-      </AdminAuthProvider>
-    ),
+    element: <ProtectedRoute />,
     children: [
       {
         element: <AdminLayout />,
