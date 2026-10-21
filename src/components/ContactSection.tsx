@@ -111,7 +111,7 @@ export const ContactSection: React.FC = () => {
             </div>
 
             {/* Trust Badges */}
-            <div className="flex items-center gap-6 pt-2 text-xs text-slate-600">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-6 pt-2 text-xs text-slate-600">
               <div className="flex items-center gap-1.5 font-medium">
                 <CheckCircle className="w-4 h-4 text-emerald-600" />
                 <span>NDA &amp; Confidentiality</span>
@@ -126,7 +126,7 @@ export const ContactSection: React.FC = () => {
           {/* Right Column: Dynamic Consultation Form */}
           <div className="lg:col-span-7">
             <div
-              className="p-8 sm:p-10 rounded-3xl text-white relative"
+              className="p-5 sm:p-8 lg:p-10 rounded-3xl text-white relative"
               style={{ background: 'var(--brand-deep)', border: '1px solid rgba(253,191,2,0.18)', boxShadow: '0 20px 40px rgba(0,16,80,0.12)' }}
             >
               <div className="mb-6">
@@ -148,16 +148,16 @@ export const ContactSection: React.FC = () => {
                     {[
                       { id: "properties", label: "Properties" },
                       { id: "construction", label: "Construction" },
-                      { id: "travel", label: "Travel & Tours" },
-                      { id: "logistics", label: "Logistics / Freight" },
-                      { id: "business", label: "Business Services" },
-                      { id: "diaspora", label: "Diaspora Gateway" },
+                      { id: "travel", label: "Travel" },
+                      { id: "logistics", label: "Logistics" },
+                      { id: "business", label: "Business" },
+                      { id: "diaspora", label: "Diaspora" },
                     ].map((div) => (
                       <button
                         key={div.id}
                         type="button"
                         onClick={() => setFormData({ ...formData, division: div.id })}
-                        className="py-2 px-3 rounded-xl text-xs font-semibold text-center border transition-all"
+                        className="py-2 px-2 sm:px-3 rounded-xl text-[11px] sm:text-xs font-semibold text-center border transition-all truncate"
                         style={
                           formData.division === div.id
                             ? { background: 'var(--brand-gold)', color: 'var(--brand-deep)', borderColor: 'var(--brand-gold)', fontWeight: 700, boxShadow: '0 4px 12px rgba(253,191,2,0.3)' }
@@ -170,7 +170,7 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-2">
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 mb-1">
                       Full Name *
@@ -202,10 +202,10 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      Phone Number (with country code) *
+                      Phone Number *
                     </label>
                     <input
                       type="tel"
