@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Lock, Mail, AlertCircle } from "lucide-react";
-import { useAdminAuth } from "../context/AdminAuthContext";
+import { useAdminAuth } from "../../contexts/AdminAuthContext";
 import { Logo } from "../../components/Logo";
 
 const AdminLogin: React.FC = () => {
@@ -32,18 +32,27 @@ const AdminLogin: React.FC = () => {
 
   const inputBase =
     "w-full pl-10 pr-4 py-3 rounded-xl text-sm outline-none transition-all border bg-white text-slate-800 placeholder:text-slate-400";
-  const inputStyle = { border: '1px solid #e2e8f0' };
-  const inputFocus = { borderColor: 'var(--brand-deep)', boxShadow: '0 0 0 3px rgba(0,16,80,0.08)' };
+  const inputStyle = { border: "1px solid #e2e8f0" };
+  const inputFocus = {
+    borderColor: "var(--brand-deep)",
+    boxShadow: "0 0 0 3px rgba(0,16,80,0.08)",
+  };
 
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4"
-      style={{ background: 'var(--brand-deep)' }}
+      style={{ background: "var(--brand-deep)" }}
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-5" style={{ background: 'var(--brand-gold)' }} />
-        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full opacity-5" style={{ background: 'var(--brand-blue)' }} />
+        <div
+          className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-5"
+          style={{ background: "var(--brand-gold)" }}
+        />
+        <div
+          className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full opacity-5"
+          style={{ background: "var(--brand-blue)" }}
+        />
       </div>
 
       <div className="relative w-full max-w-lg">
@@ -53,7 +62,10 @@ const AdminLogin: React.FC = () => {
           <div className="px-8 pt-8 pb-6 border-b border-slate-100 flex flex-col items-center gap-3">
             <Logo size="md" />
             <div className="text-center">
-              <h1 className="text-xl font-extrabold font-display" style={{ color: 'var(--brand-deep)' }}>
+              <h1
+                className="text-xl font-extrabold font-display"
+                style={{ color: "var(--brand-deep)" }}
+              >
                 Admin Portal
               </h1>
               <p className="text-xs text-slate-500 mt-1">
@@ -72,7 +84,10 @@ const AdminLogin: React.FC = () => {
 
             {/* Email */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider mb-1.5" style={{ color: 'var(--brand-deep)' }}>
+              <label
+                className="block text-xs font-bold uppercase tracking-wider mb-1.5"
+                style={{ color: "var(--brand-deep)" }}
+              >
                 Email Address
               </label>
               <div className="relative">
@@ -83,18 +98,21 @@ const AdminLogin: React.FC = () => {
                   autoComplete="email"
                   placeholder="admin@akoy360.com"
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   className={inputBase}
                   style={inputStyle}
-                  onFocus={e => Object.assign(e.target.style, inputFocus)}
-                  onBlur={e => Object.assign(e.target.style, inputStyle)}
+                  onFocus={(e) => Object.assign(e.target.style, inputFocus)}
+                  onBlur={(e) => Object.assign(e.target.style, inputStyle)}
                 />
               </div>
             </div>
 
             {/* Password */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider mb-1.5" style={{ color: 'var(--brand-deep)' }}>
+              <label
+                className="block text-xs font-bold uppercase tracking-wider mb-1.5"
+                style={{ color: "var(--brand-deep)" }}
+              >
                 Password
               </label>
               <div className="relative">
@@ -105,18 +123,22 @@ const AdminLogin: React.FC = () => {
                   autoComplete="current-password"
                   placeholder="••••••••"
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   className={`${inputBase} pr-11`}
                   style={inputStyle}
-                  onFocus={e => Object.assign(e.target.style, inputFocus)}
-                  onBlur={e => Object.assign(e.target.style, inputStyle)}
+                  onFocus={(e) => Object.assign(e.target.style, inputFocus)}
+                  onBlur={(e) => Object.assign(e.target.style, inputStyle)}
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(v => !v)}
+                  onClick={() => setShowPassword((v) => !v)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             </div>
@@ -125,7 +147,10 @@ const AdminLogin: React.FC = () => {
               type="submit"
               disabled={submitting}
               className="w-full py-3.5 rounded-xl font-bold text-sm tracking-wider transition-all disabled:opacity-50 flex items-center justify-center gap-2"
-              style={{ background: 'var(--brand-deep)', color: 'var(--brand-gold)' }}
+              style={{
+                background: "var(--brand-deep)",
+                color: "var(--brand-gold)",
+              }}
             >
               {submitting ? (
                 <span className="animate-pulse">Authenticating...</span>
