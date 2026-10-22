@@ -10,7 +10,7 @@ import {
   Link as LinkIcon,
 } from "lucide-react";
 import type { Division } from "../../types/supabaseType";
-import { MOCK_DIVISIONS } from "../data/mockData";
+import { MOCK_DIVISIONS } from "../../data/mockData";
 import toast from "react-hot-toast";
 
 export type MediaType = "image" | "video";

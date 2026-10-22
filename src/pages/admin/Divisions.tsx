@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Save, ChevronDown, ChevronUp, Plus, Trash2 } from "lucide-react";
 import type { Division } from "../../types/supabaseType";
-import { MOCK_DIVISIONS } from "../data/mockData";
+import { MOCK_DIVISIONS } from "../../data/mockData";
 import toast from "react-hot-toast";
 
 const Divisions: React.FC = () => {

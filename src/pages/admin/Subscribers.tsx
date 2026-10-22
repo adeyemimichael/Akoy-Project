@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Search, Trash2, Download, Mail, Clock } from "lucide-react";
 import type { Subscriber } from "../../types/supabaseType";
-import { MOCK_SUBSCRIBERS } from "../data/mockData";
+import { MOCK_SUBSCRIBERS } from "../../data/mockData";
 import toast from "react-hot-toast";
 
 const Subscribers: React.FC = () => {

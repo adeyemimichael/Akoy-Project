@@ -4,8 +4,8 @@ import type {
   Subscriber,
   SiteSetting,
   Division,
-} from "../../types/supabaseType";
-import { DIVISIONS_DATA } from "../../data/divisions";
+} from "../types/supabaseType";
+import { DIVISIONS_DATA } from "./divisions";
 
 // ── Inquiries ─────────────────────────────────────────────────────────────────
 export const MOCK_INQUIRIES: Inquiry[] = [

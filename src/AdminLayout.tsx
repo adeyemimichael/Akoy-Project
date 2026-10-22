@@ -13,7 +13,7 @@ import {
   X,
   ChevronRight,
 } from "lucide-react";
-import { Logo } from "../../components/Logo";
+import { Logo } from "./components/Logo";
 
 const navItems = [
   { to: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -37,7 +37,10 @@ export const AdminLayout: React.FC = () => {
       {/* Brand */}
       <div className="px-5 py-5 border-b border-white/10">
         <Logo size="sm" />
-        <p className="text-[10px] font-bold uppercase tracking-widest mt-2" style={{ color: 'var(--brand-gold)' }}>
+        <p
+          className="text-[10px] font-bold uppercase tracking-widest mt-2"
+          style={{ color: "var(--brand-gold)" }}
+        >
           Admin Panel
         </p>
       </div>
@@ -57,7 +60,12 @@ export const AdminLayout: React.FC = () => {
               }`
             }
             style={({ isActive }) =>
-              isActive ? { background: 'var(--brand-gold)', color: 'var(--brand-deep)' } : undefined
+              isActive
+                ? {
+                    background: "var(--brand-gold)",
+                    color: "var(--brand-deep)",
+                  }
+                : undefined
             }
           >
             {({ isActive }) => (
@@ -88,11 +96,14 @@ export const AdminLayout: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen flex" style={{ background: '#F4F6F9' }}>
+    <div className="min-h-screen flex" style={{ background: "#F4F6F9" }}>
       {/* Desktop Sidebar */}
       <aside
         className="hidden lg:flex flex-col w-60 shrink-0 fixed top-0 left-0 h-full z-30"
-        style={{ background: 'var(--brand-deep)', borderRight: '1px solid rgba(253,191,2,0.10)' }}
+        style={{
+          background: "var(--brand-deep)",
+          borderRight: "1px solid rgba(253,191,2,0.10)",
+        }}
       >
         <SidebarContent />
       </aside>
@@ -106,7 +117,7 @@ export const AdminLayout: React.FC = () => {
           />
           <aside
             className="relative w-64 flex flex-col h-full z-50"
-            style={{ background: 'var(--brand-deep)' }}
+            style={{ background: "var(--brand-deep)" }}
           >
             <button
               onClick={() => setSidebarOpen(false)}
@@ -122,9 +133,7 @@ export const AdminLayout: React.FC = () => {
       {/* Main content */}
       <div className="flex-1 lg:ml-60 flex flex-col min-h-screen">
         {/* Top bar (mobile) */}
-        <header
-          className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white sticky top-0 z-20"
-        >
+        <header className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white sticky top-0 z-20">
           <button
             onClick={() => setSidebarOpen(true)}
             className="p-2 rounded-xl text-slate-700 hover:bg-slate-100"

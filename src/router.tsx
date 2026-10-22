@@ -5,15 +5,15 @@ import RootLayout from "./RootLayout";
 import Homepage from "./pages/Homepage";
 import DivisionPage from "./pages/DivisionPage";
 // Admin
-import ProtectedRoute from "./admin/components/ProtectedRoute";
-import { AdminLayout } from "./admin/components/AdminLayout";
-import Dashboard from "./admin/pages/Dashboard";
-import Inquiries from "./admin/pages/Inquiries";
-import Divisions from "./admin/pages/Divisions";
-import Testimonials from "./admin/pages/Testimonials";
-import Gallery from "./admin/pages/Gallery";
-import Subscribers from "./admin/pages/Subscribers";
-import SiteSettings from "./admin/pages/SiteSettings";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AdminLayout } from "./AdminLayout";
+import Dashboard from "./pages/admin/Dashboard";
+import Inquiries from "./pages/admin/Inquiries";
+import Divisions from "./pages/admin/Divisions";
+import Testimonials from "./pages/admin/Testimonials";
+import Gallery from "./pages/admin/Gallery";
+import Subscribers from "./pages/admin/Subscribers";
+import SiteSettings from "./pages/admin/SiteSettings";
 
 const router = createBrowserRouter([
   // ── Public site ──────────────────────────────────────────────
@@ -41,13 +41,13 @@ const router = createBrowserRouter([
         element: <AdminLayout />,
         children: [
           { index: true, element: <Navigate to="/admin/dashboard" replace /> },
-          { path: "dashboard",    element: <Dashboard /> },
-          { path: "inquiries",    element: <Inquiries /> },
-          { path: "divisions",    element: <Divisions /> },
+          { path: "dashboard", element: <Dashboard /> },
+          { path: "inquiries", element: <Inquiries /> },
+          { path: "divisions", element: <Divisions /> },
           { path: "testimonials", element: <Testimonials /> },
-          { path: "gallery",      element: <Gallery /> },
-          { path: "subscribers",  element: <Subscribers /> },
-          { path: "settings",     element: <SiteSettings /> },
+          { path: "gallery", element: <Gallery /> },
+          { path: "subscribers", element: <Subscribers /> },
+          { path: "settings", element: <SiteSettings /> },
         ],
       },
     ],

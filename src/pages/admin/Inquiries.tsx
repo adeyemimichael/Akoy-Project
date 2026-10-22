@@ -10,7 +10,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import type { Inquiry } from "../../types/supabaseType";
-import { MOCK_INQUIRIES } from "../data/mockData";
+import { MOCK_INQUIRIES } from "../../data/mockData";
 import toast from "react-hot-toast";
 
 // Strip everything except digits, then build a wa.me link

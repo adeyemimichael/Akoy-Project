@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Plus, Save, Trash2, Eye, EyeOff, Star, X } from "lucide-react";
 import type { Testimonial } from "../../types/supabaseType";
-import { MOCK_TESTIMONIALS } from "../data/mockData";
+import { MOCK_TESTIMONIALS } from "../../data/mockData";
 import toast from "react-hot-toast";
 
 const EMPTY: Omit<Testimonial, "id" | "created_at"> = {
