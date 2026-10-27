@@ -6,6 +6,7 @@ import { DivisionsGrid } from "../components/DivisionsGrid";
 import { DiasporaBanner } from "../components/DiasporaBanner";
 import { TestimonialsSection } from "../components/TestimonialsSection";
 import { AboutSection } from "../components/AboutSection";
+import { LeadershipSection } from "../components/LeadershipSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
 
@@ -33,6 +34,9 @@ const Homepage: React.FC = () => {
 
           {/* About AKOY 360 & Corporate Heritage */}
           <AboutSection />
+
+          {/* Leadership / Meet the CEO */}
+          <LeadershipSection />
 
           {/* Executive Consultation & Contact Desk */}
           <ContactSection />

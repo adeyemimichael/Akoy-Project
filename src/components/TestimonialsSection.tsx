@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import React from "react";
+import { Star, Quote } from "lucide-react";
 
 interface Testimonial {
   id: number;
@@ -15,81 +15,43 @@ interface Testimonial {
 const TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
-    name: "Dr. Adebayo Okonkwo",
-    title: "Medical Consultant",
-    location: "Houston, Texas — USA",
-    division: "Diaspora Gateway",
+    name: "Pastor Kunle Kayode",
+    title: "Client",
+    location: "Ireland",
+    division: "Diaspora & Construction",
     rating: 5,
     quote:
-      "I had been burned twice by agents who disappeared with my money. AKOY 360 was different — every naira was in escrow, and I watched my duplex go from foundation to roofing via live drone feeds. I didn't step foot in Nigeria once. Absolutely remarkable.",
-    initials: "AO",
+      "In 2023, while living in Ireland, I chose AKOY 360 Limited to build my mother's house in Odo-Eri, Kogi State. Their professionalism, reliability and commitment gave me peace of mind throughout the project. Pleased with their service, I entrusted them with my ongoing family holiday home project in Osogbo, Osun State. I highly recommend AKOY 360 Limited to Nigerians abroad looking for dependable property development, project supervision and property management services.",
+    initials: "KK",
   },
   {
     id: 2,
-    name: "Mrs. Funmilayo Adeyemi",
-    title: "Finance Director",
-    location: "London, United Kingdom",
-    division: "Properties",
-    rating: 5,
-    quote:
-      "Finding a verified property in Lagos from London used to feel impossible. AKOY 360 Properties handled title verification, negotiation, and transfer documentation end-to-end. I signed everything remotely with full legal backing. World-class service.",
-    initials: "FA",
-  },
-  {
-    id: 3,
-    name: "Engr. Chukwuemeka Eze",
-    title: "CEO, Eze Industrial Group",
-    location: "Lagos, Nigeria",
+    name: "Mr. Ogundale Olaide",
+    title: "Client",
+    location: "Alberta, Canada 🇨🇦",
     division: "Construction",
     rating: 5,
     quote:
-      "We contracted AKOY 360 Construction for our 12-floor commercial hub in Victoria Island. Their site supervision, quality audits, and milestone reporting were impeccable. Delivered on time and within budget. We've already signed them for our next project.",
-    initials: "CE",
+      "From Alberta, Canada, I entrusted AKOY 360 Limited with my 5-bedroom all-ensuite duplex in Osogbo, Osun State. From foundation to completion (2024–2025), they delivered to my specifications. I highly recommend AKOY 360 Limited to Nigerians in the diaspora seeking trusted property development professionals back home.",
+    initials: "OO",
   },
   {
-    id: 4,
-    name: "Ms. Kemi Oduya",
-    title: "Trade & Import Entrepreneur",
-    location: "Toronto, Canada",
-    division: "Logistics & Shipping",
+    id: 3,
+    name: "Mr. Bernard",
+    title: "Property Investor",
+    location: "Seven Oaks, London 🇬🇧",
+    division: "Construction & Airbnb",
     rating: 5,
     quote:
-      "I ship goods from Canada to Nigeria monthly. Since partnering with AKOY 360 Logistics, my customs clearance stress is gone. Real-time GPS tracking, door-to-door delivery, zero lost cargo. They've completely transformed my supply chain.",
-    initials: "KO",
-  },
-  {
-    id: 5,
-    name: "Alhaji Musa Tanko",
-    title: "Government Procurement Officer",
-    location: "Abuja, Nigeria",
-    division: "Business Services",
-    rating: 5,
-    quote:
-      "AKOY 360 Business Services helped us navigate a complex government tender and connected us to Tier-1 industrial vendors. Their regulatory advisory saved us months of paperwork. A trusted institutional partner for serious corporate work.",
-    initials: "MT",
-  },
-  {
-    id: 6,
-    name: "Mr. Seun Bankole",
-    title: "Tech Executive",
-    location: "Dubai, UAE",
-    division: "Travel & Tourism",
-    rating: 5,
-    quote:
-      "I travel for business constantly across Africa, Europe, and the Gulf. AKOY 360 Travel manages all my corporate ticketing, visa advisory, and VIP protocols. Having a 24/7 concierge that actually picks up the phone is priceless.",
-    initials: "SB",
+      "After being dissatisfied with the work of my previous engineer on my rental and Airbnb project at OPIC, near Channels Television, Isheri, Ogun State, I was referred to AKOY 360 Limited to take over project supervision. Their professionalism, attention to detail, and commitment have given me renewed confidence in my investment. I recommend AKOY 360 Limited to property owners in Nigeria and the diaspora seeking reliable project supervision and property development services.",
+    initials: "MB",
   },
 ];
 
 const ITEMS_PER_PAGE = 3;
 
 export const TestimonialsSection: React.FC = () => {
-  const [page, setPage] = useState(0);
-  const totalPages = Math.ceil(TESTIMONIALS.length / ITEMS_PER_PAGE);
-  const visible = TESTIMONIALS.slice(
-    page * ITEMS_PER_PAGE,
-    page * ITEMS_PER_PAGE + ITEMS_PER_PAGE
-  );
+  const visible = TESTIMONIALS;
 
   return (
     <section id="testimonials" className="py-20 sm:py-28 relative overflow-hidden" style={{ background: '#F4F6F9' }}>
@@ -122,51 +84,6 @@ export const TestimonialsSection: React.FC = () => {
             <p className="mt-3 text-sm sm:text-base text-slate-500 max-w-xl leading-relaxed">
               From Lagos to London, Houston to Dubai — here's what our clients say about working with AKOY 360 LIMITED.
             </p>
-          </div>
-
-          {/* Pagination controls */}
-          <div className="flex items-center gap-3 shrink-0">
-            <button
-              onClick={() => setPage((p) => Math.max(0, p - 1))}
-              disabled={page === 0}
-              aria-label="Previous testimonials"
-              className="w-10 h-10 rounded-full border flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-              style={{ borderColor: 'rgba(0,16,80,0.18)', color: 'var(--brand-deep)' }}
-              onMouseEnter={e => {
-                if (page !== 0) {
-                  (e.currentTarget as HTMLButtonElement).style.background = 'var(--brand-deep)';
-                  (e.currentTarget as HTMLButtonElement).style.color = '#fff';
-                }
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLButtonElement).style.background = '';
-                (e.currentTarget as HTMLButtonElement).style.color = 'var(--brand-deep)';
-              }}
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <span className="text-xs font-semibold tabular-nums" style={{ color: 'var(--brand-deep)' }}>
-              {page + 1} / {totalPages}
-            </span>
-            <button
-              onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-              disabled={page === totalPages - 1}
-              aria-label="Next testimonials"
-              className="w-10 h-10 rounded-full border flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-              style={{ borderColor: 'rgba(0,16,80,0.18)', color: 'var(--brand-deep)' }}
-              onMouseEnter={e => {
-                if (page !== totalPages - 1) {
-                  (e.currentTarget as HTMLButtonElement).style.background = 'var(--brand-deep)';
-                  (e.currentTarget as HTMLButtonElement).style.color = '#fff';
-                }
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLButtonElement).style.background = '';
-                (e.currentTarget as HTMLButtonElement).style.color = 'var(--brand-deep)';
-              }}
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
           </div>
         </div>
 
@@ -233,22 +150,6 @@ export const TestimonialsSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Dot indicators */}
-        <div className="flex items-center justify-center gap-2 mt-10">
-          {Array.from({ length: totalPages }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setPage(i)}
-              aria-label={`Go to page ${i + 1}`}
-              className="rounded-full transition-all"
-              style={{
-                width: i === page ? '24px' : '8px',
-                height: '8px',
-                background: i === page ? 'var(--brand-gold)' : 'rgba(0,16,80,0.18)',
-              }}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
