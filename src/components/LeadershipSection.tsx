@@ -47,7 +47,7 @@ export const LeadershipSection: React.FC = () => {
                 <div className="absolute inset-x-0 bottom-0 h-32" style={{ background: 'linear-gradient(to top, rgba(0,16,80,0.85), transparent)' }} />
                 {/* Name plate */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-xl font-bold font-display">Engr. Akoye Michael</h3>
+                  <h3 className="text-xl font-bold font-display">Engr. Gabriel Sunday Adeyemo</h3>
                   <p className="text-sm" style={{ color: 'var(--brand-gold)' }}>Founder &amp; Chief Executive Officer</p>
                 </div>
               </div>
@@ -72,7 +72,7 @@ export const LeadershipSection: React.FC = () => {
 
             <div className="space-y-4 text-sm sm:text-base text-slate-600 leading-relaxed">
               <p>
-                Engr. Akoye Michael founded AKOY 360 LIMITED with a singular vision: to create an institution that
+               Engr. Gabriel Sunday Adeyemo founded AKOY 360 LIMITED with a singular vision: to create an institution that
                 Nigerians at home and abroad could trust completely. With over a decade of experience in property
                 development, construction, and cross-border business services, he has built AKOY 360 into a
                 six-division conglomerate serving thousands of clients across Nigeria, the UK, USA, Canada, and beyond.
