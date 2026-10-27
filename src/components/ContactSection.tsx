@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Send, Phone, Mail, MapPin, CheckCircle, Clock } from "lucide-react";
+import { useInquiries } from "../hooks";
 
 export const ContactSection: React.FC = () => {
+  const { submitInquiry } = useInquiries();
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -14,32 +17,34 @@ export const ContactSection: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast.success(
-        `Thank you ${formData.fullName}! Your inquiry for AKOY 360 ${formData.division.toUpperCase()} has been received. Our executive desk will reach out within 24 hours.`,
-        {
-          duration: 6000,
-          style: {
-            background: "var(--brand-blue)",
-            color: "#FFFFFF",
-            border: "1px solid var(--brand-gold)",
-          },
-        }
-      );
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        country: "Nigeria",
-        division: "properties",
-        message: "",
-      });
-    }, 800);
+    const { error } = await submitInquiry({
+      full_name: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      country: formData.country,
+      division: formData.division,
+      message: formData.message,
+    });
+
+    setIsSubmitting(false);
+
+    if (error) {
+      toast.error("Something went wrong. Please try again or reach us on WhatsApp.");
+      return;
+    }
+
+    toast.success(
+      `Thank you ${formData.fullName}! Your inquiry has been received. Our team will reach out within 24 hours.`,
+      {
+        duration: 6000,
+        style: { background: "var(--brand-blue)", color: "#FFFFFF", border: "1px solid var(--brand-gold)" },
+      }
+    );
+    setFormData({ fullName: "", email: "", phone: "", country: "Nigeria", division: "properties", message: "" });
   };
 
   const inputClass = "w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl text-white text-sm outline-none transition-colors placeholder:text-slate-500 focus:border-brand-gold"

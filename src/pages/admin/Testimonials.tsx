@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Plus, Save, Trash2, Eye, EyeOff, Star, X } from "lucide-react";
 import type { Testimonial } from "../../types/supabaseType";
-import { MOCK_TESTIMONIALS } from "../../data/mockData";
+import { useTestimonials } from "../../hooks";
 import toast from "react-hot-toast";
 
 const EMPTY: Omit<Testimonial, "id" | "created_at"> = {
@@ -26,70 +26,55 @@ const DIVISIONS = [
 ];
 
 const Testimonials: React.FC = () => {
-  const [items, setItems] = useState<Testimonial[]>(MOCK_TESTIMONIALS);
+  const {
+    testimonials: items,
+    loading,
+    addTestimonial,
+    updateTestimonial,
+    togglePublished,
+    deleteTestimonial,
+  } = useTestimonials({ publishedOnly: false });
+
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ ...EMPTY });
   const [editId, setEditId] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
 
-  const openNew = () => {
-    setForm({ ...EMPTY });
-    setEditId(null);
-    setShowForm(true);
-  };
+  const openNew = () => { setForm({ ...EMPTY }); setEditId(null); setShowForm(true); };
   const openEdit = (t: Testimonial) => {
-    setForm({
-      name: t.name,
-      title: t.title,
-      location: t.location,
-      division: t.division,
-      rating: t.rating,
-      quote: t.quote,
-      initials: t.initials,
-      published: t.published,
-      sort_order: t.sort_order,
-    });
+    setForm({ name: t.name, title: t.title, location: t.location, division: t.division, rating: t.rating, quote: t.quote, initials: t.initials, published: t.published, sort_order: t.sort_order });
     setEditId(t.id);
     setShowForm(true);
   };
 
-  const handleSave = () => {
-    if (!form.name || !form.quote) {
-      toast.error("Name and quote are required");
-      return;
-    }
+  const handleSave = async () => {
+    if (!form.name || !form.quote) { toast.error("Name and quote are required"); return; }
+    setSaving(true);
     if (editId) {
-      setItems((prev) =>
-        prev.map((t) => (t.id === editId ? { ...t, ...form } : t)),
-      );
+      const { error } = await updateTestimonial(editId, form);
+      if (error) { toast.error(error); setSaving(false); return; }
       toast.success("Testimonial updated");
-      // TODO: supabase.from("testimonials").update(form).eq("id", editId)
     } else {
-      const newItem: Testimonial = {
-        ...form,
-        id: `test-${Date.now()}`,
-        created_at: new Date().toISOString(),
-      };
-      setItems((prev) => [newItem, ...prev]);
+      const { error } = await addTestimonial(form);
+      if (error) { toast.error(error); setSaving(false); return; }
       toast.success("Testimonial added");
-      // TODO: supabase.from("testimonials").insert(form)
     }
+    setSaving(false);
     setShowForm(false);
   };
 
-  const togglePublish = (t: Testimonial) => {
-    setItems((prev) =>
-      prev.map((i) => (i.id === t.id ? { ...i, published: !t.published } : i)),
-    );
+  const handleTogglePublish = async (t: Testimonial) => {
+    const { error } = await togglePublished(t.id, t.published);
+    if (error) { toast.error(error); return; }
     toast.success(t.published ? "Unpublished" : "Published");
-    // TODO: supabase.from("testimonials").update({ published: !t.published }).eq("id", t.id)
   };
 
-  const remove = (id: string) => {
+  const remove = async (id: string) => {
     if (!confirm("Delete this testimonial?")) return;
-    setItems((prev) => prev.filter((i) => i.id !== id));
+    const { error } = await deleteTestimonial(id);
+    if (error) { toast.error(error); return; }
     if (editId === id) setShowForm(false);
     toast.success("Deleted");
-    // TODO: supabase.from("testimonials").delete().eq("id", id)
   };
 
   const inputBase =
@@ -131,7 +116,14 @@ const Testimonials: React.FC = () => {
 
       <div className="flex gap-5">
         <div className="flex-1 space-y-3">
-          {items.map((t) => (
+          {loading ? (
+            <div className="p-10 text-center text-slate-400 animate-pulse">Loading testimonials...</div>
+          ) : items.length === 0 ? (
+            <div className="bg-white rounded-2xl border border-slate-100 p-10 text-center text-slate-400 text-sm">
+              No testimonials yet. Add your first one.
+            </div>
+          ) : (
+            items.map((t) => (
             <div
               key={t.id}
               className={`bg-white rounded-2xl border p-5 transition-all ${editId === t.id ? "border-amber-200" : "border-slate-100"}`}
@@ -183,7 +175,7 @@ const Testimonials: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-1.5 shrink-0">
                   <button
-                    onClick={() => togglePublish(t)}
+                    onClick={() => handleTogglePublish(t)}
                     className="p-2 rounded-lg hover:bg-slate-100 transition-colors text-slate-400 hover:text-slate-600"
                   >
                     {t.published ? (
@@ -207,7 +199,8 @@ const Testimonials: React.FC = () => {
                 </div>
               </div>
             </div>
-          ))}
+            ))
+          )}
         </div>
 
         {showForm && (
@@ -344,14 +337,12 @@ const Testimonials: React.FC = () => {
             </div>
             <button
               onClick={handleSave}
-              className="w-full py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2"
-              style={{
-                background: "var(--brand-deep)",
-                color: "var(--brand-gold)",
-              }}
+              disabled={saving}
+              className="w-full py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 disabled:opacity-50"
+              style={{ background: "var(--brand-deep)", color: "var(--brand-gold)" }}
             >
               <Save className="w-4 h-4" />
-              {editId ? "Save Changes" : "Add Testimonial"}
+              {saving ? "Saving..." : editId ? "Save Changes" : "Add Testimonial"}
             </button>
           </div>
         )}

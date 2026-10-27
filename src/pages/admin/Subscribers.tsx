@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { Search, Trash2, Download, Mail, Clock } from "lucide-react";
-import type { Subscriber } from "../../types/supabaseType";
-import { MOCK_SUBSCRIBERS } from "../../data/mockData";
+import { useSubscribers } from "../../hooks";
 import toast from "react-hot-toast";
 
 const Subscribers: React.FC = () => {
-  const [subscribers, setSubscribers] =
-    useState<Subscriber[]>(MOCK_SUBSCRIBERS);
+  const { subscribers, loading, removeSubscriber } = useSubscribers();
   const [search, setSearch] = useState("");
 
-  const remove = (id: string, email: string) => {
+  const remove = async (id: string, email: string) => {
     if (!confirm(`Remove ${email} from subscribers?`)) return;
-    setSubscribers((prev) => prev.filter((s) => s.id !== id));
+    const { error } = await removeSubscriber(id);
+    if (error) { toast.error("Failed to remove subscriber"); return; }
     toast.success("Subscriber removed");
-    // TODO: supabase.from("subscribers").delete().eq("id", id)
   };
 
   const exportCSV = () => {
@@ -82,12 +80,13 @@ const Subscribers: React.FC = () => {
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden">
-        {filtered.length === 0 ? (
+        {loading ? (
+          <div className="p-10 text-center text-slate-400 animate-pulse">Loading subscribers...</div>
+        ) : filtered.length === 0 ? (
           <div className="p-10 text-center text-slate-400 text-sm">
             No results found.
           </div>
-        ) : (
-          <>
+        ) : (          <>
             <div className="px-5 py-3 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Showing {filtered.length} of {subscribers.length}

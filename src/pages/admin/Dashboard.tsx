@@ -1,20 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  MessageSquare,
-  Grid3X3,
-  Star,
-  Mail,
-  TrendingUp,
-  Clock,
-  ArrowUpRight,
+  MessageSquare, Grid3X3, Star, Mail, TrendingUp, Clock, ArrowUpRight,
 } from "lucide-react";
-import {
-  MOCK_INQUIRIES,
-  MOCK_TESTIMONIALS,
-  MOCK_SUBSCRIBERS,
-  MOCK_DIVISIONS,
-} from "../../data/mockData";
+import { useInquiries } from "../../hooks";
+import { useTestimonials } from "../../hooks";
+import { useSubscribers } from "../../hooks";
+import { DIVISIONS_DATA } from "../../data/divisions";
 
 const statusColors: Record<string, string> = {
   unread: "#ef4444",
@@ -23,8 +15,12 @@ const statusColors: Record<string, string> = {
 };
 
 const Dashboard: React.FC = () => {
-  const unread = MOCK_INQUIRIES.filter((i) => i.status === "unread").length;
-  const recentInquiries = MOCK_INQUIRIES.slice(0, 5);
+  const { inquiries } = useInquiries();
+  const { testimonials } = useTestimonials({ publishedOnly: false });
+  const { subscribers } = useSubscribers();
+
+  const unread = inquiries.filter((i) => i.status === "unread").length;
+  const recentInquiries = inquiries.slice(0, 5);
 
   const stats = [
     {
@@ -33,11 +29,11 @@ const Dashboard: React.FC = () => {
       icon: <MessageSquare className="w-5 h-5" />,
       to: "/admin/inquiries",
       accent: "#ef4444",
-      sub: `${MOCK_INQUIRIES.length} total`,
+      sub: `${inquiries.length} total`,
     },
     {
       label: "Divisions",
-      value: MOCK_DIVISIONS.length,
+      value: DIVISIONS_DATA.length,
       icon: <Grid3X3 className="w-5 h-5" />,
       to: "/admin/divisions",
       accent: "var(--brand-gold)",
@@ -45,15 +41,15 @@ const Dashboard: React.FC = () => {
     },
     {
       label: "Testimonials",
-      value: MOCK_TESTIMONIALS.length,
+      value: testimonials.length,
       icon: <Star className="w-5 h-5" />,
       to: "/admin/testimonials",
       accent: "#10b981",
-      sub: `${MOCK_TESTIMONIALS.filter((t) => t.published).length} published`,
+      sub: `${testimonials.filter((t) => t.published).length} published`,
     },
     {
       label: "Subscribers",
-      value: MOCK_SUBSCRIBERS.length,
+      value: subscribers.length,
       icon: <Mail className="w-5 h-5" />,
       to: "/admin/subscribers",
       accent: "var(--brand-blue)",

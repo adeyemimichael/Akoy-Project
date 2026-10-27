@@ -1,57 +1,9 @@
 import React from "react";
 import { Star, Quote } from "lucide-react";
-
-interface Testimonial {
-  id: number;
-  name: string;
-  title: string;
-  location: string;
-  division: string;
-  rating: number;
-  quote: string;
-  initials: string;
-}
-
-const TESTIMONIALS: Testimonial[] = [
-  {
-    id: 1,
-    name: "Pastor Kunle Kayode",
-    title: "Client",
-    location: "Ireland",
-    division: "Diaspora & Construction",
-    rating: 5,
-    quote:
-      "In 2023, while living in Ireland, I chose AKOY 360 Limited to build my mother's house in Odo-Eri, Kogi State. Their professionalism, reliability and commitment gave me peace of mind throughout the project. Pleased with their service, I entrusted them with my ongoing family holiday home project in Osogbo, Osun State. I highly recommend AKOY 360 Limited to Nigerians abroad looking for dependable property development, project supervision and property management services.",
-    initials: "KK",
-  },
-  {
-    id: 2,
-    name: "Mr. Ogundale Olaide",
-    title: "Client",
-    location: "Alberta, Canada 🇨🇦",
-    division: "Construction",
-    rating: 5,
-    quote:
-      "From Alberta, Canada, I entrusted AKOY 360 Limited with my 5-bedroom all-ensuite duplex in Osogbo, Osun State. From foundation to completion (2024–2025), they delivered to my specifications. I highly recommend AKOY 360 Limited to Nigerians in the diaspora seeking trusted property development professionals back home.",
-    initials: "OO",
-  },
-  {
-    id: 3,
-    name: "Mr. Bernard",
-    title: "Property Investor",
-    location: "Seven Oaks, London 🇬🇧",
-    division: "Construction & Airbnb",
-    rating: 5,
-    quote:
-      "After being dissatisfied with the work of my previous engineer on my rental and Airbnb project at OPIC, near Channels Television, Isheri, Ogun State, I was referred to AKOY 360 Limited to take over project supervision. Their professionalism, attention to detail, and commitment have given me renewed confidence in my investment. I recommend AKOY 360 Limited to property owners in Nigeria and the diaspora seeking reliable project supervision and property development services.",
-    initials: "MB",
-  },
-];
-
-const ITEMS_PER_PAGE = 3;
+import { useTestimonials } from "../hooks";
 
 export const TestimonialsSection: React.FC = () => {
-  const visible = TESTIMONIALS;
+  const { testimonials, loading } = useTestimonials({ publishedOnly: true });
 
   return (
     <section id="testimonials" className="py-20 sm:py-28 relative overflow-hidden" style={{ background: '#F4F6F9' }}>
@@ -89,7 +41,15 @@ export const TestimonialsSection: React.FC = () => {
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {visible.map((t) => (
+          {loading ? (
+            [...Array(3)].map((_, i) => (
+              <div key={i} className="rounded-3xl bg-white border animate-pulse h-64"
+                style={{ borderColor: 'rgba(0,16,80,0.08)' }} />
+            ))
+          ) : testimonials.length === 0 ? (
+            <p className="col-span-3 text-center text-slate-400 text-sm py-10">No testimonials yet.</p>
+          ) : (
+            testimonials.map((t) => (
             <div
               key={t.id}
               className="relative flex flex-col justify-between rounded-3xl p-7 sm:p-8 bg-white border transition-all duration-300 hover:-translate-y-1"
@@ -147,7 +107,8 @@ export const TestimonialsSection: React.FC = () => {
                 </span>
               </div>
             </div>
-          ))}
+            ))
+          )}
         </div>
 
       </div>

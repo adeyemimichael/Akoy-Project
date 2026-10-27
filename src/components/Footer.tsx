@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Logo } from "./Logo";
 import { ArrowUp, Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { TwitterIcon, InstagramIcon, LinkedinIcon } from "./SocialIcons";
 import { DIVISIONS_DATA } from "../data/divisions";
+import { useSubscribers } from "../hooks";
+import toast from "react-hot-toast";
 
 export const Footer: React.FC = () => {
+  const { subscribe } = useSubscribers();
+  const [email, setEmail] = useState("");
+  const [joining, setJoining] = useState(false);
+
+  const handleSubscribe = async () => {
+    if (!email.trim()) return;
+    setJoining(true);
+    const { error, alreadySubscribed } = await subscribe(email);
+    setJoining(false);
+    if (error) { toast.error("Could not subscribe. Please try again."); return; }
+    if (alreadySubscribed) { toast("You're already subscribed!"); setEmail(""); return; }
+    toast.success("Subscribed! You'll receive our market briefs.");
+    setEmail("");
+  };
   return (
     <footer className="text-white pt-16 pb-12 border-t border-white/10 relative overflow-hidden" style={{ background: 'var(--brand-deep)' }}>
       <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(to right, transparent, var(--brand-gold), transparent)' }} />
@@ -97,11 +113,21 @@ export const Footer: React.FC = () => {
             <div className="pt-2">
               <div className="text-[11px] text-slate-400 mb-1.5 font-medium">Subscribe for Market &amp; Project Briefs:</div>
               <div className="flex items-center rounded-xl bg-white/5 border border-white/10 p-1">
-                <input type="email" placeholder="Enter email address"
-                  className="w-full bg-transparent px-3 py-1.5 text-xs text-white outline-none placeholder:text-slate-500" />
-                <button type="button" className="px-3 py-1.5 rounded-lg text-xs font-bold"
+                <input
+                  type="email"
+                  placeholder="Enter email address"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  onKeyDown={e => e.key === "Enter" && handleSubscribe()}
+                  className="w-full bg-transparent px-3 py-1.5 text-xs text-white outline-none placeholder:text-slate-500"
+                />
+                <button
+                  type="button"
+                  onClick={handleSubscribe}
+                  disabled={joining}
+                  className="px-3 py-1.5 rounded-lg text-xs font-bold disabled:opacity-50 transition-opacity"
                   style={{ background: 'var(--brand-gold)', color: 'var(--brand-deep)' }}>
-                  Join
+                  {joining ? "..." : "Join"}
                 </button>
               </div>
             </div>

@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import {
-  Search,
-  Trash2,
-  Mail,
-  Phone,
-  Clock,
-  ChevronDown,
-  X,
-  MessageCircle,
+  Search, Trash2, Mail, Phone, Clock, ChevronDown, X, MessageCircle,
 } from "lucide-react";
 import type { Inquiry } from "../../types/supabaseType";
-import { MOCK_INQUIRIES } from "../../data/mockData";
+import { useInquiries } from "../../hooks";
 import toast from "react-hot-toast";
 
 // Strip everything except digits, then build a wa.me link
@@ -40,24 +33,23 @@ const statusColors: Record<string, { bg: string; text: string }> = {
 };
 
 const Inquiries: React.FC = () => {
-  const [inquiries, setInquiries] = useState<Inquiry[]>(MOCK_INQUIRIES);
+  const { inquiries, loading, updateStatus: hookUpdateStatus, deleteInquiry: hookDeleteInquiry } = useInquiries();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [divisionFilter, setDivisionFilter] = useState<string>("all");
   const [selected, setSelected] = useState<Inquiry | null>(null);
 
-  const updateStatus = (id: string, status: Inquiry["status"]) => {
-    setInquiries((prev) =>
-      prev.map((i) => (i.id === id ? { ...i, status } : i)),
-    );
-    if (selected?.id === id)
-      setSelected((prev) => (prev ? { ...prev, status } : null));
+  const updateStatus = async (id: string, status: Inquiry["status"]) => {
+    const { error } = await hookUpdateStatus(id, status);
+    if (error) { toast.error("Failed to update status"); return; }
+    if (selected?.id === id) setSelected(prev => prev ? { ...prev, status } : null);
     toast.success("Status updated");
   };
 
-  const deleteInquiry = (id: string) => {
+  const deleteInquiry = async (id: string) => {
     if (!confirm("Delete this inquiry? This cannot be undone.")) return;
-    setInquiries((prev) => prev.filter((i) => i.id !== id));
+    const { error } = await hookDeleteInquiry(id);
+    if (error) { toast.error("Failed to delete"); return; }
     if (selected?.id === id) setSelected(null);
     toast.success("Inquiry deleted");
   };
@@ -143,13 +135,14 @@ const Inquiries: React.FC = () => {
       <div className="flex gap-5">
         {/* Table */}
         <div className="flex-1 bg-white rounded-2xl border border-slate-100 overflow-hidden">
-          {filtered.length === 0 ? (
+          {loading ? (
+            <div className="p-10 text-center text-slate-400 text-sm animate-pulse">Loading inquiries...</div>
+          ) : filtered.length === 0 ? (
             <div className="p-10 text-center text-slate-400 text-sm">
               No inquiries found.
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+            <div className="overflow-x-auto">              <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-slate-100 bg-slate-50">
                     <th className="text-left px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400">
