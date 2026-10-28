@@ -29,6 +29,13 @@ import img29 from "../assets/29.jpeg";
 import img30 from "../assets/30.jpeg";
 import img31 from "../assets/31.jpeg";
 import img37 from "../assets/37.jpeg";
+import vid1 from "../assets/vid1.mp4";
+import vid2 from "../assets/vid2.mp4";
+import vid3 from "../assets/vid3.mp4";
+import vid4 from "../assets/vid4.mp4";
+import vid5 from "../assets/vid5.mp4";
+import vid6 from "../assets/vid6.mp4";
+import vid7 from "../assets/vid7.mp4";
 
 export interface DivisionItem {
   id: string;
@@ -40,6 +47,7 @@ export interface DivisionItem {
   bulletPoints: string[];
   image: string;
   galleryImages: string[];
+  videos: string[];
   stats: {
     label: string;
     value: string;
@@ -70,6 +78,7 @@ export const DIVISIONS_DATA: DivisionItem[] = [
     ],
     image: img1,
     galleryImages: [img2, img3, img4, img5, img6, img7],
+    videos: [vid5, vid6],
     stats: {
       value: "₦45B+",
       label: "Portfolio Managed",
@@ -103,6 +112,7 @@ export const DIVISIONS_DATA: DivisionItem[] = [
     ],
     image: img8,
     galleryImages: [img9, img10, img11, img12, img13, img14, img15, img16],
+    videos: [vid1, vid2, vid3, vid4],
     stats: {
       value: "99.4%",
       label: "On-Time Completion",
@@ -139,6 +149,7 @@ export const DIVISIONS_DATA: DivisionItem[] = [
       "https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85",
     ],
+    videos: [],
     stats: {
       value: "140+",
       label: "Global Destinations",
@@ -174,6 +185,7 @@ export const DIVISIONS_DATA: DivisionItem[] = [
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=85",
     ],
+    videos: [],
     stats: {
       value: "250K+",
       label: "Tons Delivered",
@@ -209,6 +221,7 @@ export const DIVISIONS_DATA: DivisionItem[] = [
       "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85",
     ],
+    videos: [],
     stats: {
       value: "₦12B+",
       label: "Procurement Facilitated",
@@ -240,6 +253,7 @@ export const DIVISIONS_DATA: DivisionItem[] = [
     ],
     image: img17,
     galleryImages: [img18, img19, img20, img21, img22, img23],
+    videos: [vid7],
     stats: {
       value: "3,200+",
       label: "Diaspora Families Served",

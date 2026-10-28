@@ -185,6 +185,7 @@ export const MOCK_DIVISIONS: Division[] = DIVISIONS_DATA.map((d) => ({
   bullet_points: d.bulletPoints,
   image: d.image,
   gallery_images: d.galleryImages,
+  videos: d.videos,
   stat_value: d.stats.value,
   stat_label: d.stats.label,
   metric_primary: d.metrics.primary,

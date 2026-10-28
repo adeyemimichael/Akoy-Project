@@ -357,6 +357,32 @@ const DivisionPage: React.FC = () => {
                   />
                 ))}
               </div>
+
+              {/* Videos */}
+              {division.videos.length > 0 && (
+                <div className="mt-10">
+                  <div className="mb-5">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em]" style={{ color: 'var(--brand-gold)' }}>
+                      {division.shortName} · Video
+                    </p>
+                    <h2 className="mt-1 font-display text-2xl font-extrabold sm:text-3xl" style={{ color: 'var(--brand-deep)' }}>
+                      Project videos
+                    </h2>
+                  </div>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {division.videos.map((video, index) => (
+                      <div key={index} className="relative rounded-2xl overflow-hidden bg-black shadow-md group">
+                        <video
+                          src={video}
+                          controls
+                          preload="metadata"
+                          className="w-full aspect-video object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </section>
 
             {/* CTA strip */}
