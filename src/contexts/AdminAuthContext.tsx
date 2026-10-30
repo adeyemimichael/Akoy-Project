@@ -29,14 +29,14 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 1. Hydrate from the persisted session immediately (avoids flash of login page)
+   
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setUser(data.session?.user ?? null);
       setLoading(false);
     });
 
-    // 2. Keep state in sync with any auth event (tab focus refresh, token rotation, sign-out)
+   
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
@@ -69,7 +69,7 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 
-/** Must be used inside <AdminAuthProvider>. Throws if used outside. */
+/** Must be used inside <AdminAuthProvider>. */
 export const useAdminAuth = (): AdminAuthContextType => {
   const ctx = useContext(AdminAuthContext);
   if (!ctx) throw new Error("useAdminAuth must be used inside <AdminAuthProvider>");

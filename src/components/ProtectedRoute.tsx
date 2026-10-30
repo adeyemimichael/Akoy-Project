@@ -1,16 +1,21 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { useAdminAuth } from "../contexts/AdminAuthContext";
 
-// Auth is bypassed for now — all admin routes are freely accessible.
-// Re-enable auth by uncommenting the block below when Supabase is connected.
+const LoadingSpinner: React.FC = () => (
+  <div
+    className="min-h-screen flex items-center justify-center"
+    style={{ background: "var(--brand-deep)" }}
+  >
+    <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+  </div>
+);
+
 const ProtectedRoute: React.FC = () => {
+  const { user, loading } = useAdminAuth();
+  if (loading) return <LoadingSpinner />;
+  if (!user) return <Navigate to="/admin/login" replace />;
   return <Outlet />;
-
-  // --- Restore this when ready ---
-  // const { user, loading } = useAdminAuth();
-  // if (loading) return <LoadingSpinner />;
-  // if (!user) return <Navigate to="/admin/login" replace />;
-  // return <Outlet />;
 };
 
 export default ProtectedRoute;

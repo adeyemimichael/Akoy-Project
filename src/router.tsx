@@ -14,9 +14,10 @@ import Testimonials from "./pages/admin/Testimonials";
 import Gallery from "./pages/admin/Gallery";
 import Subscribers from "./pages/admin/Subscribers";
 import SiteSettings from "./pages/admin/SiteSettings";
+import AdminLogin from "./pages/admin/AdminLogin";
 
 const router = createBrowserRouter([
-  // ── Public site ──────────────────────────────────────────────
+
   {
     path: "/",
     element: <RootLayout />,
@@ -26,13 +27,13 @@ const router = createBrowserRouter([
     ],
   },
 
-  // ── Admin: login (bypassed for now — goes straight to dashboard) ─
+  
   {
     path: "/admin/login",
-    element: <Navigate to="/admin/dashboard" replace />,
+    element: <AdminLogin />,
   },
 
-  // ── Admin: protected routes ───────────────────────────────────
+
   {
     path: "/admin",
     element: <ProtectedRoute />,

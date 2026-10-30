@@ -110,8 +110,8 @@ export const DIVISIONS_DATA: DivisionItem[] = [
       "Interior Finishing, Furnishing & Airbnb Setup",
       "Diaspora Remote Build Tracking with Live Telemetry",
     ],
-    image: img8,
-    galleryImages: [img9, img10, img11, img12, img13, img14, img15, img16],
+    image: img11,
+    galleryImages: [img9, img10, img8, img12, img13, img14, img15, img16],
     videos: [vid1, vid2, vid3, vid4],
     stats: {
       value: "99.4%",
@@ -179,11 +179,11 @@ export const DIVISIONS_DATA: DivisionItem[] = [
       "Customs Clearance, Port Handling & Compliance",
       "Cold Chain & High-Value Secure Escort Solutions",
     ],
-    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=85",
+    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=85",
     galleryImages: [
       "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=85",
+      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=85",
     ],
     videos: [],
     stats: {

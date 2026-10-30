@@ -3,8 +3,7 @@ import { Quote } from "lucide-react";
 import ceo1 from "../assets/ceo.jpeg";
 import ceo2 from "../assets/ceo2.jpeg";
 import ceo3 from "../assets/ceo3.jpeg";
-import ceo4 from "../assets/ceo4.jpeg";
-import ceo7 from "../assets/ceo7.jpeg";
+
 
 export const LeadershipSection: React.FC = () => {
   return (
@@ -73,7 +72,7 @@ export const LeadershipSection: React.FC = () => {
             <div className="space-y-4 text-sm sm:text-base text-slate-600 leading-relaxed">
               <p>
                Engr. Gabriel Sunday Adeyemo founded AKOY 360 LIMITED with a singular vision: to create an institution that
-                Nigerians at home and abroad could trust completely. With over a decade of experience in property
+                Nigerians at home and abroad could trust completely. With over a 16 years of experience in property
                 development, construction, and cross-border business services, he has built AKOY 360 into a
                 six-division conglomerate serving thousands of clients across Nigeria, the UK, USA, Canada, and beyond.
               </p>
@@ -87,7 +86,7 @@ export const LeadershipSection: React.FC = () => {
             {/* Quick stats */}
             <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100">
               <div>
-                <p className="text-2xl font-extrabold font-display" style={{ color: 'var(--brand-deep)' }}>10+</p>
+                <p className="text-2xl font-extrabold font-display" style={{ color: 'var(--brand-deep)' }}>16+</p>
                 <p className="text-xs text-slate-400 mt-0.5">Years Experience</p>
               </div>
               <div>
@@ -95,7 +94,7 @@ export const LeadershipSection: React.FC = () => {
                 <p className="text-xs text-slate-400 mt-0.5">Business Divisions</p>
               </div>
               <div>
-                <p className="text-2xl font-extrabold font-display" style={{ color: 'var(--brand-deep)' }}>3,200+</p>
+                <p className="text-2xl font-extrabold font-display" style={{ color: 'var(--brand-deep)' }}>50 -100</p>
                 <p className="text-xs text-slate-400 mt-0.5">Clients Served</p>
               </div>
             </div>
@@ -108,7 +107,7 @@ export const LeadershipSection: React.FC = () => {
             Moments in Leadership
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            {[ceo2, ceo3, ceo4, ceo7].map((img, idx) => (
+            {[ceo2, ceo3,].map((img, idx) => (
               <div key={idx} className="relative rounded-2xl overflow-hidden aspect-square bg-slate-100 group">
                 <img
                   src={img}
