@@ -9,7 +9,7 @@ import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { DIVISIONS_DATA } from "../data/divisions";
 
-const WHATSAPP_NUMBER = "2348123456789";
+const WHATSAPP_NUMBER = "+447398535263";
 
 // ─── Construction-specific full service package ───────────────────────────────
 
@@ -403,12 +403,12 @@ const DivisionPage: React.FC = () => {
                 >
                   WhatsApp <ArrowUpRight className="h-4 w-4" />
                 </a>
-                <a href="tel:+2348123456789" aria-label="Call AKOY 360"
+                <a href="tel:+447398535263" aria-label="Call AKOY 360"
                   className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20">
                   <Phone className="h-4 w-4" />
                 </a>
                 <a
-                  href={`mailto:contact@akoy360.com?subject=${encodeURIComponent(division.shortName + " inquiry")}`}
+                  href={`mailto:info@akoy360.co.uk?subject=${encodeURIComponent(division.shortName + " inquiry")}`}
                   aria-label="Email AKOY 360"
                   className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20">
                   <Mail className="h-4 w-4" />

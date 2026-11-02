@@ -6,7 +6,7 @@ export interface SiteSettingEntry {
 
 export const DEFAULT_SETTINGS: SiteSettingEntry[] = [
   { key: "phone_primary",    label: "Primary Phone",            value: "+234 (0) 800 360 AKOY" },
-  { key: "phone_whatsapp",   label: "WhatsApp Number",          value: "2348123456789" },
+  { key: "phone_whatsapp",   label: "WhatsApp Number",          value: "447398535263" },
   { key: "email_general",    label: "General Email",            value: "contact@akoy360.com" },
   { key: "email_diaspora",   label: "Diaspora Email",           value: "diaspora@akoy360.com" },
   { key: "address_hq",       label: "HQ Address",               value: "Victoria Island / Ikoyi Commercial Corridor, Lagos, Nigeria" },

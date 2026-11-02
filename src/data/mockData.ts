@@ -161,7 +161,7 @@ export const MOCK_SUBSCRIBERS: Subscriber[] = [
 // ── Site Settings ─────────────────────────────────────────────────────────────
 export const MOCK_SETTINGS: SiteSetting[] = [
   { id: "set-001", key: "phone_primary",    label: "Primary Phone",            value: "+234 (0) 800 360 AKOY",          updated_at: new Date().toISOString() },
-  { id: "set-002", key: "phone_whatsapp",   label: "WhatsApp Number",          value: "2348123456789",                   updated_at: new Date().toISOString() },
+  { id: "set-002", key: "phone_whatsapp",   label: "WhatsApp Number",          value: "447398535263",                   updated_at: new Date().toISOString() },
   { id: "set-003", key: "email_general",    label: "General Email",            value: "contact@akoy360.com",             updated_at: new Date().toISOString() },
   { id: "set-004", key: "email_diaspora",   label: "Diaspora Email",           value: "diaspora@akoy360.com",            updated_at: new Date().toISOString() },
   { id: "set-005", key: "address_hq",       label: "HQ Address",               value: "Victoria Island / Ikoyi Commercial Corridor, Lagos, Nigeria", updated_at: new Date().toISOString() },

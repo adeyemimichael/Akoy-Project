@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
                   className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-colors hover:bg-brand-gold hover:text-brand-deep">
                   <LinkedinIcon className="w-4 h-4" />
                 </a>
-                <a href="https://wa.me/2348123456789" target="_blank" rel="noreferrer" aria-label="WhatsApp"
+                <a href="https://wa.me/447398535263" target="_blank" rel="noreferrer" aria-label="WhatsApp"
                   className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-colors hover:bg-[#25D366] hover:text-white">
                   <MessageCircle className="w-4 h-4" />
                 </a>

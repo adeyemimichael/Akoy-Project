@@ -21,14 +21,14 @@ import img20 from "../assets/20.jpeg";
 import img21 from "../assets/21.jpeg";
 import img22 from "../assets/22.jpeg";
 import img23 from "../assets/23.jpeg";
-import img24 from "../assets/24.jpeg";
-import img25 from "../assets/25.jpeg";
-import img26 from "../assets/26.jpeg";
-import img28 from "../assets/28.jpeg";
-import img29 from "../assets/29.jpeg";
-import img30 from "../assets/30.jpeg";
-import img31 from "../assets/31.jpeg";
-import img37 from "../assets/37.jpeg";
+// import img24 from "../assets/24.jpeg";
+// import img25 from "../assets/25.jpeg";
+// import img26 from "../assets/26.jpeg";
+// import img28 from "../assets/28.jpeg";
+// import img29 from "../assets/29.jpeg";
+// import img30 from "../assets/30.jpeg";
+// import img31 from "../assets/31.jpeg";
+// import img37 from "../assets/37.jpeg";
 import vid1 from "../assets/vid1.mp4";
 import vid2 from "../assets/vid2.mp4";
 import vid3 from "../assets/vid3.mp4";
@@ -179,9 +179,9 @@ export const DIVISIONS_DATA: DivisionItem[] = [
       "Customs Clearance, Port Handling & Compliance",
       "Cold Chain & High-Value Secure Escort Solutions",
     ],
-    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=85",
+    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=85",
     galleryImages: [
-      "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=1200&q=85",
+
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85",
       "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=85",
     ],

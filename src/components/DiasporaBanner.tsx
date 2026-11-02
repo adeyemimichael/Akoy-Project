@@ -26,7 +26,7 @@ export const DiasporaBanner: React.FC = () => {
   ];
 
   const trustStats = [
-    { value: "3,200+",   label: "Families Served" },
+    { value: "100+",   label: "Families Served" },
     { value: "Zero",    label: "Remote Fraud Cases" },
     { value: "100%",    label: "Bank-Guaranteed Escrow" },
     { value: "4",       label: "Global Desks" },
@@ -62,7 +62,7 @@ export const DiasporaBanner: React.FC = () => {
               </h2>
 
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                Over 3,200 Nigerian professionals and families in the United Kingdom, United States, Canada, Europe, and the Middle East rely on AKOY 360 LIMITED as their trusted institutional counterpart in Nigeria.
+                Over 100+ Nigerian professionals and families in the United Kingdom, United States, Canada, Europe, and the Middle East rely on AKOY 360 LIMITED as their trusted institutional counterpart in Nigeria.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">

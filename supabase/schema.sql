@@ -381,7 +381,7 @@ CREATE POLICY "division_gallery_admin_delete"
 
 INSERT INTO public.site_settings (key, label, value) VALUES
   ('phone_primary',    'Primary Phone',             '+234 (0) 800 360 AKOY'),
-  ('phone_whatsapp',   'WhatsApp Number',            '2348123456789'),
+  ('phone_whatsapp',   'WhatsApp Number',            '447398535263'),
   ('email_general',    'General Email',              'contact@akoy360.com'),
   ('email_diaspora',   'Diaspora Email',             'diaspora@akoy360.com'),
   ('office_hours',     'Office Hours',               'Mon - Sat, 8:00 AM - 6:00 PM (WAT)'),
