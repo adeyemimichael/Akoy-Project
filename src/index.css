@@ -74,6 +74,158 @@
   box-shadow: 0 0 25px rgba(253, 191, 2, 0.25);
 }
 
+/* ─── Animation Keyframes ──────────────────────────────────────────────────── */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes success-pulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.04); }
+  70%  { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  from { background-position: -400px 0; }
+  to   { background-position: 400px 0; }
+}
+
+/* ─── Scroll-reveal: base state ────────────────────────────────────────────── */
+/* Elements start invisible; .is-visible triggers the transition via CSS vars  */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Directional variants */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-left.is-visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-right.is-visible { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-scale.is-visible { opacity: 1; transform: scale(1); }
+
+/* Stagger delays — apply to children with nth-child or explicit class */
+.stagger-1  { transition-delay: 0ms; }
+.stagger-2  { transition-delay: 60ms; }
+.stagger-3  { transition-delay: 120ms; }
+.stagger-4  { transition-delay: 180ms; }
+.stagger-5  { transition-delay: 240ms; }
+.stagger-6  { transition-delay: 300ms; }
+
+/* ─── Interaction: press scale ──────────────────────────────────────────────── */
+.press:active { transform: scale(0.97); transition: transform 0.1s ease; }
+
+/* ─── Popover / dropdown origin animation ───────────────────────────────────── */
+/* Enter from 0.95, exit 80% faster (principle: exits 20% shorter)              */
+.popover-enter {
+  animation: scale-in 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: top center;
+}
+.popover-exit {
+  animation: scale-in 0.16s cubic-bezier(0.55, 0, 1, 0.45) reverse both;
+  transform-origin: top center;
+}
+
+/* Dropdown slide from trigger */
+.dropdown-enter {
+  animation: fade-down 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Mobile drawer slide in from top */
+.drawer-enter {
+  animation: fade-down 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Success pulse ──────────────────────────────────────────────────────────── */
+.success-pulse {
+  animation: success-pulse 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Skeleton shimmer override ─────────────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+/* ─── Image mask reveal (clip-path) ─────────────────────────────────────────── */
+.img-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.img-reveal.is-visible { clip-path: inset(0 0% 0 0); }
+
+/* ─── Reduce motion ─────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right, .reveal-scale,
+  .img-reveal, .popover-enter, .popover-exit,
+  .dropdown-enter, .drawer-enter {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
+
 /* Smooth custom scrollbars */
 ::-webkit-scrollbar {
   width: 8px;

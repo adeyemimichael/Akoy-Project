@@ -3,13 +3,14 @@ import { Logo } from "./Logo";
 import { ArrowUp, Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { TwitterIcon, InstagramIcon, LinkedinIcon } from "./SocialIcons";
 import { DIVISIONS_DATA } from "../data/divisions";
-import { useSubscribers } from "../hooks";
+import { useSubscribers, useReveal } from "../hooks";
 import toast from "react-hot-toast";
 
 export const Footer: React.FC = () => {
   const { subscribe } = useSubscribers();
   const [email, setEmail] = useState("");
   const [joining, setJoining] = useState(false);
+  const footerRef = useReveal<HTMLElement>();
 
   const handleSubscribe = async () => {
     if (!email.trim()) return;
@@ -22,14 +23,14 @@ export const Footer: React.FC = () => {
     setEmail("");
   };
   return (
-    <footer className="text-white pt-16 pb-12 border-t border-white/10 relative overflow-hidden" style={{ background: 'var(--brand-deep)' }}>
+    <footer ref={footerRef} className="text-white pt-16 pb-12 border-t border-white/10 relative overflow-hidden" style={{ background: 'var(--brand-deep)' }}>
       <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(to right, transparent, var(--brand-gold), transparent)' }} />
 
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/10">
 
           {/* Brand Column */}
-          <div className="lg:col-span-4 space-y-5">
+          <div className="lg:col-span-4 space-y-5 reveal stagger-1">
             <Logo size="lg" />
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
               AKOY 360 LIMITED is a premier integrated multi-division company operating across real estate, construction, executive travel, maritime &amp; air logistics, corporate procurement, and diaspora project governance.
@@ -40,19 +41,19 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter"
-                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-colors hover:bg-brand-gold hover:text-brand-deep">
+                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-all hover:bg-brand-gold hover:text-brand-deep press">
                   <TwitterIcon className="w-4 h-4" />
                 </a>
                 <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"
-                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-colors hover:bg-brand-gold hover:text-brand-deep">
+                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-all hover:bg-brand-gold hover:text-brand-deep press">
                   <InstagramIcon className="w-4 h-4" />
                 </a>
                 <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"
-                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-colors hover:bg-brand-gold hover:text-brand-deep">
+                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-all hover:bg-brand-gold hover:text-brand-deep press">
                   <LinkedinIcon className="w-4 h-4" />
                 </a>
                 <a href="https://wa.me/447398535263" target="_blank" rel="noreferrer" aria-label="WhatsApp"
-                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-colors hover:bg-[#25D366] hover:text-white">
+                  className="w-8 h-8 rounded-full bg-white/10 text-slate-300 flex items-center justify-center transition-all hover:bg-[#25D366] hover:text-white press">
                   <MessageCircle className="w-4 h-4" />
                 </a>
               </div>
@@ -125,7 +126,7 @@ export const Footer: React.FC = () => {
                   type="button"
                   onClick={handleSubscribe}
                   disabled={joining}
-                  className="px-3 py-1.5 rounded-lg text-xs font-bold disabled:opacity-50 transition-opacity"
+                  className="px-3 py-1.5 rounded-lg text-xs font-bold disabled:opacity-50 transition-opacity press"
                   style={{ background: 'var(--brand-gold)', color: 'var(--brand-deep)' }}>
                   {joining ? "..." : "Join"}
                 </button>
@@ -143,7 +144,7 @@ export const Footer: React.FC = () => {
             <span>One Vision. 360° Possibilities.</span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center transition-colors hover:bg-brand-gold hover:text-brand-deep"
+              className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center transition-all hover:bg-brand-gold hover:text-brand-deep press"
               aria-label="Back to top"
             >
               <ArrowUp className="w-4 h-4" />

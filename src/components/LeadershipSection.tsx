@@ -1,16 +1,18 @@
 import React from "react";
 import { Quote } from "lucide-react";
+import { useReveal } from "../hooks";
 import ceo1 from "../assets/ceo.jpeg";
 import ceo2 from "../assets/ceo2.jpeg";
 import ceo3 from "../assets/ceo3.jpeg";
 
 
 export const LeadershipSection: React.FC = () => {
+  const sectionRef = useReveal<HTMLElement>();
   return (
-    <section id="leadership" className="py-20 sm:py-28 bg-white relative overflow-hidden">
+    <section id="leadership" ref={sectionRef} className="py-20 sm:py-28 bg-white relative overflow-hidden">
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-center max-w-2xl mx-auto mb-14 reveal stagger-1">
           <div
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4"
             style={{ background: 'rgba(0,16,80,0.06)', border: '1px solid rgba(0,16,80,0.14)', color: 'var(--brand-deep)' }}
@@ -34,7 +36,7 @@ export const LeadershipSection: React.FC = () => {
         {/* CEO Feature Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left: CEO Photo */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 reveal-left stagger-1">
             <div className="relative">
               <div className="relative rounded-3xl overflow-hidden aspect-[4/5] bg-slate-100 shadow-xl">
                 <img
@@ -59,7 +61,7 @@ export const LeadershipSection: React.FC = () => {
           </div>
 
           {/* Right: Bio + Quote */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-6 reveal-right stagger-2">
             <div>
               <Quote className="w-10 h-10 mb-4" style={{ color: 'var(--brand-gold)', opacity: 0.4 }} />
               <blockquote className="text-lg sm:text-2xl font-display font-bold leading-relaxed" style={{ color: 'var(--brand-deep)' }}>
@@ -103,12 +105,12 @@ export const LeadershipSection: React.FC = () => {
 
         {/* Leadership Gallery */}
         <div className="mt-16">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-center mb-6" style={{ color: 'var(--brand-deep)' }}>
+          <h3 className="text-sm font-bold uppercase tracking-wider text-center mb-6 reveal stagger-1" style={{ color: 'var(--brand-deep)' }}>
             Moments in Leadership
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {[ceo2, ceo3,].map((img, idx) => (
-              <div key={idx} className="relative rounded-2xl overflow-hidden aspect-square bg-slate-100 group">
+              <div key={idx} className={`relative rounded-2xl overflow-hidden aspect-square bg-slate-100 group reveal stagger-${idx + 1}`}>
                 <img
                   src={img}
                   alt={`Leadership ${idx + 1}`}

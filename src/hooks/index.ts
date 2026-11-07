@@ -7,4 +7,4 @@ export { useInquiries }      from "./useInquiries";
 export { useSubscribers }    from "./useSubscribers";
 export { useSiteSettings }   from "./useSiteSettings";
 export { useStorage }        from "./useStorage";
-
+export { useReveal }         from "./useReveal";

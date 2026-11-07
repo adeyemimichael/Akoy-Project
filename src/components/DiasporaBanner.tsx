@@ -1,7 +1,12 @@
 import React from "react";
 import { ShieldCheck, Video, FileCheck, ArrowUpRight, Lock, MapPin } from "lucide-react";
+import { useReveal } from "../hooks";
 
 export const DiasporaBanner: React.FC = () => {
+  const sectionRef = useReveal<HTMLElement>();
+  const featureStagger = ["stagger-1", "stagger-2", "stagger-3", "stagger-4"];
+  const statStagger = ["stagger-1", "stagger-2", "stagger-3", "stagger-4"];
+
   const diasporaFeatures = [
     {
       icon: <ShieldCheck className="w-5 h-5" style={{ color: 'var(--brand-gold)' }} />,
@@ -33,7 +38,7 @@ export const DiasporaBanner: React.FC = () => {
   ];
 
   return (
-    <section id="diaspora" className="py-20 relative overflow-hidden" style={{
+    <section id="diaspora" ref={sectionRef} className="py-20 relative overflow-hidden" style={{
         background: 'linear-gradient(135deg, var(--brand-blue) 0%, #0a2080 50%, var(--brand-deep) 100%)',
       }}>
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,13 +52,13 @@ export const DiasporaBanner: React.FC = () => {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase"
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase reveal stagger-1"
                 style={{ background: 'rgba(253,191,2,0.20)', border: '1px solid rgba(253,191,2,0.40)', color: 'var(--brand-gold)' }}>
                 <MapPin className="w-3.5 h-3.5" />
                 <span>The Global Diaspora Bridge</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-[1.1] text-white">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display leading-[1.1] text-white reveal stagger-2">
                 Living Abroad? Build &amp; Invest in Nigeria with{" "}
                 <span className="text-transparent bg-clip-text"
                   style={{ backgroundImage: 'linear-gradient(to right, var(--gold-gradient-mid), var(--gold-gradient-start))' }}>
@@ -61,14 +66,14 @@ export const DiasporaBanner: React.FC = () => {
                 </span>
               </h2>
 
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed reveal stagger-2">
                 Over 100+ Nigerian professionals and families in the United Kingdom, United States, Canada, Europe, and the Middle East rely on AKOY 360 LIMITED as their trusted institutional counterpart in Nigeria.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 {diasporaFeatures.map((feat, i) => (
                   <div key={i}
-                    className="p-4 rounded-2xl bg-white/5 border border-white/10 transition-colors hover:border-brand-gold/40">
+                    className={`p-4 rounded-2xl bg-white/5 border border-white/10 transition-colors hover:border-brand-gold/40 reveal ${featureStagger[i]}`}>
                     <div className="mb-2.5">{feat.icon}</div>
                     <h3 className="text-sm font-bold text-white">{feat.title}</h3>
                     <p className="text-xs text-slate-400 mt-1 leading-snug">{feat.desc}</p>
@@ -76,9 +81,9 @@ export const DiasporaBanner: React.FC = () => {
                 ))}
               </div>
 
-              <div className="pt-4 flex flex-wrap items-center gap-4">
+              <div className="pt-4 flex flex-wrap items-center gap-4 reveal stagger-4">
                 <a href="#contact"
-                  className="px-6 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition-all"
+                  className="px-6 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition-all press"
                   style={{ background: 'linear-gradient(to right, var(--gold-gradient-mid), var(--gold-gradient-start))', color: 'var(--brand-deep)' }}>
                   <span>Book Diaspora Advisory Session</span>
                   <ArrowUpRight className="w-4 h-4" />
@@ -91,7 +96,7 @@ export const DiasporaBanner: React.FC = () => {
             </div>
 
             {/* Right: Static Trust Stats Card */}
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-5 reveal-right">
               <div className="rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 shadow-2xl">
                 <div className="text-center mb-6 pb-4 border-b border-white/10">
                   <div className="w-12 h-12 rounded-full mx-auto flex items-center justify-center font-black text-sm mb-2"
@@ -104,7 +109,7 @@ export const DiasporaBanner: React.FC = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                   {trustStats.map((stat, i) => (
-                    <div key={i} className="p-4 rounded-2xl text-center" style={{ background: 'rgba(0,16,80,0.7)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                    <div key={i} className={`p-4 rounded-2xl text-center reveal-scale ${statStagger[i]}`} style={{ background: 'rgba(0,16,80,0.7)', border: '1px solid rgba(255,255,255,0.08)' }}>
                       <p className="text-2xl font-extrabold" style={{ color: 'var(--brand-gold)' }}>{stat.value}</p>
                       <p className="text-[10px] text-slate-400 mt-1 uppercase font-semibold tracking-wider">{stat.label}</p>
                     </div>
@@ -112,7 +117,7 @@ export const DiasporaBanner: React.FC = () => {
                 </div>
 
                 <div className="pt-5 text-center">
-                  <a href="#contact" className="text-xs font-bold hover:underline" style={{ color: 'var(--brand-gold)' }}>
+                  <a href="#contact" className="text-xs font-bold hover:underline press" style={{ color: 'var(--brand-gold)' }}>
                     Request a Personalized Diaspora Consultation →
                   </a>
                 </div>

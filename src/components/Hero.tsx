@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { DIVISIONS_DATA, type DivisionItem } from "../data/divisions";
+import { useReveal } from "../hooks";
 
 interface HeroProps {
   onDivisionSelect?: (division: DivisionItem) => void;
@@ -9,6 +10,7 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onDivisionSelect }) => {
   const [selectedDivisionIndex, setSelectedDivisionIndex] = useState(0);
   const activeDivision = DIVISIONS_DATA[selectedDivisionIndex];
+  const sectionRef = useReveal<HTMLElement>();
 
   const handleSelectDivision = (index: number) => {
     setSelectedDivisionIndex(index);
@@ -18,10 +20,10 @@ export const Hero: React.FC<HeroProps> = ({ onDivisionSelect }) => {
   };
 
   return (
-    <section id="hero" className="relative w-full overflow-hidden px-4 pb-10 pt-3 sm:px-6 sm:pb-14 lg:px-8">
+    <section id="hero" ref={sectionRef} className="relative w-full overflow-hidden px-4 pb-10 pt-3 sm:px-6 sm:pb-14 lg:px-8">
       <div className="mx-auto max-w-[1480px]">
         <div className="flex items-end justify-between gap-4 pb-4 sm:pb-6">
-          <div>
+          <div className="reveal stagger-1">
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] sm:text-xs" style={{ color: 'var(--brand-blue)' }}>
               AKOY 360 LIMITED
             </p>
@@ -29,18 +31,19 @@ export const Hero: React.FC<HeroProps> = ({ onDivisionSelect }) => {
               One vision. <span style={{ color: 'var(--brand-gold)' }}>360° possibilities.</span>
             </h1>
           </div>
-          <a href="#divisions" aria-label="Explore business divisions" className="mb-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition-colors sm:h-12 sm:w-12" style={{ background: 'var(--brand-blue)' }}>
+          <a href="#divisions" aria-label="Explore business divisions" className="mb-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition-colors sm:h-12 sm:w-12 press" style={{ background: 'var(--brand-blue)' }}>
             <ArrowUpRight className="h-5 w-5" />
           </a>
         </div>
 
-        <div className="relative">
+        <div className="relative reveal stagger-2">
           <div className="group relative h-[360px] w-full overflow-hidden rounded-2xl shadow-xl sm:h-[480px] sm:rounded-3xl lg:h-[600px]" style={{ background: 'var(--brand-deep)' }}>
             <img
               key={activeDivision.id}
               src={activeDivision.image}
               alt={activeDivision.name}
               className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+              style={{ animation: "fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1)" }}
             />
             <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,16,80,0.75), rgba(0,16,80,0.10), transparent)' }} />
             <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-4 sm:flex-row sm:items-end sm:justify-between sm:p-8">
@@ -55,7 +58,7 @@ export const Hero: React.FC<HeroProps> = ({ onDivisionSelect }) => {
               <a
                 href={`/divisions/${activeDivision.id}`}
                 aria-label={`Explore ${activeDivision.name}`}
-                className="flex h-10 w-10 shrink-0 items-center justify-center self-end rounded-full transition-transform hover:scale-105 sm:h-12 sm:w-12"
+                className="flex h-10 w-10 shrink-0 items-center justify-center self-end rounded-full transition-transform hover:scale-105 sm:h-12 sm:w-12 press"
                 style={{ background: 'var(--brand-gold)', color: 'var(--brand-deep)' }}
               >
                 <ArrowUpRight className="h-5 w-5" />
@@ -74,7 +77,7 @@ export const Hero: React.FC<HeroProps> = ({ onDivisionSelect }) => {
                 onClick={() => handleSelectDivision(idx)}
                 aria-label={`Show ${division.name}`}
                 aria-pressed={isCurrent}
-                className={`group relative aspect-[4/3] overflow-hidden rounded-lg border transition-all duration-200 sm:aspect-[16/9] ${
+                className={`group relative aspect-[4/3] overflow-hidden rounded-lg border transition-all duration-200 sm:aspect-[16/9] press ${
                   isCurrent
                     ? "ring-2"
                     : "border-white hover:border-white/70"

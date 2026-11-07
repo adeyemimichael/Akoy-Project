@@ -2,16 +2,20 @@ import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { DIVISIONS_DATA } from "../data/divisions";
+import { useReveal } from "../hooks";
 
 export const DivisionsGrid: React.FC = () => {
+  const sectionRef = useReveal<HTMLElement>();
+  const staggerClasses = ["stagger-1", "stagger-2", "stagger-3", "stagger-4", "stagger-5", "stagger-6"];
+
   return (
-    <section id="divisions" className="py-16 sm:py-24 text-white relative overflow-hidden" style={{ background: 'var(--brand-deep)' }}>
+    <section id="divisions" ref={sectionRef} className="py-16 sm:py-24 text-white relative overflow-hidden" style={{ background: 'var(--brand-deep)' }}>
       <div className="absolute top-0 right-1/4 w-96 h-96" style={{ background: 'rgba(233,197,65,0.05)' }} />
       <div className="absolute bottom-0 left-10 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(0,16,80,0.10)' }} />
 
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="pb-12 border-b border-white/10">
+        <div className="pb-12 border-b border-white/10 reveal stagger-1">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-3"
             style={{ background: 'rgba(253,191,2,0.15)', border: '1px solid rgba(253,191,2,0.30)', color: 'var(--brand-gold)' }}>
             <span>Umbrella Brand Architecture</span>
@@ -27,12 +31,12 @@ export const DivisionsGrid: React.FC = () => {
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-12">
-          {DIVISIONS_DATA.map((division) => (
+          {DIVISIONS_DATA.map((division, idx) => (
             <Link
               key={division.id}
               to={`/divisions/${division.id}`}
               aria-label={`Explore ${division.name}`}
-              className="group relative rounded-3xl border border-white/10 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5"
+              className={`group relative rounded-3xl border border-white/10 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 press reveal ${staggerClasses[idx % 6]}`}
               style={{ background: '#001050' }}
             >
               {/* Image */}

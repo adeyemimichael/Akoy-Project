@@ -1,7 +1,9 @@
 import React from "react";
 import { CheckCircle2, TrendingUp, Shield, Award } from "lucide-react";
+import { useReveal } from "../hooks";
 
 export const AboutSection: React.FC = () => {
+  const sectionRef = useReveal<HTMLElement>();
   const pillars = [
     {
       title: "Corporate Governance",
@@ -21,11 +23,11 @@ export const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 sm:py-28 bg-[#F4F6F9] relative overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-20 sm:py-28 bg-[#F4F6F9] relative overflow-hidden">
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
-          <div className="lg:col-span-5 relative">
+          <div className="lg:col-span-5 relative reveal-left stagger-1">
           
             <div className="relative rounded-[36px] overflow-hidden shadow-2xl border-4 border-white bg-slate-900 h-[320px] sm:h-[440px] lg:h-[480px]">
               <img
@@ -58,7 +60,7 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* Right Column: Narrative & Values */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-6 reveal-right stagger-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase" style={{ background: 'rgba(3,33,155,0.05)', border: '1px solid rgba(3,33,155,0.15)', color: 'var(--brand-blue)' }}>
               <span>Corporate Heritage</span>
             </div>
@@ -81,7 +83,7 @@ export const AboutSection: React.FC = () => {
             {/* Value Pillars Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
               {pillars.map((p, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
+                <div key={i} className={`p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm reveal stagger-${i + 1}`}>
                   <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center mb-3">
                     {p.icon}
                   </div>
@@ -92,7 +94,7 @@ export const AboutSection: React.FC = () => {
             </div>
 
             {/* Checklist */}
-            <div className="pt-2 flex flex-col sm:flex-row gap-4 text-xs font-semibold text-slate-700">
+            <div className="pt-2 flex flex-col sm:flex-row gap-4 text-xs font-semibold text-slate-700 reveal stagger-4">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4" style={{ color: 'var(--brand-gold)' }} />
                 <span>Incorporated &amp; Regulated in Nigeria</span>

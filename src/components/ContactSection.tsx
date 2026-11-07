@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Send, Phone, Mail, MapPin, CheckCircle, Clock } from "lucide-react";
-import { useInquiries } from "../hooks";
+import { useInquiries, useReveal } from "../hooks";
 
 export const ContactSection: React.FC = () => {
   const { submitInquiry } = useInquiries();
+  const sectionRef = useReveal<HTMLElement>();
+  const [justSubmitted, setJustSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -37,6 +39,9 @@ export const ContactSection: React.FC = () => {
       return;
     }
 
+    setJustSubmitted(true);
+    setTimeout(() => setJustSubmitted(false), 600);
+
     toast.success(
       `Thank you ${formData.fullName}! Your inquiry has been received. Our team will reach out within 24 hours.`,
       {
@@ -51,11 +56,11 @@ export const ContactSection: React.FC = () => {
   const inputStyle = { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)' };
 
   return (
-    <section id="contact" className="py-12 sm:py-20 lg:py-28 bg-white relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="py-12 sm:py-20 lg:py-28 bg-white relative overflow-hidden">
       <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           {/* Left Column: Direct Inquiries and Contact Details */}
-          <div className="lg:col-span-5 space-y-8">
+          <div className="lg:col-span-5 space-y-8 reveal-left stagger-1">
             <div>
               <div
                 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-3"
@@ -79,7 +84,7 @@ export const ContactSection: React.FC = () => {
 
             {/* Contact Details List */}
             <div className="space-y-4">
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 reveal stagger-1">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-deep)', color: 'var(--brand-gold)' }}>
                   <MapPin className="w-5 h-5" />
                 </div>
@@ -92,7 +97,7 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 reveal stagger-2">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-deep)', color: 'var(--brand-gold)' }}>
                   <Phone className="w-5 h-5" />
                 </div>
@@ -103,7 +108,7 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 reveal stagger-3">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--brand-deep)', color: 'var(--brand-gold)' }}>
                   <Mail className="w-5 h-5" />
                 </div>
@@ -129,9 +134,9 @@ export const ContactSection: React.FC = () => {
           </div>
 
           {/* Right Column: Dynamic Consultation Form */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 reveal-right stagger-2">
             <div
-              className="p-5 sm:p-8 lg:p-10 rounded-3xl text-white relative"
+              className={`p-5 sm:p-8 lg:p-10 rounded-3xl text-white relative ${justSubmitted ? "success-pulse" : ""}`}
               style={{ background: 'var(--brand-deep)', border: '1px solid rgba(253,191,2,0.18)', boxShadow: '0 20px 40px rgba(0,16,80,0.12)' }}
             >
               <div className="mb-6">
@@ -162,7 +167,7 @@ export const ContactSection: React.FC = () => {
                         key={div.id}
                         type="button"
                         onClick={() => setFormData({ ...formData, division: div.id })}
-                        className="py-2 px-2 sm:px-3 rounded-xl text-[11px] sm:text-xs font-semibold text-center border transition-all truncate"
+                        className="py-2 px-2 sm:px-3 rounded-xl text-[11px] sm:text-xs font-semibold text-center border transition-all truncate press"
                         style={
                           formData.division === div.id
                             ? { background: 'var(--brand-gold)', color: 'var(--brand-deep)', borderColor: 'var(--brand-gold)', fontWeight: 700, boxShadow: '0 4px 12px rgba(253,191,2,0.3)' }
@@ -257,7 +262,7 @@ export const ContactSection: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 rounded-xl font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl transition-all disabled:opacity-50"
+                    className="w-full py-4 rounded-xl font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl transition-all disabled:opacity-50 press"
                     style={{
                       background: 'linear-gradient(to right, var(--gold-gradient-start), var(--gold-gradient-mid), var(--gold-gradient-end))',
                       color: 'var(--brand-deep)'

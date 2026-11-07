@@ -8,6 +8,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { DIVISIONS_DATA } from "../data/divisions";
+import { useReveal } from "../hooks";
 
 const WHATSAPP_NUMBER = "+447398535263";
 
@@ -121,6 +122,8 @@ const CONSTRUCTION_TESTIMONIALS = [
 const DivisionPage: React.FC = () => {
   const { divisionId } = useParams();
   const division = DIVISIONS_DATA.find((item) => item.id === divisionId);
+  const sectionRef = useReveal<HTMLElement>();
+  const stageStagger = ["stagger-1", "stagger-2", "stagger-3", "stagger-4", "stagger-5", "stagger-6"];
 
   if (!division) return <Navigate to="/" replace />;
 
@@ -135,17 +138,17 @@ const DivisionPage: React.FC = () => {
       <div className="mx-auto max-w-[1400px] overflow-hidden bg-white">
         <Navbar />
         <main>
-          <section className="mx-auto max-w-[1480px] px-4 pb-12 pt-4 sm:px-6 sm:pb-16 lg:px-8">
+          <section ref={sectionRef} className="mx-auto max-w-[1480px] px-4 pb-12 pt-4 sm:px-6 sm:pb-16 lg:px-8">
             <Link
               to="/#divisions"
-              className="mb-5 inline-flex items-center gap-2 text-sm font-semibold"
+              className="mb-5 inline-flex items-center gap-2 text-sm font-semibold reveal stagger-1"
               style={{ color: 'var(--brand-blue)' }}
             >
               <ArrowLeft className="h-4 w-4" /> All divisions
             </Link>
 
             {/* Hero image */}
-            <div className="h-[300px] overflow-hidden rounded-2xl bg-slate-100 sm:h-[420px] sm:rounded-3xl lg:h-[500px]">
+            <div className="h-[300px] overflow-hidden rounded-2xl bg-slate-100 sm:h-[420px] sm:rounded-3xl lg:h-[500px] reveal stagger-2">
               <img
                 src={division.image}
                 alt={division.shortName}
@@ -154,7 +157,7 @@ const DivisionPage: React.FC = () => {
             </div>
 
             {/* Title block */}
-            <div className="border-b border-slate-200 py-7 sm:py-9">
+            <div className="border-b border-slate-200 py-7 sm:py-9 reveal stagger-3">
               <p className="text-xs font-bold uppercase tracking-[0.18em] sm:text-sm" style={{ color: 'var(--brand-gold)' }}>
                 {division.tagline}
               </p>
@@ -165,7 +168,7 @@ const DivisionPage: React.FC = () => {
 
             {/* Description + metrics */}
             <div className="grid gap-10 py-10 sm:py-14 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
-              <div>
+              <div className="reveal stagger-1">
                 <p className="max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg">
                   {division.description}
                 </p>
@@ -185,7 +188,7 @@ const DivisionPage: React.FC = () => {
                 </div>
               </div>
 
-              <div>
+              <div className="reveal stagger-2">
                 <h2 className="font-display text-xl font-bold sm:text-2xl" style={{ color: 'var(--brand-deep)' }}>
                   Services
                 </h2>
@@ -203,7 +206,7 @@ const DivisionPage: React.FC = () => {
             {isConstruction && (
               <>
                 {/* Section header */}
-                <div className="border-t border-slate-200 pt-12 sm:pt-16 mb-10">
+                <div className="border-t border-slate-200 pt-12 sm:pt-16 mb-10 reveal stagger-1">
                   <div
                     className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4"
                     style={{ background: 'rgba(0,16,80,0.06)', border: '1px solid rgba(0,16,80,0.14)', color: 'var(--brand-deep)' }}
@@ -229,7 +232,7 @@ const DivisionPage: React.FC = () => {
                   {CONSTRUCTION_STAGES.map((stage, idx) => (
                     <div
                       key={idx}
-                      className={`rounded-2xl border overflow-hidden ${stage.highlight ? "" : "border-slate-100"}`}
+                      className={`rounded-2xl border overflow-hidden ${stage.highlight ? "" : "border-slate-100"} reveal ${stageStagger[idx % 6]}`}
                       style={stage.highlight
                         ? { border: '1px solid rgba(253,191,2,0.35)', background: 'rgba(253,191,2,0.03)' }
                         : undefined}
@@ -288,7 +291,7 @@ const DivisionPage: React.FC = () => {
 
                 {/* Diaspora live tracking callout */}
                 <div
-                  className="mt-10 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row gap-5 sm:items-center"
+                  className="mt-10 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row gap-5 sm:items-center reveal stagger-2"
                   style={{ background: 'linear-gradient(135deg, var(--brand-blue), var(--brand-deep))', border: '1px solid rgba(253,191,2,0.2)' }}
                 >
                   <Video className="w-10 h-10 shrink-0" style={{ color: 'var(--brand-gold)' }} />
@@ -300,7 +303,7 @@ const DivisionPage: React.FC = () => {
                   </div>
                   <a
                     href="/#contact"
-                    className="shrink-0 inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap"
+                    className="shrink-0 inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap press"
                     style={{ background: 'var(--brand-gold)', color: 'var(--brand-deep)' }}
                   >
                     Start Your Project <ArrowUpRight className="w-4 h-4" />
@@ -309,12 +312,12 @@ const DivisionPage: React.FC = () => {
 
                 {/* Construction testimonials */}
                 <div className="mt-12">
-                  <h2 className="font-display text-2xl font-extrabold mb-6" style={{ color: 'var(--brand-deep)' }}>
+                  <h2 className="font-display text-2xl font-extrabold mb-6 reveal stagger-1" style={{ color: 'var(--brand-deep)' }}>
                     What Our Clients Say
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {CONSTRUCTION_TESTIMONIALS.map((t, idx) => (
-                      <div key={idx} className="rounded-2xl p-6 border border-slate-100 bg-slate-50">
+                      <div key={idx} className={`rounded-2xl p-6 border border-slate-100 bg-slate-50 reveal stagger-${idx + 1}`}>
                         <p className="text-sm text-slate-600 leading-relaxed italic">"{t.quote}"</p>
                         <div className="mt-4 pt-4 border-t border-slate-200 flex items-center gap-3">
                           <div
@@ -338,7 +341,7 @@ const DivisionPage: React.FC = () => {
 
             {/* Gallery */}
             <section aria-labelledby="gallery-title" className="border-t border-slate-200 pt-8 mt-10 sm:pt-10">
-              <div className="mb-5">
+              <div className="mb-5 reveal stagger-1">
                 <p className="text-xs font-bold uppercase tracking-[0.18em]" style={{ color: 'var(--brand-gold)' }}>
                   {division.shortName}
                 </p>
@@ -353,7 +356,7 @@ const DivisionPage: React.FC = () => {
                     src={image}
                     alt={`${division.shortName} gallery image ${index + 1}`}
                     loading="lazy"
-                    className="aspect-[4/3] w-full rounded-xl object-cover"
+                    className={`aspect-[4/3] w-full rounded-xl object-cover reveal stagger-${(index % 6) + 1}`}
                   />
                 ))}
               </div>
@@ -361,7 +364,7 @@ const DivisionPage: React.FC = () => {
               {/* Videos */}
               {division.videos.length > 0 && (
                 <div className="mt-10">
-                  <div className="mb-5">
+                  <div className="mb-5 reveal stagger-1">
                     <p className="text-xs font-bold uppercase tracking-[0.18em]" style={{ color: 'var(--brand-gold)' }}>
                       {division.shortName} · Video
                     </p>
@@ -387,7 +390,7 @@ const DivisionPage: React.FC = () => {
 
             {/* CTA strip */}
             <section
-              className="mt-10 flex flex-col gap-5 rounded-2xl p-5 text-white sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:p-8"
+              className="mt-10 flex flex-col gap-5 rounded-2xl p-5 text-white sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:p-8 reveal stagger-1"
               style={{ background: 'var(--brand-deep)' }}
             >
               <div>
@@ -399,18 +402,18 @@ const DivisionPage: React.FC = () => {
                   href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-4 py-3 text-sm font-bold text-white hover:bg-[#1fb85a]"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-4 py-3 text-sm font-bold text-white hover:bg-[#1fb85a] press"
                 >
                   WhatsApp <ArrowUpRight className="h-4 w-4" />
                 </a>
                 <a href="tel:+447398535263" aria-label="Call AKOY 360"
-                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20">
+                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20 press">
                   <Phone className="h-4 w-4" />
                 </a>
                 <a
                   href={`mailto:info@akoy360.co.uk?subject=${encodeURIComponent(division.shortName + " inquiry")}`}
                   aria-label="Email AKOY 360"
-                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20">
+                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20 press">
                   <Mail className="h-4 w-4" />
                 </a>
               </div>

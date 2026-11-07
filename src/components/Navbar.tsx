@@ -134,14 +134,14 @@ export const Navbar: React.FC = () => {
           <button
             onClick={() => setSearchOpen(!searchOpen)}
             aria-label="Search"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 text-white flex items-center justify-center transition-colors duration-200 shadow-sm hover:bg-brand-gold hover:text-brand-blue"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 text-white flex items-center justify-center transition-colors duration-200 shadow-sm hover:bg-brand-gold hover:text-brand-blue press"
           >
             <Search className="w-4 h-4" />
           </button>
 
           <a
             href="/#contact"
-            className="hidden sm:inline-flex items-center gap-2 pl-4 pr-1.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300/80 text-[12px] font-semibold transition-all duration-200"
+            className="hidden sm:inline-flex items-center gap-2 pl-4 pr-1.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-300/80 text-[12px] font-semibold transition-all duration-200 press"
             style={{ color: 'var(--brand-blue)' }}
           >
             <span>Contact</span>
@@ -153,7 +153,7 @@ export const Navbar: React.FC = () => {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-800 hover:bg-slate-200 transition-colors lg:hidden"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-800 hover:bg-slate-200 transition-colors lg:hidden press"
           >
             {mobileMenuOpen ? <X className="w-5 h-5 text-red-600" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -162,7 +162,7 @@ export const Navbar: React.FC = () => {
 
       {/* ── Search Panel ─────────────────────────────────────────── */}
       {searchOpen && (
-        <div className="absolute top-full left-4 right-4 sm:left-12 sm:right-12 mt-2 z-50">
+        <div className="absolute top-full left-4 right-4 sm:left-12 sm:right-12 mt-2 z-50 dropdown-enter">
           <div className="bg-white/97 backdrop-blur-md rounded-2xl border border-slate-200 shadow-2xl overflow-hidden">
             {/* Input row */}
             <div className="flex items-center gap-3 px-4 py-3 border-b border-slate-100">
@@ -248,7 +248,7 @@ export const Navbar: React.FC = () => {
       {/* ── Mobile Drawer ─────────────────────────────────────────── */}
       {mobileMenuOpen && (
         <div
-          className="lg:hidden mx-4 mt-2 p-5 text-white rounded-3xl shadow-2xl space-y-4"
+          className="lg:hidden mx-4 mt-2 p-5 text-white rounded-3xl shadow-2xl space-y-4 drawer-enter"
           style={{ background: 'var(--brand-blue)', border: '1px solid rgba(253,191,2,0.18)' }}
         >
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
