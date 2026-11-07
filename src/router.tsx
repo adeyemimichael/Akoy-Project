@@ -4,6 +4,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import RootLayout from "./RootLayout";
 import Homepage from "./pages/Homepage";
 import DivisionPage from "./pages/DivisionPage";
+import TestimonialsPage from "./pages/TestimonialsPage";
 // Admin
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AdminLayout } from "./AdminLayout";
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Homepage /> },
       { path: "divisions/:divisionId", element: <DivisionPage /> },
+      { path: "testimonials", element: <TestimonialsPage /> },
     ],
   },
 

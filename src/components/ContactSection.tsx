@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Send, Phone, Mail, MapPin, CheckCircle, Clock } from "lucide-react";
 import { useInquiries, useReveal } from "../hooks";
 
@@ -35,7 +35,10 @@ export const ContactSection: React.FC = () => {
     setIsSubmitting(false);
 
     if (error) {
-      toast.error("Something went wrong. Please try again or reach us on WhatsApp.");
+      toast.error(error, {
+        duration: 7000,
+        style: { background: '#1a0a0a', color: '#fff', border: '1px solid #ef4444' },
+      });
       return;
     }
 

@@ -57,11 +57,26 @@ export function useDivisions(): UseDivisionsReturn {
       id: string,
       changes: Partial<Division>,
     ): Promise<{ error: string | null }> => {
-      const { error } = await supabase
-        .from("divisions")
-        .update({ ...changes, updated_at: new Date().toISOString() })
-        .eq("id", id);
-      if (error) return { error: error.message };
+      const doUpdate = async (payload: Record<string, any>) => {
+        return supabase
+          .from("divisions")
+          .update({ ...payload, updated_at: new Date().toISOString() })
+          .eq("id", id);
+      };
+
+      // Try the full update first
+      let result = await doUpdate(changes);
+
+      // If gallery_image_names column doesn't exist yet, retry without it
+      if (
+        result.error?.code === "PGRST204" ||
+        result.error?.message?.includes("gallery_image_names")
+      ) {
+        const { gallery_image_names, ...safeChanges } = changes;
+        result = await doUpdate(safeChanges);
+      }
+
+      if (result.error) return { error: result.error.message };
       // Optimistic local update
       setDivisions((prev) =>
         prev.map((d) =>

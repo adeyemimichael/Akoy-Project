@@ -373,6 +373,208 @@ CREATE POLICY "division_gallery_admin_delete"
   USING (bucket_id = 'division-gallery' AND public.is_admin());
 
 
+-- ── Gallery image names (parallel array, same index order as gallery_images) ──
+ALTER TABLE public.divisions
+  ADD COLUMN IF NOT EXISTS gallery_image_names TEXT[] NOT NULL DEFAULT '{}';
+
+-- ── Videos column (separate from gallery_images) ──────────────────────────────
+ALTER TABLE public.divisions
+  ADD COLUMN IF NOT EXISTS videos TEXT[] NOT NULL DEFAULT '{}';
+
+-- ============================================================
+-- SEED: Divisions data
+-- Populates all 6 AKOY 360 business divisions.
+-- Safe to re-run — uses ON CONFLICT DO UPDATE.
+-- NOTE: image / gallery_images / videos are empty for divisions that use
+--       bundled local assets (Properties, Construction, Diaspora).
+--       Upload those via the Gallery admin page after running this script.
+-- ============================================================
+
+INSERT INTO public.divisions (
+  id, name, short_name, tagline, headline, description,
+  bullet_points, image, gallery_images, gallery_image_names, videos,
+  stat_value, stat_label, metric_primary, metric_secondary, icon_name
+) VALUES
+
+-- 1. Properties
+(
+  'properties',
+  'AKOY 360 Properties',
+  'Properties',
+  'Prime Real Estate & Developments',
+  'Premium Residential & Commercial Property Assets',
+  'Delivering landmark residential developments, commercial hubs, high-yield acquisitions, and full-cycle property management tailored for discerning local and global investors. Includes Airbnb-ready investment properties with end-to-end rental management.',
+  ARRAY[
+    'Luxury Residential & Waterfront Developments',
+    'Commercial Property Acquisition & Leasing',
+    'Diaspora Property Search & Title Verification',
+    'Airbnb-Ready Investment Properties & Rental Management'
+  ],
+  '',
+  ARRAY[]::TEXT[],
+  ARRAY[]::TEXT[],
+  ARRAY[]::TEXT[],
+  '₦45B+',
+  'Portfolio Managed',
+  '180+ Luxury Units',
+  '100% Verified Titles',
+  'Building2'
+),
+
+-- 2. Construction
+(
+  'construction',
+  'AKOY 360 Construction',
+  'Construction',
+  'Engineering & Turnkey Projects',
+  'From Architecture to Handover — We Build It All',
+  'We provide the complete construction package: architecture and design, structural engineering, civil works, project management, interior finishing, furnishing, and optional Airbnb setup. Every step handled in-house with world-class engineering standards and live milestone tracking for diaspora clients.',
+  ARRAY[
+    'Architecture, Design & 3D Modeling',
+    'Structural Engineering & Civil Works',
+    'Site Supervision & Quality Assurance Audits',
+    'Interior Finishing, Furnishing & Airbnb Setup',
+    'Diaspora Remote Build Tracking with Live Telemetry'
+  ],
+  '',
+  ARRAY[]::TEXT[],
+  ARRAY[]::TEXT[],
+  ARRAY[]::TEXT[],
+  '99.4%',
+  'On-Time Completion',
+  '45+ Active Sites',
+  'ISO Certified Standards',
+  'HardHat'
+),
+
+-- 3. Travel
+(
+  'travel',
+  'AKOY 360 Travel',
+  'Travel & Tourism',
+  'Corporate & Leisure Mobility',
+  'Bespoke Corporate Flight Services & Global Tourism Concierge',
+  'Curating seamless travel itineraries, corporate ticketing, private charters, visa advisory, and bespoke diaspora homecoming experiences with VIP protocol.',
+  ARRAY[
+    'Executive Flight Ticketing & Corporate Travel Desk',
+    'Private Aircraft & Luxury Yacht Charter Coordination',
+    'Global Visa Consultation & Fast-Track Protocol',
+    'Curated Diaspora Cultural & Investment Expeditions'
+  ],
+  'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=85',
+  ARRAY[
+    'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85'
+  ],
+  ARRAY['Travel Gallery Image 1', 'Travel Gallery Image 2', 'Travel Gallery Image 3'],
+  ARRAY[]::TEXT[],
+  '140+',
+  'Global Destinations',
+  '24/7 Concierge',
+  '99.8% Client Satisfaction',
+  'Plane'
+),
+
+-- 4. Logistics
+(
+  'logistics',
+  'AKOY 360 Logistics',
+  'Logistics & Shipping',
+  'Cargo, Freight & Supply Chain',
+  'Multi-Modal Freight, Maritime Cargo & Door-to-Door Delivery',
+  'Connecting continents with reliable air cargo, sea freight, customs clearance, and last-mile logistics networks engineered for high efficiency and secure custody.',
+  ARRAY[
+    'International Air Cargo & Sea Freight Consolidation',
+    'Door-to-Door Courier & Cross-Border Delivery',
+    'Customs Clearance, Port Handling & Compliance',
+    'Cold Chain & High-Value Secure Escort Solutions'
+  ],
+  'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=85',
+  ARRAY[
+    'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=85'
+  ],
+  ARRAY['Logistics Gallery Image 1', 'Logistics Gallery Image 2'],
+  ARRAY[]::TEXT[],
+  '250K+',
+  'Tons Delivered',
+  '48-72h Express Air',
+  'Real-Time GPS Tracking',
+  'Ship'
+),
+
+-- 5. Business Services
+(
+  'business-services',
+  'AKOY 360 Business Services',
+  'Business & Procurement',
+  'Procurement, Agency & Consulting',
+  'Institutional Procurement & Strategic Management Consulting',
+  'Empowering enterprises, government agencies, and growing startups with global vendor procurement, contract representation, regulatory advisory, and operational optimization.',
+  ARRAY[
+    'Industrial & Corporate Equipment Procurement',
+    'Contract Agency & Government Tender Support',
+    'Business Structuring, Compliance & Advisory',
+    'Supply Chain Optimization & Vendor Vetting'
+  ],
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=85',
+  ARRAY[
+    'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85'
+  ],
+  ARRAY['Business Gallery Image 1', 'Business Gallery Image 2', 'Business Gallery Image 3'],
+  ARRAY[]::TEXT[],
+  '₦12B+',
+  'Procurement Facilitated',
+  '120+ Corporate Clients',
+  'Tier-1 Vendor Network',
+  'Briefcase'
+),
+
+-- 6. Diaspora
+(
+  'diaspora',
+  'AKOY 360 Diaspora Services',
+  'Diaspora Gateway',
+  'Trusted Nigerian-Global Bridge',
+  'The Verified Link Between Nigerians Abroad and Opportunities at Home',
+  'Eliminating the anxiety of remote execution. We serve as your trusted on-ground fiduciary for land acquisition, building oversight, vehicle shipping, family support, and verified ventures.',
+  ARRAY[
+    'Direct Milestone Escrow & Transparent Camera Telemetry',
+    'Family & Elder Care Concierge Protocols',
+    'Direct Government & Banking Document Processing',
+    'Returnee Relocation & Re-integration Management'
+  ],
+  '',
+  ARRAY[]::TEXT[],
+  ARRAY[]::TEXT[],
+  ARRAY[]::TEXT[],
+  '3,200+',
+  'Diaspora Families Served',
+  'Zero Remote Fraud',
+  'UK, US, Canada & EU Desks',
+  'Globe2'
+)
+
+ON CONFLICT (id) DO UPDATE SET
+  name              = EXCLUDED.name,
+  short_name        = EXCLUDED.short_name,
+  tagline           = EXCLUDED.tagline,
+  headline          = EXCLUDED.headline,
+  description       = EXCLUDED.description,
+  bullet_points     = EXCLUDED.bullet_points,
+  image             = EXCLUDED.image,
+  gallery_images    = EXCLUDED.gallery_images,
+  gallery_image_names = EXCLUDED.gallery_image_names,
+  videos            = EXCLUDED.videos,
+  stat_value        = EXCLUDED.stat_value,
+  stat_label        = EXCLUDED.stat_label,
+  metric_primary    = EXCLUDED.metric_primary,
+  metric_secondary  = EXCLUDED.metric_secondary,
+  icon_name         = EXCLUDED.icon_name;
+
 -- ============================================================
 -- SEED: Default site_settings rows
 -- Matches the DEFAULT_SETTINGS in src/admin/data/siteConfig.ts

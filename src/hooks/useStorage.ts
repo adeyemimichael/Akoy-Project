@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+ import { useCallback } from "react";
 import { supabase } from "../lib/supabase";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -14,6 +14,18 @@ interface UploadResult {
   error: string | null;
 }
 
+/** Result for a single file in a batch upload — index preserves the original file order. */
+export interface FileUploadResult {
+  /** Position of this file in the original input array. */
+  index: number;
+  /** Public URL if the upload succeeded, null otherwise. */
+  url: string | null;
+  /** Error message if the upload failed, null otherwise. */
+  error: string | null;
+  /** Original file name, for display in error messages. */
+  fileName: string;
+}
+
 interface UseStorageReturn {
   /**
    * Upload a hero image for a division.
@@ -24,9 +36,11 @@ interface UseStorageReturn {
   /**
    * Upload one or more gallery media files for a division.
    * Files are stored at: division-gallery/<divisionId>/<timestamp>-<filename>
-   * Returns an array of public URLs to append to divisions.gallery_images.
+   * Returns one result per input file, preserving the original order via `index`.
+   * This lets the caller map each URL back to the exact gallery item it belongs to,
+   * even when uploads finish out of order (Promise.all does not preserve completion order).
    */
-  uploadGalleryFiles: (divisionId: string, files: File[]) => Promise<{ urls: string[]; errors: string[] }>;
+  uploadGalleryFiles: (divisionId: string, files: File[]) => Promise<{ results: FileUploadResult[] }>;
   /**
    * Delete a file from storage by its full public URL.
    * Works for both buckets — the bucket is inferred from the URL.
@@ -38,21 +52,6 @@ interface UseStorageReturn {
 
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 
-/**
- * Handles file uploads and deletions for division media.
- * Used in the Gallery admin page.
- *
- * @example
- * const { uploadHeroImage, uploadGalleryFiles, deleteFile } = useStorage();
- *
- * // Upload hero
- * const { url, error } = await uploadHeroImage(divisionId, file);
- * if (!error) await updateDivision(divisionId, { image: url });
- *
- * // Upload gallery
- * const { urls } = await uploadGalleryFiles(divisionId, files);
- * await updateDivision(divisionId, { gallery_images: [...existing, ...urls] });
- */
 export function useStorage(): UseStorageReturn {
 
   const getPublicUrl = useCallback((bucket: string, path: string): string => {
@@ -72,7 +71,7 @@ export function useStorage(): UseStorageReturn {
     const { error } = await supabase.storage
       .from(HEROES_BUCKET)
       .upload(path, file, {
-        upsert: true,          // overwrite the existing hero if present
+        upsert: true,
         contentType: file.type,
       });
 
@@ -86,13 +85,13 @@ export function useStorage(): UseStorageReturn {
   const uploadGalleryFiles = useCallback(async (
     divisionId: string,
     files: File[],
-  ): Promise<{ urls: string[]; errors: string[] }> => {
-    const urls: string[]   = [];
-    const errors: string[] = [];
-
-    await Promise.all(
-      files.map(async (file) => {
-        const timestamp = Date.now();
+  ): Promise<{ results: FileUploadResult[] }> => {
+    // Upload each file and tag the result with its original index so the
+    // caller can map URLs back to the correct gallery item — even if uploads
+    // finish out of order (Promise.all doesn't preserve completion order).
+    const results = await Promise.all(
+      files.map(async (file, index): Promise<FileUploadResult> => {
+        const timestamp = Date.now() + index; // avoid identical timestamps causing path collisions
         const safeName  = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
         const path      = `${divisionId}/${timestamp}-${safeName}`;
 
@@ -101,14 +100,13 @@ export function useStorage(): UseStorageReturn {
           .upload(path, file, { contentType: file.type });
 
         if (error) {
-          errors.push(`${file.name}: ${error.message}`);
-        } else {
-          urls.push(getPublicUrl(GALLERY_BUCKET, path));
+          return { index, url: null, error: error.message, fileName: file.name };
         }
+        return { index, url: getPublicUrl(GALLERY_BUCKET, path), error: null, fileName: file.name };
       }),
     );
 
-    return { urls, errors };
+    return { results };
   }, [getPublicUrl]);
 
   // ── Delete by public URL ───────────────────────────────────────────────────
@@ -116,7 +114,6 @@ export function useStorage(): UseStorageReturn {
   const deleteFile = useCallback(async (
     publicUrl: string,
   ): Promise<{ error: string | null }> => {
-    // Determine which bucket owns this URL and extract the path after the bucket name
     let bucket: string;
     let path: string;
 
@@ -127,7 +124,6 @@ export function useStorage(): UseStorageReturn {
       bucket = GALLERY_BUCKET;
       path   = publicUrl.split(`/${GALLERY_BUCKET}/`)[1];
     } else {
-      // External URL (Unsplash, etc.) — nothing to delete in storage
       return { error: null };
     }
 
@@ -138,4 +134,3 @@ export function useStorage(): UseStorageReturn {
 
   return { uploadHeroImage, uploadGalleryFiles, deleteFile, getPublicUrl };
 }
-

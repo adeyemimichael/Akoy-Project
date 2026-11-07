@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import type { Testimonial } from "../types/supabaseType";
+import { MOCK_TESTIMONIALS } from "../data/mockData";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -71,8 +72,11 @@ export function useTestimonials({
     const { data, error } = await query;
     if (error) {
       setError(error.message);
+      // On fetch error for the public page, fall back to mock data so the section isn't empty
+      if (publishedOnly) setTestimonials(MOCK_TESTIMONIALS);
     } else {
-      setTestimonials(data ?? []);
+      // Fall back to mock data when the DB table is empty (not yet seeded)
+      setTestimonials(data && data.length > 0 ? data : publishedOnly ? MOCK_TESTIMONIALS : []);
     }
     setLoading(false);
   }, [publishedOnly]);

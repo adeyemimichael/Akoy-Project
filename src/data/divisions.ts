@@ -8,7 +8,7 @@ import img7 from "../assets/7.jpeg";
 import img8 from "../assets/8.jpeg";
 import img9 from "../assets/9.jpeg";
 import img10 from "../assets/10.jpeg";
-import img11 from "../assets/11.jpeg";
+// import img11 from "../assets/11.jpeg";  // moved to img24 for construction hero
 import img12 from "../assets/12.jpeg";
 import img13 from "../assets/13.jpeg";
 import img14 from "../assets/14.jpeg";
@@ -21,7 +21,7 @@ import img20 from "../assets/20.jpeg";
 import img21 from "../assets/21.jpeg";
 import img22 from "../assets/22.jpeg";
 import img23 from "../assets/23.jpeg";
-// import img24 from "../assets/24.jpeg";
+import img24 from "../assets/24.jpeg";
 // import img25 from "../assets/25.jpeg";
 // import img26 from "../assets/26.jpeg";
 // import img28 from "../assets/28.jpeg";
@@ -110,8 +110,8 @@ export const DIVISIONS_DATA: DivisionItem[] = [
       "Interior Finishing, Furnishing & Airbnb Setup",
       "Diaspora Remote Build Tracking with Live Telemetry",
     ],
-    image: img11,
-    galleryImages: [img9, img10, img8, img12, img13, img14, img15, img16],
+    image: img24,
+    galleryImages: [img10, img9, img8, img12, img13, img14, img15, img16],
     videos: [vid1, vid2, vid3, vid4],
     stats: {
       value: "99.4%",

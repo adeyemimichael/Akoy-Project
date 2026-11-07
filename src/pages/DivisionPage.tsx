@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   ArrowLeft, ArrowUpRight, Mail, Phone,
   PencilRuler, HardHat, ClipboardCheck, Paintbrush2,
   Sofa, Home, Video, CheckCircle2,
+  X, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { DIVISIONS_DATA } from "../data/divisions";
-import { useReveal } from "../hooks";
+import { useDivisions, useReveal } from "../hooks";
 
 const WHATSAPP_NUMBER = "+447398535263";
 
@@ -121,11 +122,50 @@ const CONSTRUCTION_TESTIMONIALS = [
 
 const DivisionPage: React.FC = () => {
   const { divisionId } = useParams();
-  const division = DIVISIONS_DATA.find((item) => item.id === divisionId);
+  const { divisions: sbDivisions } = useDivisions();
   const sectionRef = useReveal<HTMLElement>();
   const stageStagger = ["stagger-1", "stagger-2", "stagger-3", "stagger-4", "stagger-5", "stagger-6"];
 
+  // ── Lightbox state ────────────────────────────────────────────────────────
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+
+  // Static data is the base — renders immediately with local images.
+  const staticDivision = DIVISIONS_DATA.find((item) => item.id === divisionId);
+
+  // When Supabase data arrives, uploaded images are ADDED to the local ones,
+  // not replacing them. Empty string / empty array = no upload yet.
+  const sbDivision = sbDivisions.find((d) => d.id === divisionId);
+  const sbGallery = sbDivision?.gallery_images;
+  const division = staticDivision
+    ? {
+        ...staticDivision,
+        image: sbDivision?.image || staticDivision.image,
+        galleryImages: [
+          ...staticDivision.galleryImages,
+          // Uploaded images from Supabase are APPENDED to the local ones,
+          // never replacing them. Empty/blank entries are filtered out so
+          // broken placeholders never appear in the gallery.
+          ...(sbGallery ?? []).filter(
+            (url) => typeof url === "string" && url.trim() !== "",
+          ),
+        ],
+      }
+    : null;
+
   if (!division) return <Navigate to="/" replace />;
+
+  // ── Lightbox keyboard navigation ──────────────────────────────────────────
+  useEffect(() => {
+    if (lightboxIdx === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIdx(null);
+      if (e.key === "ArrowLeft" && lightboxIdx > 0) setLightboxIdx(lightboxIdx - 1);
+      if (e.key === "ArrowRight" && lightboxIdx < division.galleryImages.length - 1)
+        setLightboxIdx(lightboxIdx + 1);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [lightboxIdx, division.galleryImages.length]);
 
   const isConstruction = divisionId === "construction";
 
@@ -356,7 +396,8 @@ const DivisionPage: React.FC = () => {
                     src={image}
                     alt={`${division.shortName} gallery image ${index + 1}`}
                     loading="lazy"
-                    className={`aspect-[4/3] w-full rounded-xl object-cover reveal stagger-${(index % 6) + 1}`}
+                    onClick={() => setLightboxIdx(index)}
+                    className={`aspect-[4/3] w-full rounded-xl object-cover cursor-pointer transition-transform duration-300 hover:scale-[1.02] reveal stagger-${(index % 6) + 1}`}
                   />
                 ))}
               </div>
@@ -422,6 +463,60 @@ const DivisionPage: React.FC = () => {
         </main>
         <Footer />
       </div>
+
+      {/* ── Lightbox ─────────────────────────────────────────────────────── */}
+      {lightboxIdx !== null && division.galleryImages[lightboxIdx] && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          onClick={() => setLightboxIdx(null)}
+        >
+          {/* Close button */}
+          <button
+            onClick={(e) => { e.stopPropagation(); setLightboxIdx(null); }}
+            className="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Previous arrow */}
+          {division.galleryImages.length > 1 && lightboxIdx > 0 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); setLightboxIdx(lightboxIdx - 1); }}
+              className="absolute left-4 z-10 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+          )}
+
+          {/* Next arrow */}
+          {division.galleryImages.length > 1 && lightboxIdx < division.galleryImages.length - 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); setLightboxIdx(lightboxIdx + 1); }}
+              className="absolute right-4 z-10 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+              aria-label="Next image"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          )}
+
+          {/* Image */}
+          <img
+            src={division.galleryImages[lightboxIdx]}
+            alt={`${division.shortName} gallery image ${lightboxIdx + 1}`}
+            className="max-h-[88vh] max-w-[92vw] object-contain rounded-xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          {/* Counter */}
+          {division.galleryImages.length > 1 && (
+            <span className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/80 text-sm font-medium">
+              {lightboxIdx + 1} / {division.galleryImages.length}
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 };

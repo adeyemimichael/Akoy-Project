@@ -86,6 +86,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-xs text-slate-400">
               <li><a href="/#hero"     className="hover:text-white transition-colors">Overview &amp; Vision</a></li>
               <li><a href="/#about"    className="hover:text-white transition-colors">Corporate Governance</a></li>
+              <li><a href="/testimonials" className="hover:text-white transition-colors">Client Testimonials</a></li>
               <li><a href="/#diaspora" className="hover:text-white transition-colors">Diaspora Trust Desk</a></li>
               <li><a href="/#contact"  className="hover:text-white transition-colors">Executive Consultation</a></li>
               <li><a href="/#terms"    className="hover:text-white transition-colors">Terms &amp; Regulatory Disclosures</a></li>

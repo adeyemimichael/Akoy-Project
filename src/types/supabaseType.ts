@@ -48,7 +48,8 @@ export interface Division {
   bullet_points: string[];
   image: string;
   gallery_images: string[];
-  videos: string[];
+  gallery_image_names?: string[];
+  videos?: string[];
   stat_value: string;
   stat_label: string;
   metric_primary: string;

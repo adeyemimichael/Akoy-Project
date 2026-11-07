@@ -1,5 +1,6 @@
 import React from "react";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useTestimonials } from "../hooks";
 
 export const TestimonialsSection: React.FC = () => {
@@ -37,6 +38,14 @@ export const TestimonialsSection: React.FC = () => {
               From Lagos to London, Houston to Dubai — here's what our clients say about working with AKOY 360 LIMITED.
             </p>
           </div>
+          <Link
+            to="/testimonials"
+            className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all hover:-translate-y-0.5"
+            style={{ background: 'var(--brand-deep)', color: 'var(--brand-gold)' }}
+          >
+            <span>View All Testimonials</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
         </div>
 
         {/* Cards Grid */}
@@ -109,6 +118,18 @@ export const TestimonialsSection: React.FC = () => {
             </div>
             ))
           )}
+        </div>
+
+        {/* View all link (visible on all screen sizes) */}
+        <div className="mt-10 text-center">
+          <Link
+            to="/testimonials"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all hover:-translate-y-0.5"
+            style={{ background: 'var(--brand-deep)', color: 'var(--brand-gold)' }}
+          >
+            <span>View All Client Testimonials</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
         </div>
 
       </div>
